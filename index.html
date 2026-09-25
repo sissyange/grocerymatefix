@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="splash-screen">
+
+        <!-- Decorative leaves -->
+        <div class="leaf leaf-1"></div>
+        <div class="leaf leaf-2"></div>
+        <div class="leaf leaf-3"></div>
+        <div class="leaf leaf-4"></div>
+
+
+        <!-- Grocery Cart Logo -->
+        <div class="logo-container">
+
+            <div class="cart">
+
+                <div class="cart-handle"></div>
+
+                <div class="cart-body">
+                    <div class="leaf-logo"></div>
+                </div>
+
+                <div class="wheel wheel-left"></div>
+                <div class="wheel wheel-right"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- App Name -->
+        <h1>
+            Grocery<span>Mate</span>
+        </h1>
+
+
+        <!-- Subtitle -->
+        <p class="subtitle">
+            Offline Grocery List &amp; Budget App
+        </p>
+
+
+        <!-- Tagline -->
+        <div class="tagline">
+
+            <span>Plan</span>
+
+            <span>•</span>
+
+            <span>Shop</span>
+
+            <span>•</span>
+
+            <span>Save</span>
+
+        </div>
+
+
+        <!-- Loading -->
+        <div class="loading-container">
+
+            <div class="loading-bar">
+
+                <div class="loading-progress"></div>
+
+            </div>
+
+            <p>Loading...</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         SPLASH / ONBOARDING SCRIPT
+    ========================================================= -->
+
+    <script src="script.js"></script>
+
+
+    <!-- =========================================================
+         GROCERYMATE OFFLINE SERVICE WORKER
+    ========================================================= -->
+
+    <script>
+
+        if ("serviceWorker" in navigator) {
+
+            window.addEventListener("load", function () {
+
+                navigator.serviceWorker
+                    .register("./service-worker.js")
+                    .then(function (registration) {
+
+                        console.log(
+                            "GroceryMate offline mode enabled:",
+                            registration.scope
+                        );
+
+                    })
+                    .catch(function (error) {
+
+                        console.error(
+                            "GroceryMate offline mode failed:",
+                            error
+                        );
+
+                    });
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

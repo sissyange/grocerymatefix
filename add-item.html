@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Add Item</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+
+        /* =========================================================
+           PAGE BACKGROUND
+        ========================================================= */
+
+        body {
+
+            background: #cfe0d2;
+
+            display: flex;
+
+            justify-content: center;
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+        }
+
+
+        /* =========================================================
+           PHONE / APP FRAME
+        ========================================================= */
+
+        .app {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f7f8f5;
+
+            position: relative;
+
+            box-shadow:
+                0 0 25px
+                rgba(0, 0, 0, 0.15);
+
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .add-item-header {
+
+            height: 78px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding:
+                0 18px;
+
+            background: #f7f8f5;
+
+            border-bottom:
+                1px solid #e3e7e1;
+
+        }
+
+
+        .back-button {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 29px;
+
+            color: #273129;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .back-button:active {
+
+            transform: scale(0.95);
+
+        }
+
+
+        .header-title {
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+
+        .header-title h1 {
+
+            font-size: 20px;
+
+            line-height: 1.2;
+
+            color: #202720;
+
+            font-weight: 700;
+
+        }
+
+
+        .header-title p {
+
+            margin-top: 4px;
+
+            font-size: 12px;
+
+            color: #7a847c;
+
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .add-item-content {
+
+            padding:
+                22px 20px 35px;
+
+        }
+
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #465149;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+        }
+
+
+        .optional {
+
+            color: #8a938c;
+
+            font-weight: 400;
+
+        }
+
+
+        /* =========================================================
+           INPUTS
+        ========================================================= */
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            border:
+                1px solid #d7ddd7;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #273129;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s;
+
+        }
+
+
+        input,
+        select {
+
+            height: 48px;
+
+            padding:
+                0 13px;
+
+        }
+
+
+        textarea {
+
+            min-height: 92px;
+
+            padding: 13px;
+
+            resize: none;
+
+            line-height: 1.5;
+
+        }
+
+
+        input::placeholder,
+        textarea::placeholder {
+
+            color: #a2aaa4;
+
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #197548;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(25, 117, 72, 0.08);
+
+        }
+
+
+        /* =========================================================
+           QUANTITY + UNIT
+        ========================================================= */
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+
+        }
+
+
+        /* =========================================================
+           PRICE INPUT
+        ========================================================= */
+
+        .price-box {
+
+            height: 48px;
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            background: #ffffff;
+
+            border:
+                1px solid #d7ddd7;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+        }
+
+
+        .price-box:focus-within {
+
+            border-color: #197548;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(25, 117, 72, 0.08);
+
+        }
+
+
+        .peso-symbol {
+
+            height: 100%;
+
+            min-width: 43px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #59635c;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            border-right:
+                1px solid #e2e6e2;
+
+        }
+
+
+        .price-box input {
+
+            border: none;
+
+            border-radius: 0;
+
+            box-shadow: none;
+
+        }
+
+
+        .price-box input:focus {
+
+            border: none;
+
+            box-shadow: none;
+
+        }
+
+
+        /* =========================================================
+           TOTAL PREVIEW
+        ========================================================= */
+
+        .total-preview {
+
+            margin-top: 4px;
+
+            margin-bottom: 20px;
+
+            min-height: 72px;
+
+            padding:
+                14px 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            background: #edf6ee;
+
+            border:
+                1px solid #d9e8da;
+
+            border-radius: 14px;
+
+        }
+
+
+        .total-left {
+
+            min-width: 0;
+
+        }
+
+
+        .total-title {
+
+            display: block;
+
+            color: #536158;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .total-description {
+
+            display: block;
+
+            color: #89938b;
+
+            font-size: 12px;
+
+        }
+
+
+        .total-price {
+
+            color: #126c3d;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .form-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+        }
+
+
+        .cancel-button {
+
+            flex: 1;
+
+            height: 50px;
+
+            border:
+                1px solid #d1d8d2;
+
+            border-radius: 11px;
+
+            background: #ffffff;
+
+            color: #58635b;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .cancel-button:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        .save-item-button {
+
+            flex: 1.5;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: #126d3e;
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 3px 8px
+                rgba(18, 109, 62, 0.18);
+
+        }
+
+
+        .save-item-button:hover {
+
+            background: #0f6036;
+
+        }
+
+
+        .save-item-button:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        /* =========================================================
+           EDIT MODE
+        ========================================================= */
+
+        .edit-mode {
+
+            background: #eef6ef;
+
+        }
+
+
+        /* =========================================================
+           DARK THEME
+        ========================================================= */
+
+        html.dark-theme,
+        html.dark-theme body {
+
+            background: #111714 !important;
+
+        }
+
+
+        html.dark-theme .app {
+
+            background: #171d19 !important;
+
+            color: #f1f5f2;
+
+        }
+
+
+        html.dark-theme .add-item-header {
+
+            background: #1b221e !important;
+
+            border-bottom-color:
+                #303a33 !important;
+
+        }
+
+
+        html.dark-theme .back-button {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .header-title h1 {
+
+            color: #f5f5f5 !important;
+
+        }
+
+
+        html.dark-theme .header-title p {
+
+            color: #a7afa9 !important;
+
+        }
+
+
+        html.dark-theme label {
+
+            color: #d4d8d5 !important;
+
+        }
+
+
+        html.dark-theme .optional {
+
+            color: #929a94 !important;
+
+        }
+
+
+        html.dark-theme input,
+        html.dark-theme select,
+        html.dark-theme textarea,
+        html.dark-theme .price-box,
+        html.dark-theme .cancel-button {
+
+            background: #252c27 !important;
+
+            color: #f1f1f1 !important;
+
+            border-color: #3a443d !important;
+
+        }
+
+
+        html.dark-theme input::placeholder,
+        html.dark-theme textarea::placeholder {
+
+            color: #777f79 !important;
+
+        }
+
+
+        html.dark-theme .peso-symbol {
+
+            color: #c5cbc7 !important;
+
+            border-right-color:
+                #3a443d !important;
+
+        }
+
+
+        html.dark-theme .total-preview {
+
+            background: #203126 !important;
+
+            border-color: #31503a !important;
+
+        }
+
+
+        html.dark-theme .total-title {
+
+            color: #d0d8d2 !important;
+
+        }
+
+
+        html.dark-theme .total-description {
+
+            color: #9ba79f !important;
+
+        }
+
+
+        html.dark-theme .total-price {
+
+            color: #6fd39a !important;
+
+        }
+
+
+        html.dark-theme .cancel-button {
+
+            color: #d5dbd7 !important;
+
+        }
+
+
+        html.dark-theme .edit-mode {
+
+            background: #223227 !important;
+
+        }
+
+
+        html.dark-theme select option {
+
+            background: #252c27;
+
+            color: #f1f1f1;
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            body {
+
+                background: #f7f8f5;
+
+            }
+
+            html.dark-theme body {
+
+                background: #171d19 !important;
+
+            }
+
+        }
+
+    </style>
+
+
+    <!-- =========================================================
+         THEME
+    ========================================================= -->
+
+    <script>
+
+        (function applySavedTheme() {
+
+            function applyTheme(theme) {
+
+                const isDark =
+                    theme === "dark" ||
+                    theme === "Dark" ||
+                    theme === "DARK";
+
+
+                document.documentElement.classList.toggle(
+                    "dark-theme",
+                    isDark
+                );
+
+            }
+
+
+            const savedTheme =
+                localStorage.getItem("groceryTheme") ||
+                localStorage.getItem("appTheme") ||
+                localStorage.getItem("theme") ||
+                "light";
+
+
+            applyTheme(savedTheme);
+
+
+            window.addEventListener(
+                "storage",
+                function(event) {
+
+                    if (
+                        event.key === "groceryTheme" ||
+                        event.key === "appTheme" ||
+                        event.key === "theme"
+                    ) {
+
+                        applyTheme(
+                            event.newValue || "light"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            window.addEventListener(
+                "groceryThemeChanged",
+                function(event) {
+
+                    applyTheme(
+                        event.detail ||
+                        localStorage.getItem(
+                            "groceryTheme"
+                        ) ||
+                        "light"
+                    );
+
+                }
+            );
+
+        })();
+
+    </script>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="add-item-header">
+
+
+        <button
+            type="button"
+            class="back-button"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+
+        <div class="header-title">
+
+            <h1 id="pageTitle">
+                Add Grocery Item
+            </h1>
+
+            <p id="pageSubtitle">
+                Add a new item to your list
+            </p>
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main class="add-item-content">
+
+
+        <form
+            id="addItemForm"
+            onsubmit="saveItem(event)">
+
+
+            <!-- ITEM NAME -->
+
+            <div class="form-group">
+
+                <label for="itemName">
+                    Item Name
+                </label>
+
+
+                <input
+                    type="text"
+                    id="itemName"
+                    placeholder="e.g. Rice"
+                    autocomplete="off"
+                    required>
+
+            </div>
+
+
+
+            <!-- QUANTITY + UNIT -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label for="quantity">
+                        Quantity
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="quantity"
+                        min="1"
+                        value="1"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="unit">
+                        Unit
+                    </label>
+
+
+                    <select
+                        id="unit"
+                        required>
+
+                        <option value="pcs">
+                            Piece
+                        </option>
+
+                        <option value="kg">
+                            Kilogram (kg)
+                        </option>
+
+                        <option value="g">
+                            Gram (g)
+                        </option>
+
+                        <option value="L">
+                            Liter (L)
+                        </option>
+
+                        <option value="mL">
+                            Milliliter (mL)
+                        </option>
+
+                        <option value="pack">
+                            Pack
+                        </option>
+
+                        <option value="sack">
+                            Sack 
+                        </option>
+
+                        <option value="box">
+                            Box
+                        </option>
+
+                        <option value="bottle">
+                            Bottle
+                        </option>
+
+                        <option value="can">
+                            Can
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRICE -->
+
+            <div class="form-group">
+
+                <label for="price">
+                    Price per Unit
+                </label>
+
+
+                <div class="price-box">
+
+                    <div class="peso-symbol">
+                        ₱
+                    </div>
+
+
+                    <input
+                        type="number"
+                        id="price"
+                        placeholder="0.00"
+                        min="0"
+                        step="0.01"
+                        required>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label for="category">
+                    Category
+                </label>
+
+
+                <select
+                    id="category"
+                    required>
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="Grains">
+                        🌾 Grains
+                    </option>
+
+                    <option value="Dairy">
+                        🥛 Dairy
+                    </option>
+
+                    <option value="Meat">
+                        🍗 Meat
+                    </option>
+
+                    <option value="Vegetables">
+                        🥬 Vegetables
+                    </option>
+
+                    <option value="Fruits">
+                        🍎 Fruits
+                    </option>
+
+                    <option value="Bakery">
+                        🍞 Bakery
+                    </option>
+
+                    <option value="Beverages">
+                        🥤 Beverages
+                    </option>
+
+                    <option value="Snacks">
+                        🍿 Snacks
+                    </option>
+
+                    <option value="Household">
+                        🧹 Household
+                    </option>
+
+                    <option value="Other">
+                        🛒 Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- NOTE -->
+
+            <div class="form-group">
+
+                <label for="note">
+
+                    Note
+
+                    <span class="optional">
+                        (Optional)
+                    </span>
+
+                </label>
+
+
+                <textarea
+                    id="note"
+                    rows="4"
+                    placeholder="e.g. Brand, size, or other details..."></textarea>
+
+            </div>
+
+
+
+            <!-- TOTAL PREVIEW -->
+
+            <div class="total-preview">
+
+                <div class="total-left">
+
+                    <span class="total-title">
+                        Total Estimated Cost
+                    </span>
+
+                    <small
+                        class="total-description"
+                        id="totalDescription">
+
+                        1 × ₱0.00
+
+                    </small>
+
+                </div>
+
+
+                <strong
+                    class="total-price"
+                    id="totalPrice">
+
+                    ₱0.00
+
+                </strong>
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div class="form-buttons">
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    onclick="goBack()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-item-button"
+                    id="saveButton">
+
+                    Save Item
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   LOCAL DEVICE USER
+   NO LOGIN / NO REGISTER
+========================================================= */
+
+function getCurrentUser() {
+
+    let user = null;
+
+
+    try {
+
+        user =
+            JSON.parse(
+                localStorage.getItem(
+                    "currentUser"
+                )
+            );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Unable to read local user:",
+            error
+        );
+
+    }
+
+
+    /*
+        Login and registration have been removed.
+
+        If no local user exists,
+        create one automatically.
+    */
+
+    if (
+        !user ||
+        !user.id
+    ) {
+
+        user = {
+
+            id: "local-device-user",
+
+            name: "Angeline"
+
+        };
+
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    return user;
+
+}
+
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+const currentUser =
+    getCurrentUser();
+
+
+
+/* =========================================================
+   STORAGE KEY
+========================================================= */
+
+const ITEMS_KEY =
+    "groceryItems_" +
+    currentUser.id;
+
+
+
+/* =========================================================
+   LOAD GROCERY ITEMS
+========================================================= */
+
+let groceryItems = [];
+
+
+try {
+
+    const savedItems =
+        localStorage.getItem(
+            ITEMS_KEY
+        );
+
+
+    if (savedItems) {
+
+        const parsedItems =
+            JSON.parse(
+                savedItems
+            );
+
+
+        if (
+            Array.isArray(
+                parsedItems
+            )
+        ) {
+
+            groceryItems =
+                parsedItems;
+
+        }
+
+    }
+
+}
+
+catch (error) {
+
+    console.error(
+        "Error loading grocery items:",
+        error
+    );
+
+    groceryItems = [];
+
+}
+
+
+
+/* =========================================================
+   CHECK EDIT MODE
+========================================================= */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const editId =
+    urlParams.get("id");
+
+
+
+/* =========================================================
+   CATEGORY ICONS
+========================================================= */
+
+const icons = {
+
+    "Grains": "🌾",
+
+    "Dairy": "🥛",
+
+    "Meat": "🍗",
+
+    "Vegetables": "🥬",
+
+    "Fruits": "🍎",
+
+    "Bakery": "🍞",
+
+    "Beverages": "🥤",
+
+    "Snacks": "🍿",
+
+    "Household": "🧹",
+
+    "Other": "🛒"
+
+};
+
+
+
+/* =========================================================
+   EDIT ITEM
+========================================================= */
+
+let itemBeingEdited = null;
+
+
+if (editId) {
+
+    itemBeingEdited =
+        groceryItems.find(
+            function(item) {
+
+                return String(item.id) ===
+                    String(editId);
+
+            }
+        );
+
+
+    if (itemBeingEdited) {
+
+        document
+            .getElementById(
+                "pageTitle"
+            )
+            .textContent =
+            "Edit Grocery Item";
+
+
+        document
+            .getElementById(
+                "pageSubtitle"
+            )
+            .textContent =
+            "Update the details of your item";
+
+
+        document
+            .getElementById(
+                "saveButton"
+            )
+            .textContent =
+            "Update Item";
+
+
+        document
+            .getElementById(
+                "itemName"
+            )
+            .value =
+            itemBeingEdited.name || "";
+
+
+        document
+            .getElementById(
+                "quantity"
+            )
+            .value =
+            itemBeingEdited.quantity || 1;
+
+
+        document
+            .getElementById(
+                "unit"
+            )
+            .value =
+            itemBeingEdited.unit || "pcs";
+
+
+        document
+            .getElementById(
+                "price"
+            )
+            .value =
+            itemBeingEdited.price ?? 0;
+
+
+        document
+            .getElementById(
+                "category"
+            )
+            .value =
+            itemBeingEdited.category || "";
+
+
+        document
+            .getElementById(
+                "note"
+            )
+            .value =
+            itemBeingEdited.note || "";
+
+
+        updateTotal();
+
+    }
+
+    else {
+
+        alert(
+            "The item you are trying to edit could not be found."
+        );
+
+
+        window.location.href =
+            "home.html";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   UPDATE TOTAL
+========================================================= */
+
+function updateTotal() {
+
+    const quantityInput =
+        document.getElementById(
+            "quantity"
+        );
+
+
+    const priceInput =
+        document.getElementById(
+            "price"
+        );
+
+
+    const totalPriceElement =
+        document.getElementById(
+            "totalPrice"
+        );
+
+
+    const totalDescriptionElement =
+        document.getElementById(
+            "totalDescription"
+        );
+
+
+    if (
+        !quantityInput ||
+        !priceInput ||
+        !totalPriceElement ||
+        !totalDescriptionElement
+    ) {
+
+        return;
+
+    }
+
+
+    const quantity =
+        Number(
+            quantityInput.value
+        ) || 0;
+
+
+    const price =
+        Number(
+            priceInput.value
+        ) || 0;
+
+
+    const total =
+        quantity *
+        price;
+
+
+    totalPriceElement.textContent =
+        "₱" +
+        total.toFixed(2);
+
+
+    totalDescriptionElement.textContent =
+        quantity +
+        " × ₱" +
+        price.toFixed(2);
+
+}
+
+
+
+/* =========================================================
+   SAVE / UPDATE ITEM
+========================================================= */
+
+function saveItem(event) {
+
+    event.preventDefault();
+
+
+    /* =====================================================
+       GET FORM VALUES
+    ===================================================== */
+
+    const name =
+        document
+            .getElementById(
+                "itemName"
+            )
+            .value
+            .trim();
+
+
+    const quantity =
+        Number(
+            document
+                .getElementById(
+                    "quantity"
+                )
+                .value
+        );
+
+
+    const unit =
+        document
+            .getElementById(
+                "unit"
+            )
+            .value;
+
+
+    const price =
+        Number(
+            document
+                .getElementById(
+                    "price"
+                )
+                .value
+        );
+
+
+    const category =
+        document
+            .getElementById(
+                "category"
+            )
+            .value;
+
+
+    const note =
+        document
+            .getElementById(
+                "note"
+            )
+            .value
+            .trim();
+
+
+
+    /* =====================================================
+       VALIDATION
+    ===================================================== */
+
+    if (!name) {
+
+        alert(
+            "Please enter an item name."
+        );
+
+
+        document
+            .getElementById(
+                "itemName"
+            )
+            .focus();
+
+
+        return;
+
+    }
+
+
+    if (
+        !Number.isFinite(
+            quantity
+        ) ||
+        quantity <= 0
+    ) {
+
+        alert(
+            "Quantity must be greater than 0."
+        );
+
+
+        document
+            .getElementById(
+                "quantity"
+            )
+            .focus();
+
+
+        return;
+
+    }
+
+
+    if (
+        !Number.isFinite(
+            price
+        ) ||
+        price < 0
+    ) {
+
+        alert(
+            "Please enter a valid price."
+        );
+
+
+        document
+            .getElementById(
+                "price"
+            )
+            .focus();
+
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        alert(
+            "Please select a category."
+        );
+
+
+        document
+            .getElementById(
+                "category"
+            )
+            .focus();
+
+
+        return;
+
+    }
+
+
+
+    /* =====================================================
+       CATEGORY ICON
+    ===================================================== */
+
+    const icon =
+        icons[category] ||
+        "🛒";
+
+
+
+    /* =====================================================
+       EDIT EXISTING ITEM
+    ===================================================== */
+
+    if (
+        editId &&
+        itemBeingEdited
+    ) {
+
+        const index =
+            groceryItems.findIndex(
+                function(item) {
+
+                    return String(item.id) ===
+                        String(editId);
+
+                }
+            );
+
+
+        if (index === -1) {
+
+            alert(
+                "Item could not be found."
+            );
+
+            return;
+
+        }
+
+
+        groceryItems[index] = {
+
+            ...groceryItems[index],
+
+            name:
+                name,
+
+            quantity:
+                quantity,
+
+            unit:
+                unit,
+
+            price:
+                price,
+
+            category:
+                category,
+
+            note:
+                note,
+
+            icon:
+                icon
+
+        };
+
+
+        localStorage.setItem(
+            ITEMS_KEY,
+            JSON.stringify(
+                groceryItems
+            )
+        );
+
+
+        alert(
+            '"' +
+            name +
+            '" has been updated successfully!'
+        );
+
+
+        window.location.href =
+            "item-details.html?id=" +
+            encodeURIComponent(
+                editId
+            );
+
+
+        return;
+
+    }
+
+
+
+    /* =====================================================
+       CREATE NEW ID
+    ===================================================== */
+
+    let newId = 1;
+
+
+    if (
+        groceryItems.length > 0
+    ) {
+
+        const numericIds =
+            groceryItems
+                .map(
+                    function(item) {
+
+                        return Number(
+                            item.id
+                        );
+
+                    }
+                )
+                .filter(
+                    function(id) {
+
+                        return Number.isFinite(
+                            id
+                        );
+
+                    }
+                );
+
+
+        if (
+            numericIds.length > 0
+        ) {
+
+            newId =
+                Math.max(
+                    ...numericIds
+                ) + 1;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       CREATE NEW ITEM
+    ===================================================== */
+
+    const newItem = {
+
+        id:
+            newId,
+
+        name:
+            name,
+
+        quantity:
+            quantity,
+
+        unit:
+            unit,
+
+        price:
+            price,
+
+        category:
+            category,
+
+        note:
+            note,
+
+        purchased:
+            false,
+
+        icon:
+            icon
+
+    };
+
+
+
+    /* =====================================================
+       ADD ITEM
+    ===================================================== */
+
+    groceryItems.push(
+        newItem
+    );
+
+
+
+    /* =====================================================
+       SAVE OFFLINE
+    ===================================================== */
+
+    localStorage.setItem(
+        ITEMS_KEY,
+        JSON.stringify(
+            groceryItems
+        )
+    );
+
+
+
+    /* =====================================================
+       SUCCESS MESSAGE
+    ===================================================== */
+
+    alert(
+        '"' +
+        name +
+        '" has been added to your grocery list!'
+    );
+
+
+
+    /* =====================================================
+       RETURN TO HOME
+    ===================================================== */
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+function goBack() {
+
+    if (
+        editId &&
+        itemBeingEdited
+    ) {
+
+        window.location.href =
+            "item-details.html?id=" +
+            encodeURIComponent(
+                editId
+            );
+
+    }
+
+    else {
+
+        window.location.href =
+            "home.html";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   LIVE TOTAL - QUANTITY
+========================================================= */
+
+const quantityElement =
+    document.getElementById(
+        "quantity"
+    );
+
+
+if (quantityElement) {
+
+    quantityElement.addEventListener(
+        "input",
+        updateTotal
+    );
+
+}
+
+
+
+/* =========================================================
+   LIVE TOTAL - PRICE
+========================================================= */
+
+const priceElement =
+    document.getElementById(
+        "price"
+    );
+
+
+if (priceElement) {
+
+    priceElement.addEventListener(
+        "input",
+        updateTotal
+    );
+
+}
+
+
+
+/* =========================================================
+   INITIAL TOTAL
+========================================================= */
+
+updateTotal();
+
+</script>
+
+
+</body>
+
+</html>

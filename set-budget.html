@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Set Budget</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("groceryTheme") || "light";
+            if (savedTheme === "dark") {
+                document.documentElement.classList.add("dark-theme");
+            }
+        })();
+    </script>
+
+
+    <style>
+
+        /* =========================================================
+           SET BUDGET PAGE
+        ========================================================= */
+
+        .sb-page {
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            padding-bottom: 40px;
+
+        }
+
+
+        .sb-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 18px 20px;
+
+            background: #fff;
+
+            border-bottom:
+                1px solid #e5efe5;
+
+        }
+
+
+        .sb-back {
+
+            width: 38px;
+
+            height: 38px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #e8f5e9;
+
+            color: #1b7a3d;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .sb-header h1 {
+
+            font-size: 20px;
+
+            color: #1a3a26;
+
+        }
+
+
+        .sb-content {
+
+            padding: 28px 22px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+
+        .sb-icon-circle {
+
+            width: 90px;
+
+            height: 90px;
+
+            border-radius: 50%;
+
+            background: #e8f5e9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 44px;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .sb-field {
+
+            width: 100%;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .sb-field label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #4a6b57;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .sb-input-wrap {
+
+            display: flex;
+
+            align-items: center;
+
+            background: #fff;
+
+            border:
+                2px solid #dceadd;
+
+            border-radius: 14px;
+
+            padding: 0 16px;
+
+        }
+
+
+        .sb-input-wrap span {
+
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #1a3a26;
+
+            margin-right: 6px;
+
+        }
+
+
+        .sb-input-wrap input,
+
+        .sb-field select {
+
+            width: 100%;
+
+            border: none;
+
+            outline: none;
+
+            padding: 15px 0;
+
+            font-size: 17px;
+
+            color: #1a3a26;
+
+            background: transparent;
+
+        }
+
+
+        .sb-field select {
+
+            border:
+                2px solid #dceadd;
+
+            border-radius: 14px;
+
+            padding: 15px 16px;
+
+            appearance: none;
+
+            background:
+                #fff
+                url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b7a3d' stroke-width='2.5'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e")
+                no-repeat
+                right 14px center;
+
+            background-size: 18px;
+
+        }
+
+
+        .sb-tips {
+
+            width: 100%;
+
+            background: #fffbe8;
+
+            border:
+                1px solid #f3e9c3;
+
+            border-radius: 16px;
+
+            padding: 18px 20px;
+
+            margin-top: 10px;
+
+            box-sizing: border-box;
+
+        }
+
+
+        .sb-tips h3 {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 15px;
+
+            color: #7a6420;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .sb-tips ul {
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0;
+
+        }
+
+
+        .sb-tips li {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 14px;
+
+            color: #5c6b52;
+
+            padding: 4px 0;
+
+        }
+
+
+        .sb-check {
+
+            width: 18px;
+
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: #2e7d32;
+
+            color: #fff;
+
+            font-size: 11px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .sb-save-btn {
+
+            width: 100%;
+
+            margin-top: 28px;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background: #1b7a3d;
+
+            color: #fff;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .sb-save-btn:active {
+
+            background: #14602f;
+
+        }
+
+
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        body {
+
+            background: #cfe0d2;
+
+            display: flex;
+
+            justify-content: center;
+
+        }
+
+
+        .app {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            box-shadow:
+                0 0 30px
+                rgba(0, 0, 0, 0.15);
+
+            position: relative;
+
+        }
+
+
+        .bottom-navigation {
+
+            left: 50% !important;
+
+            right: auto !important;
+
+            transform:
+                translateX(-50%);
+
+            width: 100%;
+
+            max-width: 400px;
+
+        }
+
+
+        /* =========================================================
+           DARK MODE
+        ========================================================= */
+
+        html.dark-theme,
+        html.dark-theme body {
+            background: #111714;
+        }
+
+        html.dark-theme body {
+            color: #f0f5f1;
+        }
+
+        html.dark-theme .app,
+        html.dark-theme .sb-page {
+            background: #111714;
+        }
+
+        html.dark-theme .sb-header {
+            background: #1b241f;
+            border-bottom-color: #2c3930;
+        }
+
+        html.dark-theme .sb-header h1 {
+            color: #f0f5f1;
+        }
+
+        html.dark-theme .sb-back {
+            background: #26382b;
+            color: #8ee6a8;
+        }
+
+        html.dark-theme .sb-icon-circle {
+            background: #26382b;
+        }
+
+        html.dark-theme .sb-field label {
+            color: #aebdaf;
+        }
+
+        html.dark-theme .sb-input-wrap {
+            background: #1b241f;
+            border-color: #344439;
+        }
+
+        html.dark-theme .sb-input-wrap span,
+        html.dark-theme .sb-input-wrap input,
+        html.dark-theme .sb-field select {
+            color: #f0f5f1;
+        }
+
+        html.dark-theme .sb-input-wrap input {
+            background: transparent;
+        }
+
+        html.dark-theme .sb-input-wrap input::placeholder {
+            color: #819087;
+        }
+
+        html.dark-theme .sb-field select {
+            background-color: #1b241f;
+            border-color: #344439;
+            color: #f0f5f1;
+        }
+
+        html.dark-theme .sb-field select option {
+            background: #1b241f;
+            color: #f0f5f1;
+        }
+
+        html.dark-theme .sb-tips {
+            background: #292817;
+            border-color: #514b2b;
+        }
+
+        html.dark-theme .sb-tips h3 {
+            color: #e6d98a;
+        }
+
+        html.dark-theme .sb-tips li {
+            color: #c5cdbf;
+        }
+
+        html.dark-theme .bottom-navigation {
+            background: #1b241f;
+            border-top-color: #2c3930;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app sb-page">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="sb-header">
+
+
+        <button
+            class="sb-back"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+
+        <h1>
+
+            Set Budget
+
+        </h1>
+
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="sb-content">
+
+
+        <div class="sb-icon-circle">
+
+            💰
+
+        </div>
+
+
+        <!-- =================================================
+             YOUR BUDGET
+        ================================================== -->
+
+        <div class="sb-field">
+
+
+            <label for="budgetAmount">
+
+                Your Budget
+
+            </label>
+
+
+            <div class="sb-input-wrap">
+
+
+                <span>
+
+                    ₱
+
+                </span>
+
+
+                <input
+                    type="number"
+                    id="budgetAmount"
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01">
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BUDGET PERIOD
+        ================================================== -->
+
+        <div class="sb-field">
+
+
+            <label for="budgetPeriod">
+
+                Budget Period
+
+            </label>
+
+
+            <select
+                id="budgetPeriod">
+
+
+                <option
+                    value="This Week">
+
+                    This Week
+
+                </option>
+
+
+                <option
+                    value="This Month">
+
+                    This Month
+
+                </option>
+
+
+                <option
+                    value="Today">
+
+                    Today
+
+                </option>
+
+
+            </select>
+
+        </div>
+
+
+        <!-- =================================================
+             BUDGET TIPS
+        ================================================== -->
+
+        <div class="sb-tips">
+
+
+            <h3>
+
+                💡 Budget Tips
+
+            </h3>
+
+
+            <ul>
+
+
+                <li>
+
+                    <span class="sb-check">
+
+                        ✓
+
+                    </span>
+
+                    Plan your meals
+
+                </li>
+
+
+                <li>
+
+                    <span class="sb-check">
+
+                        ✓
+
+                    </span>
+
+                    Stick to your list
+
+                </li>
+
+
+                <li>
+
+                    <span class="sb-check">
+
+                        ✓
+
+                    </span>
+
+                    Avoid impulse buying
+
+                </li>
+
+
+            </ul>
+
+
+        </div>
+
+
+        <!-- =================================================
+             SAVE BUTTON
+        ================================================== -->
+
+        <button
+            class="sb-save-btn"
+            onclick="saveBudget()">
+
+            Save Budget
+
+        </button>
+
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   LOCAL DEVICE USER
+   NO LOGIN / NO REGISTER REQUIRED
+========================================================= */
+
+function getCurrentUser() {
+
+    let user = null;
+
+
+    try {
+
+        user =
+            JSON.parse(
+                localStorage.getItem(
+                    "currentUser"
+                )
+            );
+
+    }
+
+    catch (error) {
+
+        user = null;
+
+    }
+
+
+    /*
+        Create a local device user automatically
+        if no user exists.
+
+        This allows the app to work offline
+        without login or registration.
+    */
+
+    if (
+        !user ||
+        !user.id
+    ) {
+
+        user = {
+
+            id:
+                "local-device-user",
+
+            name:
+                "Angeline"
+
+        };
+
+
+        localStorage.setItem(
+
+            "currentUser",
+
+            JSON.stringify(user)
+
+        );
+
+    }
+
+
+    return user;
+
+}
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+const currentUser =
+    getCurrentUser();
+
+
+/* =========================================================
+   GET USER BUDGET KEY
+========================================================= */
+
+function getBudgetKey() {
+
+    return (
+        "groceryBudget_" +
+        currentUser.id
+    );
+
+}
+
+
+/* =========================================================
+   LOAD EXISTING BUDGET
+========================================================= */
+
+function loadBudget() {
+
+    const budgetKey =
+        getBudgetKey();
+
+
+    const savedBudget =
+        localStorage.getItem(
+            budgetKey
+        );
+
+
+    if (!savedBudget) {
+
+        return;
+
+    }
+
+
+    let saved;
+
+
+    try {
+
+        saved =
+            JSON.parse(
+                savedBudget
+            );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to read budget:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    if (!saved) {
+
+        return;
+
+    }
+
+
+    const amountInput =
+        document.getElementById(
+            "budgetAmount"
+        );
+
+
+    const periodInput =
+        document.getElementById(
+            "budgetPeriod"
+        );
+
+
+    if (amountInput) {
+
+        amountInput.value =
+            saved.amount || "";
+
+    }
+
+
+    if (periodInput) {
+
+        periodInput.value =
+            saved.period ||
+            "This Week";
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE BUDGET
+========================================================= */
+
+function saveBudget() {
+
+    const amountInput =
+        document.getElementById(
+            "budgetAmount"
+        );
+
+
+    const periodInput =
+        document.getElementById(
+            "budgetPeriod"
+        );
+
+
+    const amount =
+        parseFloat(
+            amountInput.value
+        );
+
+
+    const period =
+        periodInput.value;
+
+
+    /* =====================================================
+       VALIDATION
+    ====================================================== */
+
+    if (
+        isNaN(amount) ||
+        amount <= 0
+    ) {
+
+        alert(
+            "Please enter a valid budget amount."
+        );
+
+
+        amountInput.focus();
+
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       BUDGET DATA
+    ====================================================== */
+
+    const budgetData = {
+
+        amount:
+            amount,
+
+        period:
+            period
+
+    };
+
+
+    /* =====================================================
+       SAVE TO LOCAL STORAGE
+
+       This is completely offline.
+    ====================================================== */
+
+    localStorage.setItem(
+
+        getBudgetKey(),
+
+        JSON.stringify(
+            budgetData
+        )
+
+    );
+
+
+    /* =====================================================
+       GO TO BUDGET SUMMARY
+    ====================================================== */
+
+    window.location.href =
+        "budget-summary.html";
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goBack() {
+
+    // Always return directly to Home
+    window.location.href = "home.html";
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    function() {
+
+        loadBudget();
+
+    }
+
+);
+
+
+/* =========================================================
+   DARK MODE
+   Uses the same groceryTheme setting as Settings/Home.
+========================================================= */
+
+function applySavedTheme() {
+    const savedTheme =
+        localStorage.getItem("groceryTheme") || "light";
+
+    document.documentElement.classList.toggle(
+        "dark-theme",
+        savedTheme === "dark"
+    );
+}
+
+applySavedTheme();
+
+window.addEventListener("pageshow", function () {
+    applySavedTheme();
+});
+
+</script>
+
+
+</body>
+
+</html>

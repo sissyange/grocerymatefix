@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Home</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #cfe0d2;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 400px;
+            min-height: 100vh;
+            background: #f4f9f4;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .home-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 20px;
+            background: #ffffff;
+        }
+
+        .greeting p {
+            margin: 0 0 4px;
+            font-size: 14px;
+            color: #6d7d72;
+        }
+
+        .greeting h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #1a3a26;
+        }
+
+        .greeting span {
+            display: block;
+            margin-top: 5px;
+            font-size: 13px;
+            color: #718276;
+        }
+
+        .profile-picture {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+
+
+        /* PROFILE INITIAL */
+        .profile-picture{width:48px;height:48px;border:none;border-radius:50%;background:#1b7a3d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;text-transform:uppercase;cursor:pointer;flex-shrink:0;box-shadow:0 4px 12px rgba(27,122,61,.18)}
+        .profile-picture:active{transform:scale(.96)}
+        html.dark-theme .profile-picture,body.dark-theme .profile-picture{background:#65c98b!important;color:#142019!important}
+        .create-profile-banner{display:none;align-items:center;gap:12px;background:#fff;border:1px solid #dfece2;border-radius:17px;padding:14px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,.05)}
+        .create-profile-banner.show{display:flex}
+        .create-profile-banner .banner-icon{width:42px;height:42px;border-radius:13px;background:#e8f5e9;color:#1b7a3d;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .create-profile-banner .banner-text{flex:1;min-width:0}
+        .create-profile-banner strong{display:block;color:#1a3a26;font-size:13px}
+        .create-profile-banner span{display:block;color:#7a887e;font-size:11px;margin-top:3px}
+        .create-profile-banner button{border:none;background:#1b7a3d;color:#fff;padding:9px 11px;border-radius:10px;font-size:11px;font-weight:700;cursor:pointer}
+        html.dark-theme .create-profile-banner,body.dark-theme .create-profile-banner{background:#202821;border-color:#303b33}
+        html.dark-theme .create-profile-banner strong,body.dark-theme .create-profile-banner strong{color:#f1f5f2}
+        html.dark-theme .create-profile-banner span,body.dark-theme .create-profile-banner span{color:#aab7ae}
+
+        /* =========================================================
+           HOME CONTENT
+        ========================================================= */
+
+        .home-content {
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+
+
+        /* =========================================================
+           BUDGET CARD
+        ========================================================= */
+
+        .budget-card-home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #126d3e;
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 22px 18px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 18px rgba(18, 109, 62, 0.18);
+        }
+
+        .budget-left {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .budget-left > p {
+            margin: 0 0 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #e8f5e9;
+        }
+
+        .budget-left h2 {
+            margin: 0;
+            font-size: 27px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .budget-period {
+            margin-top: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #d8f0df;
+        }
+
+        .budget-progress-line {
+            width: 100%;
+            height: 8px;
+            background: #5a936f;
+            border-radius: 20px;
+            margin: 15px 0 11px;
+            overflow: hidden;
+        }
+
+        .budget-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #ffffff;
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .budget-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .budget-details > span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #e8f5e9;
+        }
+
+        .budget-details strong {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           PERCENTAGE CIRCLE
+        ========================================================= */
+
+        .budget-circle-home {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ffffff 0deg,
+                #ffffff 0deg,
+                #5a936f 0deg
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 14px;
+        }
+
+        .circle-inner {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #126d3e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-inner strong {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .circle-inner small {
+            margin-top: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #d8f0df;
+        }
+
+
+        /* =========================================================
+           QUICK ACTIONS
+        ========================================================= */
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .action-card {
+            border: none;
+            background: #ffffff;
+            border-radius: 17px;
+            padding: 17px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #edf2ed;
+        }
+
+        .action-card:active {
+            transform: scale(0.98);
+        }
+
+        .action-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: #e8f5e9;
+            color: #1b7a3d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .action-card h3 {
+            margin: 0;
+            color: #1a3a26;
+            font-size: 14px;
+        }
+
+        .action-card p {
+            margin: 4px 0 0;
+            color: #78877c;
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           RECENT SECTION
+        ========================================================= */
+
+        .recent-section {
+            margin-top: 5px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            color: #1a3a26;
+            font-size: 17px;
+        }
+
+        .section-heading button {
+            border: none;
+            background: transparent;
+            color: #1b7a3d;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .recent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .recent-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            background: #ffffff;
+            padding: 13px;
+            border-radius: 15px;
+            border: 1px solid #edf2ed;
+        }
+
+        .recent-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #eef7ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .recent-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .recent-info h3 {
+            margin: 0;
+            font-size: 14px;
+            color: #1a3a26;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .recent-info p {
+            margin: 4px 0 0;
+            font-size: 11px;
+            color: #7a887e;
+        }
+
+        .recent-item > strong {
+            font-size: 13px;
+            color: #1b7a3d;
+        }
+
+
+        /* =========================================================
+           SHOPPING TIP
+        ========================================================= */
+
+        .shopping-tip {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: #fffbe8;
+            border: 1px solid #f3e9c3;
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 18px;
+        }
+
+        .tip-icon {
+            font-size: 22px;
+        }
+
+        .shopping-tip h3 {
+            margin: 0 0 4px;
+            font-size: 14px;
+            color: #7a6420;
+        }
+
+        .shopping-tip p {
+            margin: 0;
+            font-size: 11px;
+            line-height: 1.5;
+            color: #6d6a55;
+        }
+
+
+        /* =========================================================
+           NO ITEMS
+        ========================================================= */
+
+        .empty-recent {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: #7a887e;
+            border: 1px solid #edf2ed;
+        }
+
+        .empty-recent h3 {
+            margin: 0 0 5px;
+            font-size: 14px;
+            color: #1a3a26;
+        }
+
+        .empty-recent p {
+            margin: 0;
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 420px) {
+
+            body {
+                background: #f4f9f4;
+            }
+
+            .app {
+                box-shadow: none;
+            }
+        }
+
+
+        /* =========================================================
+           DARK THEME
+        ========================================================= */
+
+        html.dark-theme,
+        html.dark-theme body,
+        body.dark-theme {
+            background: #111714;
+        }
+
+        html.dark-theme .app,
+        body.dark-theme .app {
+            background: #171d19 !important;
+            color: #f1f5f2 !important;
+        }
+
+        html.dark-theme .home-header,
+        body.dark-theme .home-header {
+            background: #1b221e !important;
+            border-bottom: 1px solid #2b352e !important;
+        }
+
+        html.dark-theme .greeting p,
+        html.dark-theme .greeting span,
+        body.dark-theme .greeting p,
+        body.dark-theme .greeting span {
+            color: #aab7ae !important;
+        }
+
+        html.dark-theme .greeting h1,
+        html.dark-theme .section-heading h2,
+        html.dark-theme .action-card h3,
+        html.dark-theme .recent-info h3,
+        html.dark-theme .empty-recent h3,
+        body.dark-theme .greeting h1,
+        body.dark-theme .section-heading h2,
+        body.dark-theme .action-card h3,
+        body.dark-theme .recent-info h3,
+        body.dark-theme .empty-recent h3 {
+            color: #f1f5f2 !important;
+        }
+
+        html.dark-theme .profile-picture,
+        body.dark-theme .profile-picture {
+            background: #29362e !important;
+        }
+
+        html.dark-theme .action-card,
+        html.dark-theme .recent-item,
+        html.dark-theme .empty-recent,
+        body.dark-theme .action-card,
+        body.dark-theme .recent-item,
+        body.dark-theme .empty-recent {
+            background: #202821 !important;
+            border-color: #303b33 !important;
+            color: #f1f5f2 !important;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.20);
+        }
+
+        html.dark-theme .action-icon,
+        html.dark-theme .recent-icon,
+        body.dark-theme .action-icon,
+        body.dark-theme .recent-icon {
+            background: #29382e !important;
+            color: #65c98b !important;
+        }
+
+        html.dark-theme .action-card p,
+        html.dark-theme .recent-info p,
+        html.dark-theme .empty-recent,
+        html.dark-theme .shopping-tip p,
+        body.dark-theme .action-card p,
+        body.dark-theme .recent-info p,
+        body.dark-theme .empty-recent,
+        body.dark-theme .shopping-tip p {
+            color: #aab7ae !important;
+        }
+
+        html.dark-theme .recent-item > strong,
+        html.dark-theme .section-heading button,
+        body.dark-theme .recent-item > strong,
+        body.dark-theme .section-heading button {
+            color: #65c98b !important;
+        }
+
+        html.dark-theme .shopping-tip,
+        body.dark-theme .shopping-tip {
+            background: #2b2a1f !important;
+            border-color: #514d31 !important;
+        }
+
+        html.dark-theme .shopping-tip h3,
+        body.dark-theme .shopping-tip h3 {
+            color: #e1ce70 !important;
+        }
+
+        html.dark-theme .budget-card-home,
+        body.dark-theme .budget-card-home {
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+        }
+
+        @media (max-width: 420px) {
+
+            html.dark-theme body {
+                background: #171d19;
+            }
+        }
+    
+        /* =========================================================
+           HOME BOTTOM NAVIGATION
+        ========================================================= */
+
+        .home-bottom-navigation {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            height: 72px;
+            background: rgba(255, 255, 255, 0.98);
+            border-top: 1px solid #e7ebe6;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(30, 70, 45, 0.06);
+        }
+
+        .home-bottom-nav-item {
+            flex: 1;
+            max-width: none;
+            border: none;
+            background: transparent;
+            color: #87908b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .home-bottom-nav-item .nav-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .home-bottom-nav-item small {
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .home-bottom-nav-item.active {
+            color: #087c4b;
+        }
+
+        .home-bottom-nav-item.active .nav-icon {
+            background: #e8f5e9;
+        }
+
+        .home-bottom-nav-item:active {
+            transform: scale(0.96);
+        }
+
+        /* Keep the last part of Home content above the fixed navigation */
+        .home-content {
+            padding-bottom: 100px;
+        }
+
+        @media (max-width: 420px) {
+            .home-bottom-navigation {
+                width: 100%;
+            }
+        }
+
+        /* Dark theme */
+        html.dark-theme .home-bottom-navigation,
+        body.dark-theme .home-bottom-navigation {
+            background: rgba(27, 34, 30, 0.98);
+            border-top-color: #2b352e;
+        }
+
+        html.dark-theme .home-bottom-nav-item,
+        body.dark-theme .home-bottom-nav-item {
+            color: #aab7ae;
+        }
+
+        html.dark-theme .home-bottom-nav-item.active,
+        body.dark-theme .home-bottom-nav-item.active {
+            color: #65c98b;
+        }
+
+        html.dark-theme .home-bottom-nav-item.active .nav-icon,
+        body.dark-theme .home-bottom-nav-item.active .nav-icon {
+            background: #29382e;
+        }
+
+    </style>
+
+
+    <!-- =========================================================
+         APPLY SAVED THEME BEFORE PAGE LOAD
+    ========================================================= -->
+
+    <script>
+
+        (function applySavedTheme() {
+
+            function applyTheme(theme) {
+
+                const isDark =
+                    theme === "dark" ||
+                    theme === "Dark" ||
+                    theme === "DARK";
+
+                document.documentElement.classList.toggle(
+                    "dark-theme",
+                    isDark
+                );
+            }
+
+
+            const savedTheme =
+                localStorage.getItem("groceryTheme") ||
+                localStorage.getItem("appTheme") ||
+                localStorage.getItem("theme") ||
+                "light";
+
+
+            applyTheme(savedTheme);
+
+
+            window.addEventListener(
+                "storage",
+                function (event) {
+
+                    if (
+                        event.key === "groceryTheme" ||
+                        event.key === "appTheme" ||
+                        event.key === "theme"
+                    ) {
+
+                        applyTheme(
+                            event.newValue || "light"
+                        );
+                    }
+                }
+            );
+
+
+            window.addEventListener(
+                "groceryThemeChanged",
+                function (event) {
+
+                    applyTheme(
+                        event.detail ||
+                        localStorage.getItem("groceryTheme") ||
+                        "light"
+                    );
+
+                }
+            );
+
+            // Re-apply the saved theme whenever Home becomes visible.
+            // This keeps Home synchronized with the Settings page.
+            window.addEventListener(
+                "pageshow",
+                function () {
+
+                    applyTheme(
+                        localStorage.getItem("groceryTheme") ||
+                        "light"
+                    );
+
+                }
+            );
+
+        })();
+
+    </script>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="home-header">
+
+        <div class="greeting">
+
+            <p>Good day,</p>
+
+            <h1>Angeline! 👋</h1>
+
+            <span>Let's shop smart today!</span>
+
+        </div>
+
+
+        <button class="profile-picture" id="homeProfileInitial" type="button" onclick="openSettings()" aria-label="Profile">G</button>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+    <main class="home-content">
+
+
+
+        <section class="create-profile-banner" id="createProfileBanner">
+            <div class="banner-icon">👤</div>
+            <div class="banner-text">
+                <strong>Create your profile</strong>
+                <span>Add your name to personalize GroceryMate.</span>
+            </div>
+            <button type="button" onclick="openSettings()">Create</button>
+        </section>
+
+        <!-- =====================================================
+             BUDGET CARD
+        ====================================================== -->
+
+        <section class="budget-card-home">
+
+            <div class="budget-left">
+
+                <p>Current Budget</p>
+
+                <h2 id="currentBudget">
+                    ₱0.00
+                </h2>
+
+                <div
+                    id="budgetPeriod"
+                    class="budget-period">
+                    No budget set
+                </div>
+
+
+                <div class="budget-progress-line">
+
+                    <div
+                        id="budgetProgress"
+                        class="budget-progress-fill">
+                    </div>
+
+                </div>
+
+
+                <div class="budget-details">
+
+                    <span>
+
+                        <span>Spent:</span>
+
+                        <strong id="spentAmount">
+                            ₱0.00
+                        </strong>
+
+                    </span>
+
+
+                    <span>
+
+                        <span>Remaining:</span>
+
+                        <strong id="remainingAmount">
+                            ₱0.00
+                        </strong>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="budget-circle-home"
+                id="budgetCircle">
+
+                <div class="circle-inner">
+
+                    <strong id="budgetPercent">
+                        0%
+                    </strong>
+
+                    <small>
+                        Used
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             QUICK ACTIONS
+        ====================================================== -->
+
+        <section class="quick-actions">
+
+
+            <!-- MY LIST -->
+
+            <button
+                class="action-card list-action"
+                onclick="openList()">
+
+                <div class="action-icon">
+                    📝
+                </div>
+
+                <div>
+
+                    <h3>My List</h3>
+
+                    <p id="itemCount">
+                        0 items
+                    </p>
+
+                </div>
+
+            </button>
+
+
+            <!-- ADD ITEM -->
+
+            <button
+                class="action-card add-action"
+                onclick="addItem()">
+
+                <div class="action-icon">
+                    +
+                </div>
+
+                <div>
+
+                    <h3>Add Item</h3>
+
+                    <p>Add groceries</p>
+
+                </div>
+
+            </button>
+
+
+            <!-- HISTORY -->
+
+            <button
+                class="action-card history-action"
+                onclick="openHistory()">
+
+                <div class="action-icon">
+                    🛒
+                </div>
+
+                <div>
+
+                    <h3>History</h3>
+
+                    <p id="historyCount">
+                        0 lists
+                    </p>
+
+                </div>
+
+            </button>
+
+
+            <!-- BUDGET -->
+
+            <button
+                class="action-card budget-action"
+                onclick="openBudget()">
+
+                <div class="action-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <h3>Budget</h3>
+
+                    <p>Manage budget</p>
+
+                </div>
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================================
+             RECENT ITEMS
+        ====================================================== -->
+
+        <section class="recent-section">
+
+            <div class="section-heading">
+
+                <h2>
+                    Recent Grocery Items
+                </h2>
+
+                <button onclick="openList()">
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                class="recent-list"
+                id="recentList">
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             SHOPPING TIP
+        ====================================================== -->
+
+        <section class="shopping-tip">
+
+            <div class="tip-icon">
+                💡
+            </div>
+
+            <div>
+
+                <h3>
+                    Shopping Tip
+                </h3>
+
+                <p>
+                    Stick to your grocery list
+                    to avoid impulse buying.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         HOME BOTTOM NAVIGATION
+         Home | List | History | Settings
+    ========================================================== -->
+
+    <nav class="home-bottom-navigation" aria-label="Main navigation">
+
+        <button
+            class="home-bottom-nav-item active"
+            type="button"
+            aria-label="Home"
+            aria-current="page"
+            onclick="goHome()">
+
+            <span class="nav-icon">⌂</span>
+            <small>Home</small>
+
+        </button>
+
+
+        <button
+            class="home-bottom-nav-item"
+            type="button"
+            aria-label="List"
+            onclick="openList()">
+
+            <span class="nav-icon">📝</span>
+            <small>List</small>
+
+        </button>
+
+
+        <button
+            class="home-bottom-nav-item"
+            type="button"
+            aria-label="History"
+            onclick="openHistory()">
+
+            <span class="nav-icon">🛒</span>
+            <small>History</small>
+
+        </button>
+
+
+        <button
+            class="home-bottom-nav-item"
+            type="button"
+            aria-label="Settings"
+            onclick="openSettings()">
+
+            <span class="nav-icon">⚙</span>
+            <small>Settings</small>
+
+        </button>
+
+    </nav>
+
+
+</div>
+
+
+<script>
+
+    /* =========================================================
+       LOCAL DEVICE USER + PROFILE
+========================================================= */
+
+    const PROFILE_KEY = "groceryMateProfile";
+
+    function getSavedProfile() {
+        try {
+            return JSON.parse(localStorage.getItem(PROFILE_KEY)) || null;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function getCurrentUser() {
+        let user = null;
+
+        try {
+            user = JSON.parse(localStorage.getItem("currentUser"));
+        } catch (error) {
+            user = null;
+        }
+
+        const profile = getSavedProfile();
+
+        if (!user || !user.id) {
+            user = {
+                id: "local-device-user",
+                name: profile?.name || "",
+                email: profile?.email || "",
+                phone: profile?.phone || ""
+            };
+        }
+
+        if (profile) {
+            user.name = profile.name || "";
+            user.email = profile.email || "";
+            user.phone = profile.phone || "";
+        }
+
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        return user;
+    }
+
+
+    const currentUser = getCurrentUser();
+
+
+    /* =========================================================
+       USER-SPECIFIC STORAGE KEYS
+    ========================================================= */
+
+    const ITEMS_KEY =
+        `groceryItems_${currentUser.id}`;
+
+    const BUDGET_KEY =
+        `groceryBudget_${currentUser.id}`;
+
+    const HISTORY_KEY =
+        `groceryHistory_${currentUser.id}`;
+
+
+
+    /* =========================================================
+       LOAD GROCERY ITEMS
+    ========================================================= */
+
+    let groceryItems =
+        JSON.parse(
+            localStorage.getItem(ITEMS_KEY)
+        ) || [];
+
+
+
+    /* =========================================================
+       DISPLAY USER NAME + PROFILE INITIAL
+    ========================================================= */
+
+    function getDisplayName() {
+        const profile = getSavedProfile();
+
+        return String(
+            profile?.name ||
+            currentUser.fullName ||
+            currentUser.name ||
+            currentUser.username ||
+            ""
+        ).trim();
+    }
+
+    function getFirstName() {
+        const fullName = getDisplayName();
+        return fullName ? fullName.split(/\s+/)[0] : "";
+    }
+
+    function updateProfileOnHome() {
+        const firstName = getFirstName();
+        const initial = firstName ? firstName.charAt(0).toUpperCase() : "G";
+
+        const nameElement = document.querySelector(".greeting h1");
+        const avatar = document.getElementById("homeProfileInitial");
+        const banner = document.getElementById("createProfileBanner");
+
+        if (nameElement) {
+            nameElement.textContent = firstName ? `${firstName}! 👋` : "Welcome! 👋";
+        }
+
+        if (avatar) {
+            avatar.textContent = initial;
+            avatar.setAttribute("aria-label", firstName ? `${getDisplayName()} profile` : "Create Profile");
+        }
+
+        if (banner) {
+            banner.classList.toggle("show", !firstName);
+        }
+    }
+
+
+    /* =========================================================
+       LOAD BUDGET
+    ========================================================= */
+
+    function loadHomeBudget() {
+
+        const savedBudget =
+            JSON.parse(
+                localStorage.getItem(
+                    BUDGET_KEY
+                )
+            );
+
+
+        const budget =
+            savedBudget
+                ? Number(savedBudget.amount) || 0
+                : 0;
+
+
+        const period =
+            savedBudget &&
+            savedBudget.period
+                ? savedBudget.period
+                : "No budget set";
+
+
+
+        /* CURRENT BUDGET */
+
+        document.getElementById(
+            "currentBudget"
+        ).textContent =
+
+            `₱${budget.toLocaleString(
+                "en-PH",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )}`;
+
+
+
+        /* BUDGET PERIOD */
+
+        document.getElementById(
+            "budgetPeriod"
+        ).textContent = period;
+
+
+
+        /* =====================================================
+           CALCULATE SPENT
+           ONLY PURCHASED ITEMS
+        ===================================================== */
+
+        const spent =
+            groceryItems.reduce(
+                (total, item) => {
+
+                    if (
+                        item.purchased === true
+                    ) {
+
+                        const quantity =
+                            Number(
+                                item.quantity
+                            ) || 0;
+
+
+                        const price =
+                            Number(
+                                item.price
+                            ) || 0;
+
+
+                        return total +
+                            (
+                                quantity *
+                                price
+                            );
+
+                    }
+
+
+                    return total;
+
+                },
+                0
+            );
+
+
+
+        /* =====================================================
+           REMAINING
+        ===================================================== */
+
+        const remaining =
+            budget - spent;
+
+
+
+        /* =====================================================
+           PERCENT USED
+        ===================================================== */
+
+        let percentage = 0;
+
+
+        if (budget > 0) {
+
+            percentage =
+                (spent / budget) * 100;
+
+        }
+
+
+        const displayPercentage =
+            Math.min(
+                Math.max(
+                    percentage,
+                    0
+                ),
+                100
+            );
+
+
+
+        /* =====================================================
+           DISPLAY SPENT
+        ===================================================== */
+
+        document.getElementById(
+            "spentAmount"
+        ).textContent =
+
+            `₱${spent.toLocaleString(
+                "en-PH",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )}`;
+
+
+
+        /* =====================================================
+           DISPLAY REMAINING
+        ===================================================== */
+
+        document.getElementById(
+            "remainingAmount"
+        ).textContent =
+
+            `₱${remaining.toLocaleString(
+                "en-PH",
+                {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }
+            )}`;
+
+
+
+        /* =====================================================
+           DISPLAY PERCENTAGE
+        ===================================================== */
+
+        document.getElementById(
+            "budgetPercent"
+        ).textContent =
+
+            `${Math.round(
+                percentage
+            )}%`;
+
+
+
+        /* =====================================================
+           PROGRESS BAR
+        ===================================================== */
+
+        document.getElementById(
+            "budgetProgress"
+        ).style.width =
+
+            `${displayPercentage}%`;
+
+
+
+        /* =====================================================
+           CIRCLE PROGRESS
+        ===================================================== */
+
+        const circle =
+            document.getElementById(
+                "budgetCircle"
+            );
+
+
+        const degrees =
+            displayPercentage * 3.6;
+
+
+        circle.style.background =
+
+            `conic-gradient(
+                #ffffff ${degrees}deg,
+                rgba(255,255,255,0.20) ${degrees}deg
+            )`;
+
+    }
+
+
+
+    /* =========================================================
+       RENDER RECENT ITEMS
+    ========================================================= */
+
+    function renderRecentItems() {
+
+        const container =
+            document.getElementById(
+                "recentList"
+            );
+
+
+        const itemCount =
+            document.getElementById(
+                "itemCount"
+            );
+
+
+        const count =
+            groceryItems.length;
+
+
+        itemCount.textContent =
+            `${count} item${
+                count !== 1
+                    ? "s"
+                    : ""
+            }`;
+
+
+
+        /* EMPTY */
+
+        if (count === 0) {
+
+            container.innerHTML = `
+
+                <div class="empty-recent">
+
+                    <h3>
+                        No items yet
+                    </h3>
+
+                    <p>
+                        Add your first grocery item!
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+
+        /* LAST 3 ITEMS */
+
+        const recentItems =
+            groceryItems
+                .slice(-3)
+                .reverse();
+
+
+        container.innerHTML = "";
+
+
+        recentItems.forEach(
+            item => {
+
+                const quantity =
+                    Number(
+                        item.quantity
+                    ) || 0;
+
+
+                const price =
+                    Number(
+                        item.price
+                    ) || 0;
+
+
+                const total =
+                    quantity * price;
+
+
+                container.innerHTML += `
+
+                    <div class="recent-item">
+
+                        <div class="recent-icon">
+                            ${item.icon || "🛒"}
+                        </div>
+
+
+                        <div class="recent-info">
+
+                            <h3>
+                                ${escapeHTML(
+                                    item.name ||
+                                    "Unnamed Item"
+                                )}
+                            </h3>
+
+
+                            <p>
+
+                                ${quantity}
+
+                                ${escapeHTML(
+                                    item.unit ||
+                                    "pcs"
+                                )}
+
+                                × ₱${price.toFixed(2)}
+
+                            </p>
+
+                        </div>
+
+
+                        <strong>
+                            ₱${total.toFixed(2)}
+                        </strong>
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+    }
+
+
+
+    /* =========================================================
+       LOAD HISTORY COUNT
+    ========================================================= */
+
+    function loadHistoryCount() {
+
+        const history =
+            JSON.parse(
+                localStorage.getItem(
+                    HISTORY_KEY
+                )
+            ) || [];
+
+
+        const historyCount =
+            document.getElementById(
+                "historyCount"
+            );
+
+
+        historyCount.textContent =
+            `${history.length} list${
+                history.length !== 1
+                    ? "s"
+                    : ""
+            }`;
+
+    }
+
+
+
+    /* =========================================================
+       ESCAPE HTML
+    ========================================================= */
+
+    function escapeHTML(text) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+
+        div.textContent = text;
+
+
+        return div.innerHTML;
+
+    }
+
+
+
+    /* =========================================================
+       NAVIGATION
+       NO LOGIN REQUIRED
+    ========================================================= */
+
+
+    function goHome() {
+
+        window.location.href =
+            "home.html";
+
+    }
+
+
+    function addItem() {
+
+        window.location.href =
+            "add-item.html";
+
+    }
+
+
+    function openList() {
+
+        window.location.href =
+            "grocery-list.html";
+
+    }
+
+
+    function openHistory() {
+
+        window.location.href =
+            "history.html";
+
+    }
+
+
+    function openBudget() {
+
+        window.location.href =
+            "set-budget.html";
+
+    }
+
+
+    function openSettings() {
+
+        window.location.href =
+            "settings.html";
+
+    }
+
+
+
+    /* =========================================================
+       INITIAL LOAD
+    ========================================================= */
+
+    updateProfileOnHome();
+
+    updateProfileOnHome();
+    loadHomeBudget();
+
+    renderRecentItems();
+
+    loadHistoryCount();
+
+
+
+    /* =========================================================
+       UPDATE WHEN RETURNING TO HOME
+    ========================================================= */
+
+    window.addEventListener(
+        "pageshow",
+        function () {
+
+            groceryItems =
+                JSON.parse(
+                    localStorage.getItem(
+                        ITEMS_KEY
+                    )
+                ) || [];
+
+
+            updateProfileOnHome();
+
+            loadHomeBudget();
+
+            renderRecentItems();
+
+            loadHistoryCount();
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>

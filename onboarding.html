@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Welcome</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="onboarding-screen">
+
+        <!-- Decorative leaves -->
+        <div class="onboard-leaf onboard-leaf-1"></div>
+        <div class="onboard-leaf onboard-leaf-2"></div>
+        <div class="onboard-leaf onboard-leaf-3"></div>
+
+
+        <!-- Skip -->
+        <button
+            class="skip-btn"
+            onclick="skipOnboarding()">
+            Skip
+        </button>
+
+
+        <!-- =====================================================
+             SLIDE 1
+        ====================================================== -->
+
+        <div
+            class="onboarding-slide active"
+            id="slide1">
+
+            <div class="onboarding-image">
+
+                <div class="illustration illustration-1">
+
+                    <div class="woman">
+
+                        <div class="hair">
+
+                            <div class="face">
+
+                                <div class="eye eye-left"></div>
+
+                                <div class="eye eye-right"></div>
+
+                                <div class="smile"></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="body">
+
+                            <div class="shirt"></div>
+
+                        </div>
+
+
+                        <div class="basket">
+
+                            <div class="basket-handle"></div>
+
+                            <div class="basket-item item-1"></div>
+
+                            <div class="basket-item item-2"></div>
+
+                            <div class="basket-item item-3"></div>
+
+                            <div class="basket-body"></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="features">
+
+                        <div class="feature">
+
+                            <span>✓</span>
+
+                            <p>
+                                Create Lists
+                            </p>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <span>✓</span>
+
+                            <p>
+                                Set Budget
+                            </p>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <span>✓</span>
+
+                            <p>
+                                Track Expenses
+                            </p>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <span>✓</span>
+
+                            <p>
+                                Shop Smarter
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="onboarding-content">
+
+                <h1>
+                    Make Grocery<br>
+                    Shopping Easier
+                </h1>
+
+                <p>
+                    Create your list, set your budget,
+                    and keep track of your expenses —
+                    all offline.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SLIDE 2
+        ====================================================== -->
+
+        <div
+            class="onboarding-slide"
+            id="slide2">
+
+            <div class="simple-illustration">
+
+                <div class="budget-circle">
+
+                    <div class="wallet-icon">
+                        ₱
+                    </div>
+
+                </div>
+
+
+                <div class="budget-card">
+
+                    <div class="budget-title">
+                        Your Budget
+                    </div>
+
+                    <div class="budget-price">
+                        ₱2,000
+                    </div>
+
+                    <div class="budget-line">
+
+                        <div></div>
+
+                    </div>
+
+
+                    <div class="budget-info">
+
+                        <span>
+
+                            Spent<br>
+
+                            <strong>
+                                ₱1,340
+                            </strong>
+
+                        </span>
+
+
+                        <span>
+
+                            Remaining<br>
+
+                            <strong>
+                                ₱660
+                            </strong>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="onboarding-content">
+
+                <h1>
+                    Plan Your<br>
+                    Grocery Budget
+                </h1>
+
+                <p>
+                    Set your grocery budget and easily
+                    monitor your spending and remaining
+                    balance while shopping.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             SLIDE 3
+        ====================================================== -->
+
+        <div
+            class="onboarding-slide"
+            id="slide3">
+
+            <div
+                class="simple-illustration shopping-illustration">
+
+                <div class="shopping-cart-big">
+
+                    <div class="cart-big-handle"></div>
+
+
+                    <div class="cart-big-body">
+
+                        <div class="food food-rice"></div>
+
+                        <div class="food food-milk"></div>
+
+                        <div class="food food-bread"></div>
+
+                        <div class="food food-vegetable"></div>
+
+                    </div>
+
+
+                    <div
+                        class="cart-big-wheel wheel-one">
+                    </div>
+
+                    <div
+                        class="cart-big-wheel wheel-two">
+                    </div>
+
+                </div>
+
+
+                <div class="save-badge">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <div class="onboarding-content">
+
+                <h1>
+                    Shop Smarter,<br>
+                    Save More
+                </h1>
+
+                <p>
+                    Keep track of your grocery items,
+                    purchased items, and shopping history
+                    anytime, anywhere — completely offline.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             BOTTOM NAVIGATION
+        ====================================================== -->
+
+        <div class="onboarding-navigation">
+
+
+            <!-- Indicators -->
+
+            <div class="indicators">
+
+                <span
+                    class="indicator active"
+                    id="dot1">
+                </span>
+
+                <span
+                    class="indicator"
+                    id="dot2">
+                </span>
+
+                <span
+                    class="indicator"
+                    id="dot3">
+                </span>
+
+            </div>
+
+
+            <!-- Next Button -->
+
+            <button
+                class="next-btn"
+                id="nextButton"
+                onclick="nextSlide()">
+
+                Next
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =====================================================
+           ONBOARDING VARIABLES
+        ====================================================== */
+
+        let currentSlide = 1;
+
+        const totalSlides = 3;
+
+
+        /* =====================================================
+           SHOW SLIDE
+        ====================================================== */
+
+        function showSlide(slideNumber) {
+
+            /*
+                Hide all slides
+            */
+
+            document
+                .querySelectorAll(".onboarding-slide")
+                .forEach(slide => {
+
+                    slide.classList.remove("active");
+
+                });
+
+
+            /*
+                Show selected slide
+            */
+
+            const slide =
+                document.getElementById(
+                    "slide" + slideNumber
+                );
+
+
+            if (slide) {
+
+                slide.classList.add("active");
+
+            }
+
+
+            /*
+                Update indicators
+            */
+
+            document
+                .querySelectorAll(".indicator")
+                .forEach(dot => {
+
+                    dot.classList.remove("active");
+
+                });
+
+
+            const dot =
+                document.getElementById(
+                    "dot" + slideNumber
+                );
+
+
+            if (dot) {
+
+                dot.classList.add("active");
+
+            }
+
+
+            /*
+                Update button text
+            */
+
+            const nextButton =
+                document.getElementById(
+                    "nextButton"
+                );
+
+
+            if (slideNumber === totalSlides) {
+
+                nextButton.innerHTML =
+                    "Get Started <span>→</span>";
+
+            } else {
+
+                nextButton.innerHTML =
+                    "Next <span>→</span>";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           NEXT SLIDE
+        ====================================================== */
+
+        function nextSlide() {
+
+            /*
+                Slide 1 → Slide 2
+                Slide 2 → Slide 3
+            */
+
+            if (currentSlide < totalSlides) {
+
+                currentSlide++;
+
+                showSlide(currentSlide);
+
+                return;
+
+            }
+
+
+            /*
+                Slide 3 → HOME
+
+                No Login Required
+            */
+
+            window.location.href = "home.html";
+
+        }
+
+
+        /* =====================================================
+           SKIP
+        ====================================================== */
+
+        function skipOnboarding() {
+
+            /*
+                Skip → Home
+
+                No Login Required
+            */
+
+            window.location.href = "home.html";
+
+        }
+
+
+        /* =====================================================
+           START
+        ====================================================== */
+
+        showSlide(1);
+
+    </script>
+
+</body>
+
+</html>

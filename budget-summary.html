@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Budget Summary</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* =========================================================
+           BUDGET SUMMARY PAGE
+        ========================================================= */
+
+        .bs-page {
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            padding-bottom: 100px;
+
+        }
+
+
+        .bs-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 18px 20px;
+
+            background: #fff;
+
+            border-bottom:
+                1px solid #e5efe5;
+
+        }
+
+
+        .bs-back {
+
+            width: 38px;
+
+            height: 38px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #e8f5e9;
+
+            color: #1b7a3d;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .bs-header h1 {
+
+            font-size: 20px;
+
+            color: #1a3a26;
+
+            margin: 0;
+
+        }
+
+
+        .bs-content {
+
+            padding: 22px;
+
+        }
+
+
+        /* =========================================================
+           PERIOD SELECT
+        ========================================================= */
+
+        .bs-period {
+
+            width: 100%;
+
+            border:
+                2px solid #dceadd;
+
+            border-radius: 12px;
+
+            padding: 12px 16px;
+
+            font-size: 15px;
+
+            color: #1a3a26;
+
+            background:
+                #fff
+                url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231b7a3d' stroke-width='2.5'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e")
+                no-repeat right 14px center;
+
+            background-size: 18px;
+
+            appearance: none;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        /* =========================================================
+           CIRCLE CARD
+        ========================================================= */
+
+        .bs-circle-card {
+
+            background: #fff;
+
+            border-radius: 20px;
+
+            padding: 28px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 30px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 2px 10px
+                rgba(27, 122, 61, 0.06);
+
+        }
+
+
+        .bs-ring-wrap {
+
+            position: relative;
+
+            width: 140px;
+
+            height: 140px;
+
+        }
+
+
+        .bs-ring-wrap svg {
+
+            transform:
+                rotate(-90deg);
+
+        }
+
+
+        .bs-ring-bg {
+
+            fill: none;
+
+            stroke: #e3efe5;
+
+            stroke-width: 14;
+
+        }
+
+
+        .bs-ring-fill {
+
+            fill: none;
+
+            stroke: #2e7d32;
+
+            stroke-width: 14;
+
+            stroke-linecap: round;
+
+            transition:
+                stroke-dashoffset 0.6s ease;
+
+        }
+
+
+        .bs-ring-center {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .bs-ring-center strong {
+
+            font-size: 26px;
+
+            color: #1a3a26;
+
+        }
+
+
+        .bs-total-label {
+
+            text-align: left;
+
+        }
+
+
+        .bs-total-label strong {
+
+            display: block;
+
+            font-size: 24px;
+
+            color: #1a3a26;
+
+        }
+
+
+        .bs-total-label small {
+
+            font-size: 13px;
+
+            color: #7a8f81;
+
+        }
+
+
+        /* =========================================================
+           SPENT / REMAINING
+        ========================================================= */
+
+        .bs-amounts {
+
+            background: #fff;
+
+            border-radius: 20px;
+
+            padding: 18px 22px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 2px 10px
+                rgba(27, 122, 61, 0.06);
+
+        }
+
+
+        .bs-amount-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 8px 0;
+
+        }
+
+
+        .bs-dot {
+
+            width: 12px;
+
+            height: 12px;
+
+            border-radius: 50%;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .bs-dot.spent {
+
+            background: #2e7d32;
+
+        }
+
+
+        .bs-dot.remaining {
+
+            background: #cfd8cf;
+
+        }
+
+
+        .bs-amount-row strong {
+
+            font-size: 17px;
+
+            color: #1a3a26;
+
+        }
+
+
+        .bs-amount-row small {
+
+            font-size: 14px;
+
+            color: #7a8f81;
+
+            margin-left: auto;
+
+        }
+
+
+        .bs-over {
+
+            color: #c62828 !important;
+
+        }
+
+
+        /* =========================================================
+           STAT CARDS
+        ========================================================= */
+
+        .bs-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .bs-stat-card {
+
+            background: #fff;
+
+            border-radius: 16px;
+
+            padding: 18px 10px;
+
+            text-align: center;
+
+            box-shadow:
+                0 2px 10px
+                rgba(27, 122, 61, 0.06);
+
+        }
+
+
+        .bs-stat-card .stat-icon {
+
+            font-size: 22px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .bs-stat-card strong {
+
+            display: block;
+
+            font-size: 20px;
+
+            color: #1a3a26;
+
+        }
+
+
+        .bs-stat-card small {
+
+            font-size: 12px;
+
+            color: #7a8f81;
+
+        }
+
+
+        /* =========================================================
+           EDIT BUTTON
+        ========================================================= */
+
+        .bs-edit-btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background: #1b7a3d;
+
+            color: #fff;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .bs-edit-btn:active {
+
+            background: #14602f;
+
+        }
+
+
+        /* =========================================================
+           BOTTOM NAV
+        ========================================================= */
+
+        .bottom-navigation {
+
+            position: fixed;
+
+            bottom: 0;
+
+            left: 0;
+
+            right: 0;
+
+            background: #fff;
+
+            display: flex;
+
+            justify-content:
+                space-around;
+
+            padding:
+                10px 0 14px;
+
+            border-top:
+                1px solid #e5efe5;
+
+        }
+
+
+        .bottom-nav-item {
+
+            border: none;
+
+            background: none;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 2px;
+
+            color: #9ab0a2;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+        }
+
+
+        .bottom-nav-item small {
+
+            font-size: 11px;
+
+        }
+
+
+        .bottom-nav-item.active {
+
+            color: #1b7a3d;
+
+        }
+
+
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        body {
+
+            background: #cfe0d2;
+
+            display: flex;
+
+            justify-content: center;
+
+        }
+
+
+        .app {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            box-shadow:
+                0 0 30px
+                rgba(0, 0, 0, 0.15);
+
+            position: relative;
+
+        }
+
+
+        .bottom-navigation {
+
+            left: 50% !important;
+
+            right: auto !important;
+
+            transform:
+                translateX(-50%);
+
+            width: 100%;
+
+            max-width: 400px;
+
+        }
+
+
+        /* =========================================================
+           DARK THEME
+        ========================================================= */
+
+        html.dark-theme,
+        html.dark-theme body {
+
+            background: #111714 !important;
+
+        }
+
+
+        html.dark-theme .app {
+
+            background: #171d19 !important;
+
+            color: #f1f5f2;
+
+        }
+
+
+        html.dark-theme .bs-page {
+
+            background: #171d19 !important;
+
+        }
+
+
+        html.dark-theme .bs-header {
+
+            background: #1b221e !important;
+
+            border-bottom-color:
+                #303a33 !important;
+
+        }
+
+
+        html.dark-theme .bs-header h1 {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .bs-back {
+
+            background: #29382e !important;
+
+            color: #65c98b !important;
+
+        }
+
+
+        html.dark-theme .bs-period {
+
+            background-color: #202821 !important;
+
+            color: #f1f5f2 !important;
+
+            border-color: #303b33 !important;
+
+        }
+
+
+        html.dark-theme .bs-period option {
+
+            background: #202821;
+
+            color: #f1f5f2;
+
+        }
+
+
+        html.dark-theme .bs-circle-card,
+        html.dark-theme .bs-amounts,
+        html.dark-theme .bs-stat-card {
+
+            background: #202821 !important;
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.20);
+
+        }
+
+
+        html.dark-theme .bs-ring-bg {
+
+            stroke: #36433a;
+
+        }
+
+
+        html.dark-theme .bs-ring-fill {
+
+            stroke: #65c98b;
+
+        }
+
+
+        html.dark-theme .bs-ring-center strong,
+        html.dark-theme .bs-total-label strong,
+        html.dark-theme .bs-amount-row strong,
+        html.dark-theme .bs-stat-card strong {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .bs-total-label small,
+        html.dark-theme .bs-amount-row small,
+        html.dark-theme .bs-stat-card small {
+
+            color: #aab7ae !important;
+
+        }
+
+
+        html.dark-theme .bs-dot.remaining {
+
+            background: #566158;
+
+        }
+
+
+        html.dark-theme .bs-edit-btn {
+
+            background: #1b7a3d;
+
+        }
+
+
+        html.dark-theme .bottom-navigation {
+
+            background: #1b221e !important;
+
+            border-top-color:
+                #303a33 !important;
+
+        }
+
+
+        html.dark-theme .bottom-nav-item {
+
+            color: #829087;
+
+        }
+
+
+        html.dark-theme .bottom-nav-item.active {
+
+            color: #65c98b;
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            html.dark-theme body {
+
+                background: #171d19 !important;
+
+            }
+
+        }
+
+    </style>
+
+
+    <!-- =========================================================
+         APPLY SAVED THEME
+    ========================================================= -->
+
+    <script>
+
+        (function applySavedTheme() {
+
+            function applyTheme(theme) {
+
+                const isDark =
+                    theme === "dark" ||
+                    theme === "Dark" ||
+                    theme === "DARK";
+
+
+                document.documentElement.classList.toggle(
+                    "dark-theme",
+                    isDark
+                );
+
+            }
+
+
+            const savedTheme =
+                localStorage.getItem("groceryTheme") ||
+                localStorage.getItem("appTheme") ||
+                localStorage.getItem("theme") ||
+                "light";
+
+
+            applyTheme(savedTheme);
+
+
+            window.addEventListener(
+                "storage",
+                function(event) {
+
+                    if (
+                        event.key === "groceryTheme" ||
+                        event.key === "appTheme" ||
+                        event.key === "theme"
+                    ) {
+
+                        applyTheme(
+                            event.newValue || "light"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            window.addEventListener(
+                "groceryThemeChanged",
+                function(event) {
+
+                    applyTheme(
+                        event.detail ||
+                        localStorage.getItem(
+                            "groceryTheme"
+                        ) ||
+                        "light"
+                    );
+
+                }
+            );
+
+        })();
+
+    </script>
+
+</head>
+
+
+<body>
+
+<div class="app bs-page">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="bs-header">
+
+        <button
+            class="bs-back"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+
+        <h1>
+            Budget Summary
+        </h1>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+    <main class="bs-content">
+
+
+        <!-- PERIOD -->
+
+        <select
+            class="bs-period"
+            id="periodSelect"
+            onchange="changePeriod(this.value)">
+
+            <option value="This Week">
+                This Week
+            </option>
+
+            <option value="This Month">
+                This Month
+            </option>
+
+            <option value="Today">
+                Today
+            </option>
+
+        </select>
+
+
+        <!-- CIRCLE PROGRESS -->
+
+        <section class="bs-circle-card">
+
+            <div class="bs-ring-wrap">
+
+                <svg
+                    width="140"
+                    height="140"
+                    viewBox="0 0 140 140">
+
+                    <circle
+                        class="bs-ring-bg"
+                        cx="70"
+                        cy="70"
+                        r="58">
+                    </circle>
+
+
+                    <circle
+                        class="bs-ring-fill"
+                        id="ringFill"
+                        cx="70"
+                        cy="70"
+                        r="58">
+                    </circle>
+
+                </svg>
+
+
+                <div class="bs-ring-center">
+
+                    <strong id="budgetPercent">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="bs-total-label">
+
+                <strong id="totalBudget">
+                    ₱0.00
+                </strong>
+
+                <small>
+                    Total Budget
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- SPENT / REMAINING -->
+
+        <section class="bs-amounts">
+
+            <div class="bs-amount-row">
+
+                <span class="bs-dot spent"></span>
+
+                <strong id="spentAmount">
+                    ₱0.00
+                </strong>
+
+                <small>
+                    Spent
+                </small>
+
+            </div>
+
+
+            <div class="bs-amount-row">
+
+                <span class="bs-dot remaining"></span>
+
+                <strong id="remainingAmount">
+                    ₱0.00
+                </strong>
+
+                <small>
+                    Remaining
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+
+        <section class="bs-stats">
+
+
+            <div class="bs-stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <strong id="totalItems">
+                    0
+                </strong>
+
+                <small>
+                    Total Items
+                </small>
+
+            </div>
+
+
+            <div class="bs-stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <strong id="purchasedItems">
+                    0
+                </strong>
+
+                <small>
+                    Purchased
+                </small>
+
+            </div>
+
+
+            <div class="bs-stat-card">
+
+                <div class="stat-icon">
+                    🛒
+                </div>
+
+                <strong id="toBuyItems">
+                    0
+                </strong>
+
+                <small>
+                    To Buy
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- EDIT BUDGET -->
+
+        <button
+            class="bs-edit-btn"
+            onclick="goToSetBudget()">
+
+            Edit Budget
+
+        </button>
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   LOCAL DEVICE USER
+   NO LOGIN / NO REGISTER
+========================================================= */
+
+function getCurrentUser() {
+
+    let user = null;
+
+
+    try {
+
+        user =
+            JSON.parse(
+                localStorage.getItem(
+                    "currentUser"
+                )
+            );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Unable to read local user:",
+            error
+        );
+
+    }
+
+
+    /*
+        Login and registration have been removed.
+
+        If there is no saved user,
+        create a local device user automatically.
+    */
+
+    if (
+        !user ||
+        !user.id
+    ) {
+
+        user = {
+
+            id:
+                "local-device-user",
+
+            name:
+                "Angeline"
+
+        };
+
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    return user;
+
+}
+
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+const currentUser =
+    getCurrentUser();
+
+
+
+/* =========================================================
+   USER-SPECIFIC STORAGE KEYS
+========================================================= */
+
+const ITEMS_KEY =
+    `groceryItems_${currentUser.id}`;
+
+
+const BUDGET_KEY =
+    `groceryBudget_${currentUser.id}`;
+
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+let groceryItems = [];
+
+
+let savedBudget = {
+
+    amount: 0,
+
+    period: "This Week"
+
+};
+
+
+
+function loadData() {
+
+    try {
+
+        groceryItems =
+            JSON.parse(
+                localStorage.getItem(
+                    ITEMS_KEY
+                )
+            ) || [];
+
+
+        if (
+            !Array.isArray(
+                groceryItems
+            )
+        ) {
+
+            groceryItems = [];
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to load grocery items:",
+            error
+        );
+
+        groceryItems = [];
+
+    }
+
+
+
+    try {
+
+        savedBudget =
+            JSON.parse(
+                localStorage.getItem(
+                    BUDGET_KEY
+                )
+            ) || {
+
+                amount: 0,
+
+                period: "This Week"
+
+            };
+
+
+        if (
+            typeof savedBudget !==
+            "object" ||
+            savedBudget === null
+        ) {
+
+            savedBudget = {
+
+                amount: 0,
+
+                period: "This Week"
+
+            };
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to load budget:",
+            error
+        );
+
+        savedBudget = {
+
+            amount: 0,
+
+            period: "This Week"
+
+        };
+
+    }
+
+}
+
+
+
+/* =========================================================
+   RENDER SUMMARY
+========================================================= */
+
+function renderSummary() {
+
+    loadData();
+
+
+    /* =====================================================
+       BUDGET
+    ===================================================== */
+
+    const budget =
+        Number(
+            savedBudget.amount
+        ) || 0;
+
+
+
+    /* =====================================================
+       SPENT
+       ONLY PURCHASED ITEMS
+    ===================================================== */
+
+    const spent =
+        groceryItems
+            .filter(
+                item =>
+                    item.purchased === true
+            )
+            .reduce(
+                (
+                    sum,
+                    item
+                ) => {
+
+                    const quantity =
+                        Number(
+                            item.quantity
+                        ) || 0;
+
+
+                    const price =
+                        Number(
+                            item.price
+                        ) || 0;
+
+
+                    return sum +
+                        (
+                            quantity *
+                            price
+                        );
+
+                },
+                0
+            );
+
+
+
+    /* =====================================================
+       REMAINING
+    ===================================================== */
+
+    const remaining =
+        budget -
+        spent;
+
+
+
+    /* =====================================================
+       PERCENTAGE
+    ===================================================== */
+
+    let percent = 0;
+
+
+    if (budget > 0) {
+
+        percent =
+            Math.round(
+                (spent / budget) *
+                100
+            );
+
+    }
+
+
+    const displayPercent =
+        Math.min(
+            Math.max(
+                percent,
+                0
+            ),
+            100
+        );
+
+
+
+    /* =====================================================
+       UPDATE RING
+    ===================================================== */
+
+    const ring =
+        document.getElementById(
+            "ringFill"
+        );
+
+
+    const circumference =
+        2 *
+        Math.PI *
+        58;
+
+
+    ring.style.strokeDasharray =
+        circumference;
+
+
+    ring.style.strokeDashoffset =
+        circumference -
+        (
+            circumference *
+            displayPercent /
+            100
+        );
+
+
+
+    /* =====================================================
+       UPDATE PERCENTAGE
+    ===================================================== */
+
+    document
+        .getElementById(
+            "budgetPercent"
+        )
+        .textContent =
+        percent +
+        "%";
+
+
+
+    /* =====================================================
+       TOTAL BUDGET
+    ===================================================== */
+
+    document
+        .getElementById(
+            "totalBudget"
+        )
+        .textContent =
+        "₱" +
+        budget.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:
+                    2,
+
+                maximumFractionDigits:
+                    2
+            }
+        );
+
+
+
+    /* =====================================================
+       SPENT
+    ===================================================== */
+
+    const spentElement =
+        document.getElementById(
+            "spentAmount"
+        );
+
+
+    spentElement.textContent =
+        "₱" +
+        spent.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:
+                    2,
+
+                maximumFractionDigits:
+                    2
+            }
+        );
+
+
+
+    /* =====================================================
+       REMAINING
+    ===================================================== */
+
+    const remainingElement =
+        document.getElementById(
+            "remainingAmount"
+        );
+
+
+    remainingElement.textContent =
+        "₱" +
+        remaining.toLocaleString(
+            "en-PH",
+            {
+                minimumFractionDigits:
+                    2,
+
+                maximumFractionDigits:
+                    2
+            }
+        );
+
+
+
+    /* =====================================================
+       OVER BUDGET
+    ===================================================== */
+
+    if (
+        remaining < 0
+    ) {
+
+        remainingElement.classList.add(
+            "bs-over"
+        );
+
+    }
+
+    else {
+
+        remainingElement.classList.remove(
+            "bs-over"
+        );
+
+    }
+
+
+
+    /* =====================================================
+       ITEM COUNTS
+    ===================================================== */
+
+    const totalItems =
+        groceryItems.length;
+
+
+    const purchasedCount =
+        groceryItems.filter(
+            item =>
+                item.purchased ===
+                true
+        ).length;
+
+
+    const toBuyCount =
+        totalItems -
+        purchasedCount;
+
+
+
+    document
+        .getElementById(
+            "totalItems"
+        )
+        .textContent =
+        totalItems;
+
+
+    document
+        .getElementById(
+            "purchasedItems"
+        )
+        .textContent =
+        purchasedCount;
+
+
+    document
+        .getElementById(
+            "toBuyItems"
+        )
+        .textContent =
+        toBuyCount;
+
+
+
+    /* =====================================================
+       PERIOD
+    ===================================================== */
+
+    document
+        .getElementById(
+            "periodSelect"
+        )
+        .value =
+        savedBudget.period ||
+        "This Week";
+
+}
+
+
+
+/* =========================================================
+   CHANGE PERIOD
+========================================================= */
+
+function changePeriod(period) {
+
+    savedBudget.period =
+        period;
+
+
+    localStorage.setItem(
+        BUDGET_KEY,
+        JSON.stringify(
+            savedBudget
+        )
+    );
+
+
+    renderSummary();
+
+}
+
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goBack() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+function goToSetBudget() {
+
+    window.location.href =
+        "set-budget.html";
+
+}
+
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function openList() {
+
+    window.location.href =
+        "grocery-list.html";
+
+}
+
+
+function openHistory() {
+
+    window.location.href =
+        "history.html";
+
+}
+
+
+function openSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+renderSummary();
+
+
+
+/* =========================================================
+   REFRESH WHEN RETURNING
+========================================================= */
+
+window.addEventListener(
+    "pageshow",
+    function() {
+
+        renderSummary();
+
+    }
+);
+
+
+
+/* =========================================================
+   SAME-PAGE THEME EVENT
+========================================================= */
+
+window.addEventListener(
+    "groceryThemeChanged",
+    function() {
+
+        const theme =
+            localStorage.getItem(
+                "groceryTheme"
+            ) || "light";
+
+
+        document.documentElement.classList.toggle(
+            "dark-theme",
+            theme === "dark"
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

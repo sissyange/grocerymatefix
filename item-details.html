@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Item Details</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <style>
+
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+        body {
+
+            margin: 0;
+            padding: 0;
+
+        }
+
+
+        body {
+
+            background: #cfe0d2;
+
+            display: flex;
+
+            justify-content: center;
+
+            min-height: 100vh;
+
+        }
+
+
+        .app {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            box-shadow:
+                0 0 30px
+                rgba(0, 0, 0, 0.15);
+
+            position: relative;
+
+        }
+
+
+        /* =========================================================
+           ITEM DETAILS HEADER
+        ========================================================= */
+
+        .details-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 18px 18px 14px;
+
+            background: #f4f9f4;
+
+            border-bottom:
+                1px solid #e3e9e2;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 10;
+
+        }
+
+
+        .details-header-left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .details-header h1 {
+
+            font-size: 20px;
+
+            color: #202a24;
+
+            margin: 0;
+
+        }
+
+
+        .back-button {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 27px;
+
+            color: #26332b;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .more-button {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 25px;
+
+            color: #26332b;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+
+        .details-content {
+
+            padding: 22px 20px 120px;
+
+        }
+
+
+        /* =========================================================
+           ITEM HERO
+        ========================================================= */
+
+        .item-hero {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .large-item-icon {
+
+            width: 90px;
+
+            height: 90px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            background: #e6f1df;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 48px;
+
+            border:
+                1px solid #d6e6d0;
+
+        }
+
+
+        .item-hero h2 {
+
+            margin: 0;
+
+            font-size: 24px;
+
+            color: #202a24;
+
+            font-weight: 700;
+
+        }
+
+
+        .item-category {
+
+            margin-top: 7px;
+
+            font-size: 13px;
+
+            color: #6a756e;
+
+        }
+
+
+        /* =========================================================
+           DETAILS CARD
+        ========================================================= */
+
+        .details-card {
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            padding: 8px 18px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(31, 62, 42, 0.07);
+
+            border:
+                1px solid #e5ebe4;
+
+        }
+
+
+        .detail-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            min-height: 58px;
+
+            border-bottom:
+                1px solid #edf1ed;
+
+            gap: 15px;
+
+        }
+
+
+        .detail-row:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .detail-label {
+
+            color: #68736c;
+
+            font-size: 14px;
+
+        }
+
+
+        .detail-value {
+
+            color: #202a24;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-align: right;
+
+            word-break: break-word;
+
+        }
+
+
+        .detail-total {
+
+            color: #16784f;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================================
+           NOTE
+        ========================================================= */
+
+        .note-card {
+
+            margin-top: 18px;
+
+            background: #f1f7ec;
+
+            border-radius: 16px;
+
+            padding: 16px 18px;
+
+            border:
+                1px solid #dcebd5;
+
+        }
+
+
+        .note-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #35433a;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .note-text {
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            color: #626d66;
+
+        }
+
+
+        /* =========================================================
+           STATUS
+        ========================================================= */
+
+        .status-card {
+
+            margin-top: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: #ffffff;
+
+            padding: 15px 18px;
+
+            border-radius: 16px;
+
+            border:
+                1px solid #e5ebe4;
+
+        }
+
+
+        .status-label {
+
+            color: #68736c;
+
+            font-size: 14px;
+
+        }
+
+
+        .status-badge {
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        .status-badge.to-buy {
+
+            background: #fff2d9;
+
+            color: #9a6a00;
+
+        }
+
+
+        .status-badge.purchased {
+
+            background: #def3e6;
+
+            color: #197448;
+
+        }
+
+
+        /* =========================================================
+           ACTION BUTTONS
+        ========================================================= */
+
+        .details-actions {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .details-action-button {
+
+            flex: 1;
+
+            height: 50px;
+
+            border-radius: 12px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .edit-button {
+
+            background: #ffffff;
+
+            color: #187550;
+
+            border:
+                2px solid #187550;
+
+        }
+
+
+        .edit-button:hover {
+
+            background: #eef8f1;
+
+        }
+
+
+        .delete-button {
+
+            background: #ffe4e4;
+
+            color: #c83c3c;
+
+            border:
+                2px solid #f1a6a6;
+
+        }
+
+
+        .delete-button:hover {
+
+            background: #ffd6d6;
+
+        }
+
+
+        /* =========================================================
+           ERROR / EMPTY STATE
+        ========================================================= */
+
+        .details-empty {
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+        }
+
+
+        .details-empty-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .details-empty h2 {
+
+            color: #27332c;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .details-empty p {
+
+            color: #707a74;
+
+            font-size: 14px;
+
+        }
+
+
+        .back-list-button {
+
+            margin-top: 20px;
+
+            padding: 12px 22px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #197a50;
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================================
+           BOTTOM NAVIGATION
+        ========================================================= */
+
+        .bottom-navigation {
+
+            left: 50% !important;
+
+            right: auto !important;
+
+            transform:
+                translateX(-50%);
+
+            width: 100%;
+
+            max-width: 400px;
+
+        }
+
+
+        /* =========================================================
+           DARK MODE
+        ========================================================= */
+
+        body.dark-mode {
+
+            background: #111714;
+
+        }
+
+
+        body.dark-mode .app {
+
+            background: #111714;
+
+        }
+
+
+        body.dark-mode .details-header {
+
+            background: #111714;
+
+            border-bottom-color: #2c3930;
+
+        }
+
+
+        body.dark-mode .details-header h1,
+
+        body.dark-mode .back-button,
+
+        body.dark-mode .more-button {
+
+            color: #f0f5f1;
+
+        }
+
+
+        body.dark-mode .large-item-icon {
+
+            background: #26382b;
+
+            border-color: #344439;
+
+        }
+
+
+        body.dark-mode .item-hero h2 {
+
+            color: #f0f5f1;
+
+        }
+
+
+        body.dark-mode .item-category {
+
+            color: #aebdaf;
+
+        }
+
+
+        body.dark-mode .details-card,
+
+        body.dark-mode .status-card {
+
+            background: #1b241f;
+
+            border-color: #344439;
+
+        }
+
+
+        body.dark-mode .detail-row {
+
+            border-bottom-color: #2c3930;
+
+        }
+
+
+        body.dark-mode .detail-label,
+
+        body.dark-mode .status-label {
+
+            color: #aebdaf;
+
+        }
+
+
+        body.dark-mode .detail-value {
+
+            color: #f0f5f1;
+
+        }
+
+
+        body.dark-mode .note-card {
+
+            background: #202b23;
+
+            border-color: #344439;
+
+        }
+
+
+        body.dark-mode .note-title {
+
+            color: #e5eee7;
+
+        }
+
+
+        body.dark-mode .note-text {
+
+            color: #b7c2ba;
+
+        }
+
+
+        body.dark-mode .edit-button {
+
+            background: #1b241f;
+
+            color: #8ee6a8;
+
+            border-color: #4b9b68;
+
+        }
+
+
+        body.dark-mode .delete-button {
+
+            background: #392323;
+
+            border-color: #734141;
+
+        }
+
+
+        body.dark-mode .details-empty h2 {
+
+            color: #f0f5f1;
+
+        }
+
+
+        body.dark-mode .details-empty p {
+
+            color: #aeb8b0;
+
+        }
+
+    </style>
+
+    <base target="_self">
+
+</head>
+
+
+<body>
+
+
+    <div class="app">
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="details-header">
+
+
+            <div class="details-header-left">
+
+
+                <button
+                    class="back-button"
+                    onclick="goBack()"
+                    aria-label="Go back">
+
+                    ←
+
+                </button>
+
+
+                <h1>
+
+                    Item Details
+
+                </h1>
+
+
+            </div>
+
+
+            <button
+                class="more-button"
+                onclick="showMoreOptions()"
+                aria-label="More options">
+
+                ⋮
+
+            </button>
+
+
+        </header>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+
+        <main class="details-content">
+
+
+            <div id="itemDetails">
+
+                <!-- Item details will be loaded here -->
+
+            </div>
+
+
+        </main>
+
+
+        <!-- =====================================================
+             BOTTOM NAVIGATION
+        ====================================================== -->
+
+        <nav class="bottom-navigation">
+
+
+            <button
+                class="bottom-nav-item"
+                onclick="goHome()">
+
+                <span>⌂</span>
+
+                <small>
+                    Home
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item active"
+                onclick="goList()">
+
+                <span>☷</span>
+
+                <small>
+                    List
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item"
+                onclick="goHistory()">
+
+                <span>◷</span>
+
+                <small>
+                    History
+                </small>
+
+            </button>
+
+
+            <button
+                class="bottom-nav-item"
+                onclick="goSettings()">
+
+                <span>⚙</span>
+
+                <small>
+                    Settings
+                </small>
+
+            </button>
+
+
+        </nav>
+
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+
+        /* =========================================================
+           LOCAL DEVICE USER
+           
+           NO LOGIN
+           NO REGISTER
+           NO LOGIN.HTML REDIRECT
+        ========================================================= */
+
+        function getCurrentUser() {
+
+            let user = null;
+
+
+            try {
+
+                user =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "currentUser"
+                        )
+                    );
+
+            }
+
+            catch (error) {
+
+                user = null;
+
+            }
+
+
+            /*
+                Create a local device user automatically
+                if no current user exists.
+            */
+
+            if (
+                !user ||
+                !user.id
+            ) {
+
+                user = {
+
+                    id:
+                        "local-device-user",
+
+                    name:
+                        "Angeline"
+
+                };
+
+
+                localStorage.setItem(
+
+                    "currentUser",
+
+                    JSON.stringify(user)
+
+                );
+
+            }
+
+
+            return user;
+
+        }
+
+
+        /* =========================================================
+           CURRENT USER
+        ========================================================= */
+
+        const currentUser =
+            getCurrentUser();
+
+
+        /* =========================================================
+           USER-SPECIFIC GROCERY KEY
+        ========================================================= */
+
+        function getGroceryKey() {
+
+            return (
+                "groceryItems_" +
+                currentUser.id
+            );
+
+        }
+
+
+        /* =========================================================
+           LOAD USER'S GROCERY ITEMS
+        ========================================================= */
+
+        function loadGroceryItems() {
+
+            const groceryKey =
+                getGroceryKey();
+
+
+            const savedItems =
+                localStorage.getItem(
+                    groceryKey
+                );
+
+
+            if (!savedItems) {
+
+                return [];
+
+            }
+
+
+            try {
+
+                const items =
+                    JSON.parse(
+                        savedItems
+                    );
+
+
+                if (
+                    Array.isArray(items)
+                ) {
+
+                    return items;
+
+                }
+
+
+                return [];
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Unable to read grocery items:",
+                    error
+                );
+
+
+                return [];
+
+            }
+
+        }
+
+
+        /* =========================================================
+           LOAD ITEMS
+        ========================================================= */
+
+        let groceryItems =
+            loadGroceryItems();
+
+
+        /* =========================================================
+           GET ITEM ID FROM URL
+
+           Example:
+           item-details.html?id=123
+        ========================================================= */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const itemId =
+            Number(
+                urlParams.get("id")
+            );
+
+
+        /* =========================================================
+           FIND ITEM
+        ========================================================= */
+
+        const selectedItem =
+            groceryItems.find(
+
+                item =>
+
+                    Number(item.id) ===
+                    itemId
+
+            );
+
+
+        /* =========================================================
+           ESCAPE HTML
+        ========================================================= */
+
+        function escapeHTML(value) {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.textContent =
+                String(
+                    value ?? ""
+                );
+
+
+            return div.innerHTML;
+
+        }
+
+
+        /* =========================================================
+           DISPLAY ITEM
+        ========================================================= */
+
+        function displayItemDetails() {
+
+            const container =
+                document.getElementById(
+                    "itemDetails"
+                );
+
+
+            /* =====================================================
+               ITEM NOT FOUND
+            ====================================================== */
+
+            if (!selectedItem) {
+
+                container.innerHTML = `
+
+                    <div class="details-empty">
+
+                        <div class="details-empty-icon">
+                            🛒
+                        </div>
+
+                        <h2>
+                            Item Not Found
+                        </h2>
+
+                        <p>
+                            This grocery item no longer exists
+                            in your list.
+                        </p>
+
+                        <button
+                            class="back-list-button"
+                            onclick="goList()">
+
+                            Back to Grocery List
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            /* =====================================================
+               CALCULATE TOTAL
+            ====================================================== */
+
+            const quantity =
+                Number(
+                    selectedItem.quantity
+                ) || 0;
+
+
+            const price =
+                Number(
+                    selectedItem.price
+                ) || 0;
+
+
+            const total =
+                quantity * price;
+
+
+            /* =====================================================
+               DATA
+            ====================================================== */
+
+            const name =
+                selectedItem.name ||
+                "Unnamed Item";
+
+
+            const unit =
+                selectedItem.unit ||
+                "x";
+
+
+            const category =
+                selectedItem.category ||
+                "Other";
+
+
+            const note =
+                selectedItem.note ||
+                "";
+
+
+            const icon =
+                selectedItem.icon ||
+                "🛒";
+
+
+            /* =====================================================
+               PURCHASE STATUS
+            ====================================================== */
+
+            let statusHTML = "";
+
+
+            if (
+                selectedItem.purchased === true
+            ) {
+
+                statusHTML = `
+
+                    <span class="status-badge purchased">
+
+                        Purchased
+
+                    </span>
+
+                `;
+
+            }
+
+            else {
+
+                statusHTML = `
+
+                    <span class="status-badge to-buy">
+
+                        To Buy
+
+                    </span>
+
+                `;
+
+            }
+
+
+            /* =====================================================
+               NOTE
+            ====================================================== */
+
+            let noteHTML = "";
+
+
+            if (
+                note.trim() !== ""
+            ) {
+
+                noteHTML = `
+
+                    <section class="note-card">
+
+                        <div class="note-title">
+
+                            📝
+
+                            <span>
+                                Note
+                            </span>
+
+                        </div>
+
+                        <div class="note-text">
+
+                            ${escapeHTML(note)}
+
+                        </div>
+
+                    </section>
+
+                `;
+
+            }
+
+            else {
+
+                noteHTML = `
+
+                    <section class="note-card">
+
+                        <div class="note-title">
+
+                            📝
+
+                            <span>
+                                Note
+                            </span>
+
+                        </div>
+
+                        <div class="note-text">
+
+                            No note added.
+
+                        </div>
+
+                    </section>
+
+                `;
+
+            }
+
+
+            /* =====================================================
+               FINAL HTML
+            ====================================================== */
+
+            container.innerHTML = `
+
+                <!-- ITEM HERO -->
+
+                <section class="item-hero">
+
+                    <div class="large-item-icon">
+
+                        ${escapeHTML(icon)}
+
+                    </div>
+
+
+                    <h2>
+
+                        ${escapeHTML(name)}
+
+                    </h2>
+
+
+                    <div class="item-category">
+
+                        ${escapeHTML(category)}
+
+                    </div>
+
+                </section>
+
+
+                <!-- ITEM INFORMATION -->
+
+                <section class="details-card">
+
+
+                    <!-- QUANTITY -->
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+
+                            Quantity
+
+                        </span>
+
+
+                        <span class="detail-value">
+
+                            ${quantity}
+
+                            ${escapeHTML(unit)}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- PRICE PER UNIT -->
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+
+                            Price per Unit
+
+                        </span>
+
+
+                        <span class="detail-value">
+
+                            ₱${price.toFixed(2)}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- TOTAL PRICE -->
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+
+                            Total Price
+
+                        </span>
+
+
+                        <span class="detail-value detail-total">
+
+                            ₱${total.toFixed(2)}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+
+                            Category
+
+                        </span>
+
+
+                        <span class="detail-value">
+
+                            ${escapeHTML(category)}
+
+                        </span>
+
+                    </div>
+
+
+                </section>
+
+
+                <!-- NOTE -->
+
+                ${noteHTML}
+
+
+                <!-- STATUS -->
+
+                <section class="status-card">
+
+                    <span class="status-label">
+
+                        Shopping Status
+
+                    </span>
+
+
+                    ${statusHTML}
+
+                </section>
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="details-actions">
+
+
+                    <button
+                        class="details-action-button edit-button"
+                        onclick="editItem()">
+
+                        Edit
+
+                    </button>
+
+
+                    <button
+                        class="details-action-button delete-button"
+                        onclick="deleteItem()">
+
+                        Delete
+
+                    </button>
+
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =========================================================
+           EDIT ITEM
+        ========================================================= */
+
+        function editItem() {
+
+            if (!selectedItem) {
+
+                return;
+
+            }
+
+
+            /*
+                Pass the item ID to add-item.html
+                so the existing item can be edited.
+            */
+
+            window.location.href =
+                "add-item.html?id=" +
+                encodeURIComponent(
+                    selectedItem.id
+                );
+
+        }
+
+
+        /* =========================================================
+           DELETE ITEM
+        ========================================================= */
+
+        function deleteItem() {
+
+            if (!selectedItem) {
+
+                return;
+
+            }
+
+
+            const confirmDelete =
+                confirm(
+
+                    `Delete "${selectedItem.name}" from your grocery list?`
+
+                );
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            groceryItems =
+                groceryItems.filter(
+
+                    item =>
+
+                        Number(item.id) !==
+                        Number(selectedItem.id)
+
+                );
+
+
+            /*
+                Save using the same
+                user-specific storage key
+                used by GroceryMate.
+            */
+
+            localStorage.setItem(
+
+                getGroceryKey(),
+
+                JSON.stringify(
+                    groceryItems
+                )
+
+            );
+
+
+            alert(
+
+                `"${selectedItem.name}" has been deleted.`
+
+            );
+
+
+            goList();
+
+        }
+
+
+        /* =========================================================
+           MORE OPTIONS
+        ========================================================= */
+
+        function showMoreOptions() {
+
+            if (!selectedItem) {
+
+                return;
+
+            }
+
+
+            const choice =
+                confirm(
+
+                    `Do you want to delete "${selectedItem.name}"?`
+
+                );
+
+
+            if (choice) {
+
+                deleteItem();
+
+            }
+
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        function goBack() {
+
+            window.location.href =
+                "grocery-list.html";
+
+        }
+
+
+        function goHome() {
+
+            window.location.href =
+                "home.html";
+
+        }
+
+
+        function goList() {
+
+            window.location.href =
+                "grocery-list.html";
+
+        }
+
+
+        function goHistory() {
+
+            window.location.href =
+                "history.html";
+
+        }
+
+
+        function goSettings() {
+
+            window.location.href =
+                "settings.html";
+
+        }
+
+
+        /* =========================================================
+           INITIAL LOAD
+        ========================================================= */
+
+        displayItemDetails();
+
+
+    </script>
+
+
+</body>
+
+</html>

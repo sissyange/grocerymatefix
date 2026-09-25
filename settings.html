@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Settings</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <style>
+
+        /* =========================================================
+           SETTINGS PAGE
+        ========================================================= */
+
+        .st-page {
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            padding-bottom: 30px;
+
+        }
+
+
+        .st-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 18px 20px;
+
+            background: #fff;
+
+            border-bottom:
+                1px solid #e5efe5;
+
+        }
+
+
+        .st-back {
+
+            width: 38px;
+
+            height: 38px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #e8f5e9;
+
+            color: #1b7a3d;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .st-header h1 {
+
+            font-size: 20px;
+
+            color: #1a3a26;
+
+            margin: 0;
+
+        }
+
+
+        .st-content {
+
+            padding: 22px;
+
+        }
+
+
+
+        /* PROFILE */
+        .profile-card{display:flex;align-items:center;gap:13px;padding:16px 18px;background:linear-gradient(135deg,#f1f8f2,#fff);border:1px solid #e2eee4;border-radius:18px;margin-bottom:18px;box-shadow:0 3px 12px rgba(27,122,61,.06)}
+        .profile-initial{width:54px;height:54px;border-radius:50%;background:#1b7a3d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;text-transform:uppercase;flex-shrink:0}
+        .profile-card-info{flex:1;min-width:0}
+        .profile-card-info strong{display:block;color:#1a3a26;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .profile-card-info span{display:block;color:#7c9284;font-size:12px;margin-top:3px}
+        .profile-card-button{border:none;background:#e8f5e9;color:#1b7a3d;border-radius:11px;padding:10px 12px;font-size:12px;font-weight:700;cursor:pointer}
+        .profile-form{display:flex;flex-direction:column;gap:7px}
+        .profile-form label{color:#456451;font-size:13px;font-weight:700;margin-top:7px}
+        .profile-form input{width:100%;box-sizing:border-box;border:1px solid #dce9df;background:#f8fbf8;color:#1a3a26;border-radius:12px;padding:13px 14px;font-size:14px;outline:none}
+        .profile-form input:focus{border-color:#1b7a3d;background:#fff;box-shadow:0 0 0 3px rgba(27,122,61,.08)}
+        body.dark-theme .profile-card{background:#202821;border-color:#303b33}
+        body.dark-theme .profile-card-info strong{color:#fff}
+        body.dark-theme .profile-card-info span,body.dark-theme .profile-form label{color:#aab7ae}
+        body.dark-theme .profile-card-button{background:#29382e;color:#65c98b}
+        body.dark-theme .profile-form input{background:#2a392f;border-color:#405346;color:#fff}
+
+        /* =========================================================
+           SETTINGS LIST
+        ========================================================= */
+
+        .st-list {
+
+            background: #fff;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 2px 10px
+                rgba(27, 122, 61, 0.06);
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .st-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            width: 100%;
+
+            padding: 16px 18px;
+
+            border: none;
+
+            background: none;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            border-bottom:
+                1px solid #eef5ef;
+
+        }
+
+
+        .st-row:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .st-row:active {
+
+            background: #f4f9f4;
+
+        }
+
+
+        .st-row-icon {
+
+            width: 40px;
+
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #e8f5e9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 19px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .st-row-label {
+
+            flex: 1;
+
+            font-size: 16px;
+
+            color: #1a3a26;
+
+        }
+
+
+        .st-row-value {
+
+            font-size: 14px;
+
+            color: #9ab0a2;
+
+            margin-right: 4px;
+
+        }
+
+
+        .st-row-chevron {
+
+            color: #9ab0a2;
+
+            font-size: 18px;
+
+        }
+
+
+        /* =========================================================
+           MODAL
+        ========================================================= */
+
+        .st-modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.45);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 9999;
+
+            padding: 20px;
+
+        }
+
+
+        .st-modal-overlay.show {
+
+            display: flex;
+
+        }
+
+
+        .st-modal {
+
+            width: 100%;
+
+            max-width: 360px;
+
+            background: #fff;
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 10px 40px
+                rgba(0, 0, 0, 0.20);
+
+            max-height: 85vh;
+
+            overflow-y: auto;
+
+        }
+
+
+        .st-modal h2 {
+
+            margin: 0 0 6px;
+
+            color: #1a3a26;
+
+            font-size: 20px;
+
+        }
+
+
+        .st-modal-subtitle {
+
+            margin: 0 0 20px;
+
+            color: #7c9284;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================================
+           MODAL BUTTONS
+        ========================================================= */
+
+        .st-modal-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .st-modal-btn {
+
+            flex: 1;
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 13px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .st-cancel-btn {
+
+            background: #e8f5e9;
+
+            color: #1b7a3d;
+
+        }
+
+
+        .st-save-btn {
+
+            background: #1b7a3d;
+
+            color: #fff;
+
+        }
+
+
+        /* =========================================================
+           CATEGORY LIST
+        ========================================================= */
+
+        .category-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-top: 10px;
+
+        }
+
+
+        .category-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px;
+
+            background: #f4f9f4;
+
+            border-radius: 12px;
+
+            color: #1a3a26;
+
+            font-size: 14px;
+
+        }
+
+
+        .category-item span:first-child {
+
+            font-size: 20px;
+
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about-logo {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 20px;
+
+            background: #e8f5e9;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 36px;
+
+            margin:
+                0 auto 15px;
+
+        }
+
+
+        .about-text {
+
+            text-align: center;
+
+            color: #7c9284;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .about-version {
+
+            text-align: center;
+
+            color: #9ab0a2;
+
+            font-size: 12px;
+
+            margin-top: 15px;
+
+        }
+
+
+        /* =========================================================
+           DARK THEME
+        ========================================================= */
+
+        body.dark-theme {
+
+            background: #17221b;
+
+        }
+
+
+        body.dark-theme .app,
+
+        body.dark-theme .st-page {
+
+            background: #17221b;
+
+        }
+
+
+        body.dark-theme .st-header,
+
+        body.dark-theme .st-list,
+
+        body.dark-theme .st-modal {
+
+            background: #223027;
+
+        }
+
+
+        body.dark-theme .st-header {
+
+            border-color: #34473a;
+
+        }
+
+
+        body.dark-theme .st-header h1,
+
+        body.dark-theme .st-row-label,
+
+        body.dark-theme .st-modal h2,
+
+        body.dark-theme .category-item {
+
+            color: #fff;
+
+        }
+
+
+        body.dark-theme .st-row {
+
+            border-color: #34473a;
+
+        }
+
+
+        body.dark-theme .st-row:active {
+
+            background: #2a392f;
+
+        }
+
+
+        body.dark-theme .category-item {
+
+            background: #2a392f;
+
+        }
+
+
+        body.dark-theme .st-modal-subtitle,
+
+        body.dark-theme .about-text {
+
+            color: #b9c8bd;
+
+        }
+
+
+
+        /* DARK MODE SWITCH */
+        .dark-mode-switch {
+            position: relative;
+            width: 48px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+
+        .dark-mode-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+
+        .dark-mode-slider {
+            position: absolute;
+            inset: 0;
+            cursor: pointer;
+            background: #d9e2dc;
+            border-radius: 999px;
+            transition: 0.25s ease;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.05);
+        }
+
+        .dark-mode-slider::before {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            left: 3px;
+            top: 3px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,.18);
+            transition: 0.25s ease;
+        }
+
+        .dark-mode-switch input:checked + .dark-mode-slider {
+            background: #1b7a3d;
+        }
+
+        .dark-mode-switch input:checked + .dark-mode-slider::before {
+            transform: translateX(20px);
+        }
+
+        body.dark-theme .dark-mode-slider {
+            background: #3d5144;
+        }
+
+        body.dark-theme .dark-mode-switch input:checked + .dark-mode-slider {
+            background: #65c98b;
+        }
+
+        .dark-mode-status {
+            min-width: 24px;
+            text-align: right;
+            font-size: 13px;
+            font-weight: 700;
+            color: #87908b;
+        }
+
+        body.dark-theme .dark-mode-status {
+            color: #65c98b;
+        }
+
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        body {
+
+            display: flex;
+
+            justify-content: center;
+
+            background: #cfe0d2;
+
+        }
+
+
+        .app {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            box-shadow:
+                0 0 30px
+                rgba(0, 0, 0, 0.15);
+
+            position: relative;
+
+        }
+
+
+        /* =========================================================
+           BOTTOM NAVIGATION
+        ========================================================= */
+        .settings-bottom-navigation {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            height: 74px;
+            background: rgba(255,255,255,0.98);
+            border-top: 1px solid #e7ebe6;
+            display: flex;
+            justify-content: center;
+            z-index: 10000;
+            box-shadow: 0 -5px 20px rgba(30,70,45,0.06);
+        }
+        .settings-bottom-nav-item {
+            flex: 1; max-width: 100px; border: none; background: transparent;
+            color: #87908b; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 4px;
+            cursor: pointer; font-family: Arial, Helvetica, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .settings-bottom-nav-item .nav-icon {
+            width: 30px; height: 30px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; line-height: 1;
+        }
+        .settings-bottom-nav-item small { font-size: 10px; font-weight: 600; }
+        .settings-bottom-nav-item.active { color: #087c4b; }
+        .settings-bottom-nav-item.active .nav-icon { background: #e8f5e9; }
+        .settings-bottom-nav-item:active { transform: scale(0.96); }
+        .st-page { padding-bottom: 100px; }
+        body.dark-theme .settings-bottom-navigation {
+            background: rgba(27,34,30,0.98); border-top-color: #2b352e;
+        }
+        body.dark-theme .settings-bottom-nav-item { color: #aab7ae; }
+        body.dark-theme .settings-bottom-nav-item.active { color: #65c98b; }
+        body.dark-theme .settings-bottom-nav-item.active .nav-icon { background: #29382e; }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app st-page">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="st-header">
+
+
+        <button
+            class="st-back"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+
+        <h1>
+
+            Settings
+
+        </h1>
+
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+    <main class="st-content">
+
+
+
+        <section class="profile-card">
+            <div class="profile-initial" id="settingsProfileInitial">G</div>
+            <div class="profile-card-info">
+                <strong id="settingsProfileName">Create Profile</strong>
+                <span id="settingsProfileSubtext">Add your name and personal details</span>
+            </div>
+            <button class="profile-card-button" type="button" onclick="openProfile()" id="profileActionButton">Create</button>
+        </section>
+
+        <section class="st-list">
+
+
+            <!-- CATEGORIES -->
+
+            <button
+                class="st-row"
+                onclick="openCategories()">
+
+
+                <div class="st-row-icon">
+
+                    🧩
+
+                </div>
+
+
+                <span class="st-row-label">
+
+                    Categories
+
+                </span>
+
+
+                <span
+                    class="st-row-value"
+                    id="categoryCount">
+
+                    12
+
+                </span>
+
+
+                <span class="st-row-chevron">
+
+                    ›
+
+                </span>
+
+
+            </button>
+
+
+            <!-- DARK MODE -->
+
+            <button
+                class="st-row dark-mode-row"
+                type="button"
+                onclick="toggleDarkMode()">
+
+                <div class="st-row-icon">
+
+                    🌙
+
+                </div>
+
+                <span class="st-row-label">
+
+                    Dark Mode
+
+                </span>
+
+                <span
+                    class="dark-mode-status"
+                    id="darkModeDisplay">
+
+                    OFF
+
+                </span>
+
+                <span class="dark-mode-switch" aria-hidden="true">
+
+                    <input
+                        type="checkbox"
+                        id="darkModeToggle"
+                        tabindex="-1">
+
+                    <span class="dark-mode-slider"></span>
+
+                </span>
+
+            </button>
+
+
+            <!-- ABOUT -->
+
+            <button
+                class="st-row"
+                onclick="openAbout()">
+
+
+                <div class="st-row-icon">
+
+                    ℹ️
+
+                </div>
+
+
+                <span class="st-row-label">
+
+                    About
+
+                </span>
+
+
+                <span class="st-row-chevron">
+
+                    ›
+
+                </span>
+
+
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+
+<div class="st-modal-overlay" id="profileModal">
+    <div class="st-modal">
+        <div class="profile-initial" id="modalProfileInitial" style="margin:0 auto 14px;">G</div>
+        <h2 id="profileModalTitle" style="text-align:center;">Create Profile</h2>
+        <p class="st-modal-subtitle" style="text-align:center;">Add your information. You can edit it anytime.</p>
+
+        <div class="profile-form">
+            <label for="profileName">Name</label>
+            <input id="profileName" type="text" placeholder="Enter your name" maxlength="60" autocomplete="name">
+
+            <label for="profileEmail">Email <span style="font-weight:400;">(optional)</span></label>
+            <input id="profileEmail" type="email" placeholder="Enter your email" maxlength="100" autocomplete="email">
+
+            <label for="profilePhone">Phone Number <span style="font-weight:400;">(optional)</span></label>
+            <input id="profilePhone" type="tel" placeholder="Enter your phone number" maxlength="20" autocomplete="tel">
+        </div>
+
+        <div class="st-modal-actions">
+            <button class="st-modal-btn st-cancel-btn" type="button" onclick="closeModal('profileModal')">Cancel</button>
+            <button class="st-modal-btn st-save-btn" type="button" onclick="saveProfile()">Save Profile</button>
+        </div>
+    </div>
+</div>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="settings-bottom-navigation" aria-label="Main navigation">
+        <button class="settings-bottom-nav-item" type="button" aria-label="Home" onclick="goHome()">
+            <span class="nav-icon">⌂</span><small>Home</small>
+        </button>
+        <button class="settings-bottom-nav-item" type="button" aria-label="List" onclick="openList()">
+            <span class="nav-icon">📝</span><small>List</small>
+        </button>
+        <button class="settings-bottom-nav-item" type="button" aria-label="History" onclick="openHistory()">
+            <span class="nav-icon">🛒</span><small>History</small>
+        </button>
+        <button class="settings-bottom-nav-item active" type="button" aria-label="Settings" aria-current="page" onclick="openSettings()">
+            <span class="nav-icon">⚙</span><small>Settings</small>
+        </button>
+    </nav>
+
+<!-- =========================================================
+     CATEGORIES MODAL
+========================================================= -->
+
+<div
+    class="st-modal-overlay"
+    id="categoriesModal">
+
+
+    <div class="st-modal">
+
+
+        <h2>
+
+            Categories
+
+        </h2>
+
+
+        <p class="st-modal-subtitle">
+
+            GroceryMate categories.
+
+        </p>
+
+
+        <div
+            class="category-list"
+            id="categoryList">
+
+        </div>
+
+
+        <div class="st-modal-actions">
+
+
+            <button
+                class="st-modal-btn st-save-btn"
+                onclick="closeModal('categoriesModal')">
+
+                Done
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ABOUT MODAL
+========================================================= -->
+
+<div
+    class="st-modal-overlay"
+    id="aboutModal">
+
+
+    <div class="st-modal">
+
+
+        <div class="about-logo">
+
+            🛒
+
+        </div>
+
+
+        <h2 style="text-align:center;">
+
+            GroceryMate
+
+        </h2>
+
+
+        <p class="about-text">
+
+            GroceryMate is an offline grocery list
+            and budget management application.
+
+            <br><br>
+
+            It helps you organize grocery items,
+            track quantities and prices,
+            monitor your budget, and keep
+            shopping history.
+
+        </p>
+
+
+        <div class="about-version">
+
+            Version 1.0.0
+
+        </div>
+
+
+        <div class="st-modal-actions">
+
+
+            <button
+                class="st-modal-btn st-save-btn"
+                onclick="closeModal('aboutModal')">
+
+                Done
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   OFFLINE LOCAL DEVICE USER + PROFILE
+========================================================= */
+
+const PROFILE_KEY = "groceryMateProfile";
+
+function getSavedProfile() {
+    try {
+        return JSON.parse(localStorage.getItem(PROFILE_KEY)) || null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function getCurrentUser() {
+    let user = null;
+
+    try {
+        user = JSON.parse(localStorage.getItem("currentUser"));
+    } catch (error) {
+        user = null;
+    }
+
+    const profile = getSavedProfile();
+
+    if (!user || !user.id) {
+        user = {
+            id: "local-device-user",
+            name: profile?.name || "",
+            email: profile?.email || "",
+            phone: profile?.phone || ""
+        };
+    }
+
+    if (profile) {
+        user.name = profile.name || "";
+        user.email = profile.email || "";
+        user.phone = profile.phone || "";
+    }
+
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    return user;
+}
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+const currentUser =
+    getCurrentUser();
+
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function profileInitial(name) {
+    const clean = String(name || "").trim();
+    return clean ? clean.charAt(0).toUpperCase() : "G";
+}
+
+function updateProfileUI() {
+    const profile = getSavedProfile();
+    const name = String(profile?.name || "").trim();
+    const email = String(profile?.email || "").trim();
+
+    const initialEl = document.getElementById("settingsProfileInitial");
+    const nameEl = document.getElementById("settingsProfileName");
+    const subtextEl = document.getElementById("settingsProfileSubtext");
+    const actionEl = document.getElementById("profileActionButton");
+
+    if (initialEl) initialEl.textContent = profileInitial(name);
+    if (nameEl) nameEl.textContent = name || "Create Profile";
+    if (subtextEl) subtextEl.textContent = email || (name ? "Your GroceryMate profile" : "Add your name and personal details");
+    if (actionEl) actionEl.textContent = name ? "Edit" : "Create";
+}
+
+function openProfile() {
+    const profile = getSavedProfile();
+    const nameInput = document.getElementById("profileName");
+    const emailInput = document.getElementById("profileEmail");
+    const phoneInput = document.getElementById("profilePhone");
+    const title = document.getElementById("profileModalTitle");
+    const initial = document.getElementById("modalProfileInitial");
+
+    if (nameInput) nameInput.value = profile?.name || "";
+    if (emailInput) emailInput.value = profile?.email || "";
+    if (phoneInput) phoneInput.value = profile?.phone || "";
+
+    const hasProfile = !!String(profile?.name || "").trim();
+    if (title) title.textContent = hasProfile ? "Edit Profile" : "Create Profile";
+    if (initial) initial.textContent = profileInitial(profile?.name);
+
+    openModal("profileModal");
+    setTimeout(() => nameInput?.focus(), 100);
+}
+
+function saveProfile() {
+    const name = document.getElementById("profileName")?.value.trim();
+    const email = document.getElementById("profileEmail")?.value.trim();
+    const phone = document.getElementById("profilePhone")?.value.trim();
+
+    if (!name) {
+        alert("Please enter your name.");
+        document.getElementById("profileName")?.focus();
+        return;
+    }
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Please enter a valid email address.");
+        document.getElementById("profileEmail")?.focus();
+        return;
+    }
+
+    const profile = { name, email: email || "", phone: phone || "" };
+
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+
+    const user = getCurrentUser();
+    user.name = name;
+    user.email = email || "";
+    user.phone = phone || "";
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
+    updateProfileUI();
+    closeModal("profileModal");
+    alert("Profile saved successfully.");
+}
+
+
+/* =========================================================
+   USER-SPECIFIC BUDGET KEY
+========================================================= */
+
+const BUDGET_KEY =
+    `groceryBudget_${currentUser.id}`;
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+const categories = [
+
+
+    {
+        icon: "🍚",
+        name: "Rice & Grains"
+    },
+
+
+    {
+        icon: "🥩",
+        name: "Meat & Seafood"
+    },
+
+
+    {
+        icon: "🥬",
+        name: "Vegetables"
+    },
+
+
+    {
+        icon: "🍎",
+        name: "Fruits"
+    },
+
+
+    {
+        icon: "🥛",
+        name: "Dairy & Eggs"
+    },
+
+
+    {
+        icon: "🥫",
+        name: "Canned & Packaged"
+    },
+
+
+    {
+        icon: "🍞",
+        name: "Bakery"
+    },
+
+
+    {
+        icon: "🥤",
+        name: "Beverages"
+    },
+
+
+    {
+        icon: "🧂",
+        name: "Condiments & Spices"
+    },
+
+
+    {
+        icon: "🧼",
+        name: "Household"
+    },
+
+
+    {
+        icon: "🧴",
+        name: "Personal Care"
+    },
+
+
+    {
+        icon: "📦",
+        name: "Others"
+    }
+
+
+];
+
+
+/* =========================================================
+   OPEN CATEGORIES
+========================================================= */
+
+function openCategories() {
+
+
+    const list =
+        document.getElementById(
+            "categoryList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    categories.forEach(
+        category => {
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "category-item";
+
+
+            item.innerHTML = `
+
+                <span>
+
+                    ${category.icon}
+
+                </span>
+
+
+                <span>
+
+                    ${category.name}
+
+                </span>
+
+            `;
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "categoryCount"
+    ).textContent =
+        categories.length;
+
+
+    openModal(
+        "categoriesModal"
+    );
+
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+const THEME_KEY = "groceryTheme";
+
+function applyDarkMode(theme) {
+
+    const isDark = theme === "dark";
+
+    document.body.classList.toggle("dark-theme", isDark);
+
+    const display =
+        document.getElementById("darkModeDisplay");
+
+    const toggle =
+        document.getElementById("darkModeToggle");
+
+    if (display) {
+        display.textContent = isDark ? "ON" : "OFF";
+    }
+
+    if (toggle) {
+        toggle.checked = isDark;
+    }
+}
+
+function loadTheme() {
+
+    const savedTheme =
+        localStorage.getItem(THEME_KEY) || "light";
+
+    applyDarkMode(savedTheme);
+}
+
+function toggleDarkMode() {
+
+    const isDark =
+        document.body.classList.contains("dark-theme");
+
+    const newTheme =
+        isDark ? "light" : "dark";
+
+    localStorage.setItem(THEME_KEY, newTheme);
+
+    applyDarkMode(newTheme);
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+function openAbout() {
+
+    openModal(
+        "aboutModal"
+    );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(id) {
+
+
+    const modal =
+        document.getElementById(
+            id
+        );
+
+
+    if (modal) {
+
+        modal.classList.add(
+            "show"
+        );
+
+    }
+
+}
+
+
+function closeModal(id) {
+
+
+    const modal =
+        document.getElementById(
+            id
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".st-modal-overlay"
+    )
+    .forEach(
+        overlay => {
+
+
+            overlay.addEventListener(
+                "click",
+                function(event) {
+
+
+                    if (
+                        event.target ===
+                        overlay
+                    ) {
+
+
+                        overlay.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+                }
+
+            );
+
+        }
+
+    );
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goBack() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function openList() {
+
+    window.location.href =
+        "grocery-list.html";
+
+}
+
+
+function openHistory() {
+
+    window.location.href =
+        "history.html";
+
+}
+
+
+function openSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+/* =========================================================
+   INITIALIZE SETTINGS
+========================================================= */
+
+updateProfileUI();
+loadTheme();
+
+
+</script>
+
+
+</body>
+
+</html>

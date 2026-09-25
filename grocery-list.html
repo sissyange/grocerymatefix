@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - My Grocery List</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+
+    <style>
+
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+        body {
+
+            margin: 0;
+            padding: 0;
+
+        }
+
+
+        body {
+
+            background: #cfe0d2;
+
+            display: flex;
+
+            justify-content: center;
+
+        }
+
+
+        .app {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.15);
+
+            position: relative;
+
+        }
+
+
+        .bottom-navigation {
+
+            left: 50% !important;
+
+            right: auto !important;
+
+            transform:
+                translateX(-50%);
+
+            width: 100%;
+
+            max-width: 400px;
+
+        }
+
+
+        /* =========================================================
+           MAKE GROCERY ITEM CLICKABLE
+        ========================================================= */
+
+        .grocery-item {
+
+            cursor: pointer;
+
+        }
+
+
+        .grocery-item:hover {
+
+            background: #f7fbf7;
+
+        }
+
+
+        .item-checkbox,
+        .item-menu {
+
+            position: relative;
+
+            z-index: 5;
+
+        }
+
+
+        /* =========================================================
+           DARK THEME
+        ========================================================= */
+
+        html.dark-theme,
+        html.dark-theme body,
+        body.dark-theme {
+
+            background: #111714 !important;
+
+        }
+
+
+        html.dark-theme .app,
+        body.dark-theme .app {
+
+            background: #171d19 !important;
+
+            color: #f1f5f2;
+
+        }
+
+
+        html.dark-theme .list-header,
+        body.dark-theme .list-header {
+
+            background: #1b221e !important;
+
+            border-bottom-color: #2b352e !important;
+
+        }
+
+
+        html.dark-theme .list-header h1,
+        body.dark-theme .list-header h1 {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .list-header p,
+        body.dark-theme .list-header p {
+
+            color: #aab7ae !important;
+
+        }
+
+
+        html.dark-theme .back-button,
+        body.dark-theme .back-button {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .search-box,
+        body.dark-theme .search-box {
+
+            background: #202821 !important;
+
+            border-color: #303b33 !important;
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .search-box input,
+        body.dark-theme .search-box input {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .search-box input::placeholder,
+        body.dark-theme .search-box input::placeholder {
+
+            color: #8f9d94 !important;
+
+        }
+
+
+        html.dark-theme .list-tab,
+        body.dark-theme .list-tab {
+
+            color: #aab7ae !important;
+
+        }
+
+
+        html.dark-theme .list-tab.active,
+        body.dark-theme .list-tab.active {
+
+            background: #126d3e !important;
+
+            color: #ffffff !important;
+
+        }
+
+
+        html.dark-theme .grocery-item,
+        body.dark-theme .grocery-item {
+
+            background: #202821 !important;
+
+            border-color: #303b33 !important;
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .grocery-item:hover,
+        body.dark-theme .grocery-item:hover {
+
+            background: #263029 !important;
+
+        }
+
+
+        html.dark-theme .item-information h3,
+        body.dark-theme .item-information h3 {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .item-information p,
+        body.dark-theme .item-information p {
+
+            color: #aab7ae !important;
+
+        }
+
+
+        html.dark-theme .item-price strong,
+        body.dark-theme .item-price strong {
+
+            color: #65c98b !important;
+
+        }
+
+
+        html.dark-theme .empty-list,
+        body.dark-theme .empty-list {
+
+            background: #202821 !important;
+
+            border-color: #303b33 !important;
+
+        }
+
+
+        html.dark-theme .empty-list h2,
+        body.dark-theme .empty-list h2 {
+
+            color: #f1f5f2 !important;
+
+        }
+
+
+        html.dark-theme .empty-list p,
+        body.dark-theme .empty-list p {
+
+            color: #aab7ae !important;
+
+        }
+
+
+        html.dark-theme .item-menu,
+        body.dark-theme .item-menu {
+
+            color: #aab7ae !important;
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            html.dark-theme body {
+
+                background: #171d19 !important;
+
+            }
+
+        }
+
+
+        /* =========================================================
+           BOTTOM NAVIGATION
+        ========================================================= */
+        .list-bottom-navigation {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            height: 72px;
+            background: rgba(255,255,255,0.98);
+            border-top: 1px solid #e1ece3;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            align-items: stretch;
+            z-index: 9998;
+            box-shadow: 0 -5px 20px rgba(27,122,61,0.08);
+            padding-bottom: env(safe-area-inset-bottom);
+            box-sizing: border-box;
+        }
+
+        .list-bottom-nav-item {
+            border: none;
+            background: transparent;
+            color: #7c9284;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .list-bottom-nav-item .nav-icon {
+            width: 34px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            line-height: 1;
+            border-radius: 10px;
+        }
+
+        .list-bottom-nav-item small {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .list-bottom-nav-item.active {
+            color: #1b7a3d;
+        }
+
+        .list-bottom-nav-item.active .nav-icon {
+            background: #e8f5e9;
+        }
+
+        .app {
+            padding-bottom: 72px;
+        }
+
+        body.dark-theme .list-bottom-navigation,
+        html.dark-theme .list-bottom-navigation {
+            background: rgba(27,34,30,0.98);
+            border-top-color: #303b33;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.25);
+        }
+
+        body.dark-theme .list-bottom-nav-item,
+        html.dark-theme .list-bottom-nav-item {
+            color: #aab7ae;
+        }
+
+        body.dark-theme .list-bottom-nav-item.active,
+        html.dark-theme .list-bottom-nav-item.active {
+            color: #65c98b;
+        }
+
+        body.dark-theme .list-bottom-nav-item.active .nav-icon,
+        html.dark-theme .list-bottom-nav-item.active .nav-icon {
+            background: #263a2d;
+        }
+
+    </style>
+
+
+    <script>
+
+        /* =========================================================
+           APPLY SAVED THEME
+        ========================================================= */
+
+        (function applySavedTheme() {
+
+            function applyTheme(theme) {
+
+                const isDark =
+                    theme === "dark" ||
+                    theme === "Dark" ||
+                    theme === "DARK";
+
+
+                document.documentElement.classList.toggle(
+                    "dark-theme",
+                    isDark
+                );
+
+            }
+
+
+            const savedTheme =
+                localStorage.getItem("groceryTheme") ||
+                localStorage.getItem("appTheme") ||
+                localStorage.getItem("theme") ||
+                "light";
+
+
+            applyTheme(savedTheme);
+
+
+            window.addEventListener(
+                "storage",
+                function(event) {
+
+                    if (
+                        event.key === "groceryTheme" ||
+                        event.key === "appTheme" ||
+                        event.key === "theme"
+                    ) {
+
+                        applyTheme(
+                            event.newValue || "light"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            window.addEventListener(
+                "groceryThemeChanged",
+                function(event) {
+
+                    applyTheme(
+                        event.detail ||
+                        localStorage.getItem(
+                            "groceryTheme"
+                        ) ||
+                        "light"
+                    );
+
+                }
+            );
+
+        })();
+
+    </script>
+
+
+    <base target="_self">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="list-header">
+
+
+        <button
+            class="back-button"
+            onclick="goHome()">
+
+            ←
+
+        </button>
+
+
+        <div>
+
+            <h1>
+
+                My Grocery List
+
+            </h1>
+
+
+            <p id="listTotal">
+
+                0 items
+
+            </p>
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main class="list-content">
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <span>
+
+                ⌕
+
+            </span>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search item..."
+                oninput="searchItems()">
+
+        </div>
+
+
+        <!-- FILTER TABS -->
+
+        <div class="list-tabs">
+
+
+            <button
+                class="list-tab active"
+                id="allTab"
+                onclick="changeTab('all')">
+
+                All
+
+            </button>
+
+
+            <button
+                class="list-tab"
+                id="toBuyTab"
+                onclick="changeTab('toBuy')">
+
+                To Buy
+
+            </button>
+
+
+            <button
+                class="list-tab"
+                id="purchasedTab"
+                onclick="changeTab('purchased')">
+
+                Purchased
+
+            </button>
+
+
+        </div>
+
+
+        <!-- GROCERY ITEMS -->
+
+        <div
+            class="grocery-items"
+            id="groceryItems">
+
+        </div>
+
+
+        <!-- EMPTY MESSAGE -->
+
+        <div
+            class="empty-list"
+            id="emptyList"
+            style="display:none;">
+
+            <div class="empty-icon">
+
+                🛒
+
+            </div>
+
+
+            <h2>
+
+                No grocery items
+
+            </h2>
+
+
+            <p>
+
+                Add an item to start your grocery list.
+
+            </p>
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+    <!-- =========================================================
+         BOTTOM NAVIGATION
+         Home | List | History | Settings
+    ========================================================== -->
+    <nav class="list-bottom-navigation" aria-label="Main navigation">
+
+        <button
+            class="list-bottom-nav-item"
+            type="button"
+            aria-label="Home"
+            onclick="goHome()">
+            <span class="nav-icon">⌂</span>
+            <small>Home</small>
+        </button>
+
+        <button
+            class="list-bottom-nav-item active"
+            type="button"
+            aria-label="List"
+            aria-current="page"
+            onclick="openList()">
+            <span class="nav-icon">📝</span>
+            <small>List</small>
+        </button>
+
+        <button
+            class="list-bottom-nav-item"
+            type="button"
+            aria-label="History"
+            onclick="openHistory()">
+            <span class="nav-icon">🛒</span>
+            <small>History</small>
+        </button>
+
+        <button
+            class="list-bottom-nav-item"
+            type="button"
+            aria-label="Settings"
+            onclick="openSettings()">
+            <span class="nav-icon">⚙</span>
+            <small>Settings</small>
+        </button>
+
+    </nav>
+
+<script>
+
+
+/* =========================================================
+   LOCAL DEVICE USER
+   NO LOGIN / NO REGISTER
+========================================================= */
+
+function getCurrentUser() {
+
+    let user = null;
+
+
+    try {
+
+        user =
+            JSON.parse(
+                localStorage.getItem(
+                    "currentUser"
+                )
+            );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Unable to read local user:",
+            error
+        );
+
+    }
+
+
+    /*
+        Login and registration are removed.
+
+        If there is no saved user,
+        create a local device user automatically.
+    */
+
+    if (
+        !user ||
+        !user.id
+    ) {
+
+        user = {
+
+            id: "local-device-user",
+
+            name: "Angeline"
+
+        };
+
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+
+    return user;
+
+}
+
+
+
+/* =========================================================
+   CURRENT USER
+========================================================= */
+
+const currentUser =
+    getCurrentUser();
+
+
+
+/* =========================================================
+   STORAGE KEYS
+========================================================= */
+
+const ITEMS_KEY =
+    "groceryItems_" +
+    currentUser.id;
+
+
+const HISTORY_KEY =
+    "groceryHistory_" +
+    currentUser.id;
+
+
+
+/* =========================================================
+   GROCERY DATA
+========================================================= */
+
+let groceryItems = [];
+
+
+
+/* =========================================================
+   LOAD GROCERY ITEMS
+========================================================= */
+
+function loadGroceryItems() {
+
+    const savedItems =
+        localStorage.getItem(
+            ITEMS_KEY
+        );
+
+
+    if (!savedItems) {
+
+        return [];
+
+    }
+
+
+    try {
+
+        const items =
+            JSON.parse(
+                savedItems
+            );
+
+
+        if (
+            Array.isArray(items)
+        ) {
+
+            return items;
+
+        }
+
+
+        return [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to read grocery items:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+
+/* =========================================================
+   INITIALIZE GROCERY ITEMS
+========================================================= */
+
+groceryItems =
+    loadGroceryItems();
+
+
+
+/* =========================================================
+   CURRENT TAB
+========================================================= */
+
+let currentTab =
+    "all";
+
+
+
+/* =========================================================
+   SAVE GROCERY ITEMS
+========================================================= */
+
+function saveItems() {
+
+    localStorage.setItem(
+        ITEMS_KEY,
+        JSON.stringify(
+            groceryItems
+        )
+    );
+
+}
+
+
+
+/* =========================================================
+   DISPLAY ITEMS
+========================================================= */
+
+function displayItems() {
+
+    const container =
+        document.getElementById(
+            "groceryItems"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "emptyList"
+        );
+
+
+    const searchInput =
+        document.getElementById(
+            "searchInput"
+        );
+
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+
+    /* =====================================================
+       FILTER ITEMS
+    ===================================================== */
+
+    let filteredItems =
+        groceryItems.filter(
+            item => {
+
+
+                const itemName =
+                    String(
+                        item.name || ""
+                    ).toLowerCase();
+
+
+                const itemCategory =
+                    String(
+                        item.category || ""
+                    ).toLowerCase();
+
+
+                const matchesSearch =
+                    itemName.includes(
+                        search
+                    ) ||
+                    itemCategory.includes(
+                        search
+                    );
+
+
+
+                let matchesTab =
+                    true;
+
+
+                if (
+                    currentTab ===
+                    "toBuy"
+                ) {
+
+                    matchesTab =
+                        item.purchased !==
+                        true;
+
+                }
+
+
+                if (
+                    currentTab ===
+                    "purchased"
+                ) {
+
+                    matchesTab =
+                        item.purchased ===
+                        true;
+
+                }
+
+
+                return (
+                    matchesSearch &&
+                    matchesTab
+                );
+
+            }
+        );
+
+
+
+    /* =====================================================
+       CLEAR DISPLAY
+    ===================================================== */
+
+    container.innerHTML =
+        "";
+
+
+
+    /* =====================================================
+       NO ITEMS
+    ===================================================== */
+
+    if (
+        filteredItems.length === 0
+    ) {
+
+        empty.style.display =
+            "flex";
+
+
+        updateItemCount();
+
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+
+    /* =====================================================
+       DISPLAY EACH ITEM
+    ===================================================== */
+
+    filteredItems.forEach(
+        item => {
+
+            const itemElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            itemElement.className =
+                "grocery-item";
+
+
+            itemElement.onclick =
+                function() {
+
+                    openItemDetails(
+                        item.id
+                    );
+
+                };
+
+
+
+            /* PURCHASED STYLE */
+
+            if (
+                item.purchased ===
+                true
+            ) {
+
+                itemElement.classList.add(
+                    "purchased-item"
+                );
+
+            }
+
+
+
+            /* =================================================
+               TOTAL PRICE
+            ================================================= */
+
+            const quantity =
+                Number(
+                    item.quantity
+                ) || 0;
+
+
+            const price =
+                Number(
+                    item.price
+                ) || 0;
+
+
+            const total =
+                quantity *
+                price;
+
+
+
+            /* =================================================
+               ITEM HTML
+            ================================================= */
+
+            itemElement.innerHTML = `
+
+                <button
+                    class="item-checkbox ${
+                        item.purchased
+                            ? "checked"
+                            : ""
+                    }"
+                    onclick="
+                        event.stopPropagation();
+                        togglePurchased(${item.id});
+                    "
+                    aria-label="Mark item as purchased">
+
+                    ${
+                        item.purchased
+                            ? "✓"
+                            : ""
+                    }
+
+                </button>
+
+
+                <div class="item-icon">
+
+                    ${
+                        escapeHTML(
+                            item.icon ||
+                            "🛒"
+                        )
+                    }
+
+                </div>
+
+
+                <div class="item-information">
+
+                    <h3>
+
+                        ${
+                            escapeHTML(
+                                item.name ||
+                                "Unnamed item"
+                            )
+                        }
+
+                    </h3>
+
+
+                    <p>
+
+                        ${quantity}
+
+                        ${
+                            escapeHTML(
+                                item.unit ||
+                                "x"
+                            )
+                        }
+
+                        ×
+
+                        ₱${price.toFixed(2)}
+
+                    </p>
+
+                </div>
+
+
+                <div class="item-price">
+
+                    <strong>
+
+                        ₱${total.toFixed(2)}
+
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="item-menu"
+                    onclick="
+                        event.stopPropagation();
+                        showItemMenu(${item.id});
+                    "
+                    aria-label="Item menu">
+
+                    ⋮
+
+                </button>
+
+            `;
+
+
+            container.appendChild(
+                itemElement
+            );
+
+        }
+    );
+
+
+    updateItemCount();
+
+}
+
+
+
+/* =========================================================
+   UPDATE ITEM COUNT
+========================================================= */
+
+function updateItemCount() {
+
+    const count =
+        groceryItems.length;
+
+
+    const listTotal =
+        document.getElementById(
+            "listTotal"
+        );
+
+
+    listTotal.textContent =
+        `${count} item${
+            count !== 1
+                ? "s"
+                : ""
+        }`;
+
+}
+
+
+
+/* =========================================================
+   TOGGLE PURCHASED
+========================================================= */
+
+function togglePurchased(id) {
+
+    const item =
+        groceryItems.find(
+            item =>
+                Number(item.id) ===
+                Number(id)
+        );
+
+
+    if (!item) {
+
+        return;
+
+    }
+
+    /* =====================================================
+       BUDGET VALIDATION
+       Do not allow an item to be purchased when its
+       total price is greater than the remaining budget.
+    ===================================================== */
+
+    if (item.purchased !== true) {
+
+        const BUDGET_KEY =
+            "groceryBudget_" +
+            currentUser.id;
+
+        let savedBudget = {
+            amount: 0
+        };
+
+        try {
+
+            savedBudget =
+                JSON.parse(
+                    localStorage.getItem(
+                        BUDGET_KEY
+                    )
+                ) || {
+                    amount: 0
+                };
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Unable to read budget:",
+                error
+            );
+
+        }
+
+        const budget =
+            Number(
+                savedBudget.amount
+            ) || 0;
+
+        const spent =
+            groceryItems
+                .filter(
+                    groceryItem =>
+                        groceryItem.purchased === true
+                )
+                .reduce(
+                    (
+                        sum,
+                        groceryItem
+                    ) => {
+
+                        const quantity =
+                            Number(
+                                groceryItem.quantity
+                            ) || 0;
+
+                        const price =
+                            Number(
+                                groceryItem.price
+                            ) || 0;
+
+                        return (
+                            sum +
+                            (
+                                quantity *
+                                price
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+        const remainingBudget =
+            budget - spent;
+
+        const itemQuantity =
+            Number(
+                item.quantity
+            ) || 0;
+
+        const itemPrice =
+            Number(
+                item.price
+            ) || 0;
+
+        const itemTotal =
+            itemQuantity *
+            itemPrice;
+
+        /* =================================================
+           BLOCK PURCHASE IF BUDGET IS NOT ENOUGH
+        ================================================= */
+
+        if (
+            itemTotal >
+            remainingBudget
+        ) {
+
+            alert(
+                "You don't have enough budget for this item.\n\n" +
+                "Item: " +
+                (item.name || "Unnamed item") +
+                "\nItem Total: ₱" +
+                itemTotal.toLocaleString(
+                    "en-PH",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                ) +
+                "\nRemaining Budget: ₱" +
+                Math.max(
+                    remainingBudget,
+                    0
+                ).toLocaleString(
+                    "en-PH",
+                    {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }
+                )
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    item.purchased =
+        !item.purchased;
+
+
+    saveItems();
+
+
+
+    /* =====================================================
+       SAVE PURCHASED ITEMS TO TODAY'S HISTORY
+
+       IMPORTANT:
+       History is updated every time an item is purchased
+       or unchecked. It is no longer dependent on ALL items
+       being purchased first.
+    ===================================================== */
+
+    saveShoppingHistoryForToday();
+
+
+    displayItems();
+
+}
+
+
+
+/* =========================================================
+   SAVE TODAY'S SHOPPING HISTORY
+
+   One history record is maintained for the current day.
+   As more items are purchased, today's record is updated.
+========================================================= */
+
+function saveShoppingHistoryForToday() {
+
+    let history = [];
+
+
+    try {
+
+        history =
+            JSON.parse(
+                localStorage.getItem(
+                    HISTORY_KEY
+                )
+            ) || [];
+
+
+        if (
+            !Array.isArray(
+                history
+            )
+        ) {
+
+            history = [];
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error loading history:",
+            error
+        );
+
+        history = [];
+
+    }
+
+
+
+    /* =====================================================
+       COPY PURCHASED ITEMS
+    ===================================================== */
+
+    const purchasedItems =
+        groceryItems
+            .filter(
+                item =>
+                    item.purchased ===
+                    true
+            )
+            .map(
+                item => ({
+
+                    name:
+                        item.name ||
+                        "Unnamed item",
+
+                    quantity:
+                        Number(
+                            item.quantity
+                        ) || 0,
+
+                    unit:
+                        item.unit ||
+                        "x",
+
+                    price:
+                        Number(
+                            item.price
+                        ) || 0,
+
+                    category:
+                        item.category ||
+                        "Other",
+
+                    note:
+                        item.note ||
+                        "",
+
+                    icon:
+                        item.icon ||
+                        "🛒"
+
+                })
+            );
+
+
+
+    if (
+        purchasedItems.length === 0
+    ) {
+
+        return;
+
+    }
+
+
+
+    /* =====================================================
+       CALCULATE TOTAL
+    ===================================================== */
+
+    const total =
+        purchasedItems.reduce(
+            (
+                sum,
+                item
+            ) => {
+
+                return (
+                    sum +
+                    (
+                        item.quantity *
+                        item.price
+                    )
+                );
+
+            },
+            0
+        );
+
+
+
+    /* =====================================================
+       FIND TODAY'S HISTORY RECORD
+    ===================================================== */
+
+    const todayKey =
+        new Date().toLocaleDateString("en-CA");
+
+    const todayIndex =
+        history.findIndex(
+            entry => {
+
+                const entryDate =
+                    new Date(entry.date);
+
+                return (
+                    !isNaN(entryDate.getTime()) &&
+                    entryDate.toLocaleDateString("en-CA") ===
+                        todayKey
+                );
+
+            }
+        );
+
+
+    /* =====================================================
+       IF NOTHING IS PURCHASED ANYMORE
+
+       Remove today's history record so History always
+       matches the current Purchased items.
+    ===================================================== */
+
+    if (purchasedItems.length === 0) {
+
+        if (todayIndex !== -1) {
+
+            history.splice(
+                todayIndex,
+                1
+            );
+
+            localStorage.setItem(
+                HISTORY_KEY,
+                JSON.stringify(history)
+            );
+
+        }
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       CREATE OR UPDATE TODAY'S RECORD
+    ===================================================== */
+
+    const now =
+        new Date().toISOString();
+
+    const signature =
+        JSON.stringify(purchasedItems);
+
+    const trip = {
+
+        id:
+            todayIndex !== -1
+                ? history[todayIndex].id
+                : Date.now(),
+
+        date:
+            todayIndex !== -1
+                ? history[todayIndex].date
+                : now,
+
+        updatedAt:
+            now,
+
+        items:
+            purchasedItems,
+
+        total:
+            total,
+
+        signature:
+            signature,
+
+        completed:
+            groceryItems.length > 0 &&
+            groceryItems.every(
+                item =>
+                    item.purchased === true
+            )
+
+    };
+
+
+    if (todayIndex !== -1) {
+
+        history[todayIndex] =
+            trip;
+
+    }
+
+    else {
+
+        history.push(
+            trip
+        );
+
+    }
+
+
+
+    /* =====================================================
+       KEEP ONLY LATEST 50 TRIPS
+    ===================================================== */
+
+    if (
+        history.length > 50
+    ) {
+
+        history =
+            history.slice(
+                -50
+            );
+
+    }
+
+
+
+    /* SAVE HISTORY */
+
+    localStorage.setItem(
+        HISTORY_KEY,
+        JSON.stringify(
+            history
+        )
+    );
+
+}
+
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchItems() {
+
+    displayItems();
+
+}
+
+
+
+/* =========================================================
+   CHANGE TAB
+========================================================= */
+
+function changeTab(tab) {
+
+    currentTab =
+        tab;
+
+
+
+    document
+        .querySelectorAll(
+            ".list-tab"
+        )
+        .forEach(
+            button => {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+
+    if (
+        tab === "all"
+    ) {
+
+        document
+            .getElementById(
+                "allTab"
+            )
+            .classList.add(
+                "active"
+            );
+
+    }
+
+
+    if (
+        tab === "toBuy"
+    ) {
+
+        document
+            .getElementById(
+                "toBuyTab"
+            )
+            .classList.add(
+                "active"
+            );
+
+    }
+
+
+    if (
+        tab === "purchased"
+    ) {
+
+        document
+            .getElementById(
+                "purchasedTab"
+            )
+            .classList.add(
+                "active"
+            );
+
+    }
+
+
+    displayItems();
+
+}
+
+
+
+/* =========================================================
+   OPEN ITEM DETAILS
+========================================================= */
+
+function openItemDetails(id) {
+
+    window.location.href =
+        "item-details.html?id=" +
+        encodeURIComponent(
+            id
+        );
+
+}
+
+
+
+/* =========================================================
+   ITEM MENU
+========================================================= */
+
+function showItemMenu(id) {
+
+    const item =
+        groceryItems.find(
+            item =>
+                Number(item.id) ===
+                Number(id)
+        );
+
+
+    if (!item) {
+
+        return;
+
+    }
+
+
+    const confirmDelete =
+        confirm(
+            `Delete "${item.name}" from your grocery list?`
+        );
+
+
+    if (
+        !confirmDelete
+    ) {
+
+        return;
+
+    }
+
+
+    deleteItem(id);
+
+}
+
+
+
+/* =========================================================
+   DELETE ITEM
+========================================================= */
+
+function deleteItem(id) {
+
+    groceryItems =
+        groceryItems.filter(
+            item =>
+                Number(item.id) !==
+                Number(id)
+        );
+
+
+    saveItems();
+
+
+    displayItems();
+
+
+    updateItemCount();
+
+}
+
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(
+            text ?? ""
+        );
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function openList() {
+
+    window.location.href =
+        "grocery-list.html";
+
+}
+
+
+function openHistory() {
+
+    window.location.href =
+        "history.html";
+
+}
+
+
+function openSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        groceryItems =
+            loadGroceryItems();
+
+        displayItems();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

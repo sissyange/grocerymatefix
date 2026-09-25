@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GroceryMate - Shopping History</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================================================
+           HISTORY PAGE
+        ========================================================= */
+
+        .hs-page {
+            min-height: 100vh;
+            background: #f4f9f4;
+            padding-bottom: 40px;
+        }
+
+
+        .hs-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 18px 20px;
+
+            background: #fff;
+
+            border-bottom: 1px solid #e5efe5;
+        }
+
+
+        .hs-back {
+            width: 38px;
+            height: 38px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #e8f5e9;
+            color: #1b7a3d;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .hs-header h1 {
+            font-size: 20px;
+            color: #1a3a26;
+            margin: 0;
+        }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
+
+        .hs-content {
+            padding: 20px 18px;
+        }
+
+
+        /* =========================================================
+           HISTORY LIST
+        ========================================================= */
+
+        .hs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+
+        .hs-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            width: 100%;
+
+            background: #fff;
+
+            border: none;
+            border-radius: 16px;
+
+            padding: 16px 18px;
+
+            box-shadow:
+                0 2px 10px rgba(27, 122, 61, 0.06);
+
+            cursor: pointer;
+            text-align: left;
+
+            transition: 0.2s;
+        }
+
+
+        .hs-card:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 4px 14px rgba(27, 122, 61, 0.10);
+        }
+
+
+        .hs-card:active {
+            background: #f4f9f4;
+            transform: scale(0.99);
+        }
+
+
+        .hs-icon {
+            width: 44px;
+            height: 44px;
+
+            border-radius: 12px;
+
+            background: #e8f5e9;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            flex-shrink: 0;
+        }
+
+
+        .hs-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+
+        .hs-info h3 {
+            font-size: 15px;
+            color: #1a3a26;
+            margin: 0 0 4px;
+        }
+
+
+        .hs-info p {
+            font-size: 13px;
+            color: #7c9284;
+            margin: 0;
+        }
+
+
+        .hs-amount {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+
+        .hs-amount strong {
+            display: block;
+            font-size: 16px;
+            color: #1b7a3d;
+        }
+
+
+        .hs-amount small {
+            font-size: 12px;
+            color: #9ab0a2;
+        }
+
+
+        .hs-chevron {
+            color: #9ab0a2;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+
+        /* =========================================================
+           EMPTY STATE
+        ========================================================= */
+
+        .hs-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            color: #7c9284;
+        }
+
+
+        .hs-empty-icon {
+            font-size: 48px;
+            margin-bottom: 14px;
+        }
+
+
+        .hs-empty h2 {
+            font-size: 17px;
+            color: #1a3a26;
+            margin: 0 0 6px;
+        }
+
+
+        .hs-empty p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+
+        /* =========================================================
+           TRIP DETAILS
+        ========================================================= */
+
+        .trip-details {
+            display: none;
+
+            margin-top: 10px;
+
+            background: #fff;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 2px 10px rgba(27, 122, 61, 0.06);
+        }
+
+
+        .trip-details h2 {
+            margin: 0 0 5px;
+
+            font-size: 18px;
+
+            color: #1a3a26;
+        }
+
+
+        .trip-date {
+            color: #7c9284;
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+
+        .trip-item {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #edf3ed;
+        }
+
+
+        .trip-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .trip-item-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 10px;
+
+            background: #e8f5e9;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+        }
+
+
+        .trip-item-info {
+            flex: 1;
+        }
+
+
+        .trip-item-info strong {
+            display: block;
+
+            font-size: 14px;
+
+            color: #1a3a26;
+        }
+
+
+        .trip-item-info span {
+            display: block;
+
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: #7c9284;
+        }
+
+
+        .trip-item-price {
+            font-size: 14px;
+
+            color: #1b7a3d;
+
+            font-weight: 700;
+        }
+
+
+        .trip-total {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top: 2px solid #e8f5e9;
+
+            font-size: 15px;
+
+            color: #1a3a26;
+        }
+
+
+        .trip-total strong {
+            color: #1b7a3d;
+            font-size: 18px;
+        }
+
+
+        /* =========================================================
+           CANCEL + DELETE BUTTONS
+        ========================================================= */
+
+        .history-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+
+        .cancel-history-btn,
+        .delete-history-btn {
+            flex: 1;
+
+            border: none;
+
+            border-radius: 12px;
+
+            padding: 13px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .cancel-history-btn {
+            background: #e8f5e9;
+            color: #1b7a3d;
+        }
+
+
+        .cancel-history-btn:hover {
+            background: #dceedd;
+        }
+
+
+        .cancel-history-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        .delete-history-btn {
+            background: #ffe8e8;
+            color: #c62828;
+        }
+
+
+        .delete-history-btn:hover {
+            background: #ffdada;
+        }
+
+
+        .delete-history-btn:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =========================================================
+           PHONE FRAME
+        ========================================================= */
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            background: #cfe0d2;
+
+            display: flex;
+
+            justify-content: center;
+        }
+
+
+        .app {
+            width: 100%;
+            max-width: 400px;
+
+            min-height: 100vh;
+
+            background: #f4f9f4;
+
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.15);
+
+            position: relative;
+        }
+
+
+        /* =========================================================
+           DARK THEME
+        ========================================================= */
+
+        html.dark-theme,
+        html.dark-theme body,
+        body.dark-theme {
+            background: #111714;
+        }
+
+        html.dark-theme .app,
+        body.dark-theme .app {
+            background: #171d19 !important;
+            color: #f1f5f2 !important;
+        }
+
+        html.dark-theme .hs-header,
+        body.dark-theme .hs-header {
+            background: #1b221e !important;
+            border-bottom-color: #2b352e !important;
+        }
+
+        html.dark-theme .hs-header h1 {
+            color: #f1f5f2 !important;
+        }
+
+        html.dark-theme .hs-back {
+            background: #29382e;
+            color: #65c98b;
+        }
+
+        html.dark-theme .hs-card,
+        html.dark-theme .trip-details,
+        html.dark-theme .hs-empty,
+        body.dark-theme .hs-card,
+        body.dark-theme .trip-details,
+        body.dark-theme .hs-empty {
+            background: #202821 !important;
+            border-color: #303b33 !important;
+            color: #f1f5f2 !important;
+            box-shadow: 0 3px 12px rgba(0,0,0,.20);
+        }
+
+        html.dark-theme .hs-card:active,
+        body.dark-theme .hs-card:active {
+            background: #2a392f !important;
+        }
+
+        html.dark-theme .hs-icon,
+        html.dark-theme .trip-item-icon,
+        body.dark-theme .hs-icon,
+        body.dark-theme .trip-item-icon {
+            background: #29382e !important;
+        }
+
+        html.dark-theme .hs-info h3,
+        html.dark-theme .hs-empty h2,
+        html.dark-theme .trip-details h2,
+        html.dark-theme .trip-total,
+        html.dark-theme .trip-item-info strong,
+        body.dark-theme .hs-info h3,
+        body.dark-theme .hs-empty h2,
+        body.dark-theme .trip-details h2,
+        body.dark-theme .trip-total,
+        body.dark-theme .trip-item-info strong {
+            color: #f1f5f2 !important;
+        }
+
+        html.dark-theme .hs-info p,
+        html.dark-theme .hs-empty,
+        html.dark-theme .trip-date,
+        html.dark-theme .trip-item-info span,
+        html.dark-theme .hs-amount small,
+        body.dark-theme .hs-info p,
+        body.dark-theme .hs-empty,
+        body.dark-theme .trip-date,
+        body.dark-theme .trip-item-info span,
+        body.dark-theme .hs-amount small {
+            color: #aab7ae !important;
+        }
+
+        html.dark-theme .hs-amount strong,
+        html.dark-theme .trip-item-price,
+        html.dark-theme .trip-total strong,
+        body.dark-theme .hs-amount strong,
+        body.dark-theme .trip-item-price,
+        body.dark-theme .trip-total strong {
+            color: #65c98b !important;
+        }
+
+        html.dark-theme .trip-item {
+            border-bottom-color: #34473a !important;
+        }
+
+        html.dark-theme .trip-total {
+            border-top-color: #34473a !important;
+        }
+
+        html.dark-theme .cancel-history-btn {
+            background: #29382e;
+            color: #65c98b;
+        }
+
+        html.dark-theme .delete-history-btn {
+            background: #3a2727;
+            color: #ff8d8d;
+        }
+
+        /* =========================================================
+           BOTTOM NAVIGATION
+        ========================================================= */
+
+        .history-bottom-navigation {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 400px;
+            height: 72px;
+            background: rgba(255,255,255,.98);
+            border-top: 1px solid #e7ebe6;
+            display: flex;
+            justify-content: center;
+            z-index: 10000;
+            box-shadow: 0 -5px 20px rgba(30,70,45,.06);
+        }
+
+        .history-bottom-nav-item {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: #87908b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .history-bottom-nav-item .nav-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .history-bottom-nav-item small {
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .history-bottom-nav-item.active {
+            color: #087c4b;
+        }
+
+        .history-bottom-nav-item.active .nav-icon {
+            background: #e8f5e9;
+        }
+
+        .history-bottom-nav-item:active {
+            transform: scale(.96);
+        }
+
+        .hs-page {
+            padding-bottom: 92px;
+        }
+
+        html.dark-theme .history-bottom-navigation,
+        body.dark-theme .history-bottom-navigation {
+            background: rgba(27,34,30,.98);
+            border-top-color: #2b352e;
+        }
+
+        html.dark-theme .history-bottom-nav-item,
+        body.dark-theme .history-bottom-nav-item {
+            color: #aab7ae;
+        }
+
+        html.dark-theme .history-bottom-nav-item.active,
+        body.dark-theme .history-bottom-nav-item.active {
+            color: #65c98b;
+        }
+
+        html.dark-theme .history-bottom-nav-item.active .nav-icon,
+        body.dark-theme .history-bottom-nav-item.active .nav-icon {
+            background: #29382e;
+        }
+
+    </style>
+
+
+    <script>
+        (function applySavedTheme() {
+            const savedTheme =
+                localStorage.getItem("groceryTheme") || "light";
+
+            const isDark =
+                savedTheme === "dark" ||
+                savedTheme === "Dark" ||
+                savedTheme === "DARK";
+
+            document.documentElement.classList.toggle(
+                "dark-theme",
+                isDark
+            );
+        })();
+    </script>
+
+</head>
+
+
+<body>
+
+<div class="app hs-page">
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="hs-header">
+
+        <button
+            class="hs-back"
+            onclick="goBack()"
+            aria-label="Go back">
+
+            ←
+
+        </button>
+
+
+        <h1>
+            Shopping History
+        </h1>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+    <main class="hs-content">
+
+
+        <!-- =====================================================
+             HISTORY LIST
+        ====================================================== -->
+
+        <div
+            class="hs-list"
+            id="historyList">
+        </div>
+
+
+        <!-- =====================================================
+             EMPTY STATE
+        ====================================================== -->
+
+        <div
+            class="hs-empty"
+            id="hsEmpty"
+            style="display:none;">
+
+            <div class="hs-empty-icon">
+                🛒
+            </div>
+
+            <h2>
+                No shopping history yet
+            </h2>
+
+            <p>
+                Your completed grocery trips will show up here.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             TRIP DETAILS
+        ====================================================== -->
+
+        <div
+            class="trip-details"
+            id="tripDetails">
+
+            <h2 id="tripDetailsTitle">
+                Shopping Trip
+            </h2>
+
+
+            <div
+                class="trip-date"
+                id="tripDetailsDate">
+            </div>
+
+
+            <div id="tripItems">
+            </div>
+
+
+            <div class="trip-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="tripDetailsTotal">
+                    ₱0.00
+                </strong>
+
+            </div>
+
+
+            <!-- CANCEL + DELETE -->
+
+            <div class="history-actions">
+
+                <button
+                    type="button"
+                    class="cancel-history-btn"
+                    onclick="closeTripDetails()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="delete-history-btn"
+                    onclick="deleteCurrentHistory()">
+
+                    Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         HISTORY BOTTOM NAVIGATION
+         Home | List | History | Settings
+    ========================================================== -->
+
+    <nav class="history-bottom-navigation" aria-label="Main navigation">
+
+        <button
+            class="history-bottom-nav-item"
+            type="button"
+            aria-label="Home"
+            onclick="goHome()">
+            <span class="nav-icon">⌂</span>
+            <small>Home</small>
+        </button>
+
+        <button
+            class="history-bottom-nav-item"
+            type="button"
+            aria-label="List"
+            onclick="openList()">
+            <span class="nav-icon">📝</span>
+            <small>List</small>
+        </button>
+
+        <button
+            class="history-bottom-nav-item active"
+            type="button"
+            aria-label="History"
+            aria-current="page"
+            onclick="openHistory()">
+            <span class="nav-icon">🛒</span>
+            <small>History</small>
+        </button>
+
+        <button
+            class="history-bottom-nav-item"
+            type="button"
+            aria-label="Settings"
+            onclick="openSettings()">
+            <span class="nav-icon">⚙</span>
+            <small>Settings</small>
+        </button>
+
+    </nav>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   OFFLINE LOCAL DEVICE USER
+   NO LOGIN / NO REGISTER REQUIRED
+========================================================= */
+
+function getCurrentUser() {
+
+    let savedUser =
+        localStorage.getItem(
+            "currentUser"
+        );
+
+
+    /*
+       Login and registration are removed.
+
+       If currentUser does not exist,
+       create a local device user automatically.
+    */
+
+    if (!savedUser) {
+
+        const localUser = {
+
+            id: "local-device-user",
+
+            name: "Angeline"
+
+        };
+
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(
+                localUser
+            )
+        );
+
+
+        return localUser;
+
+    }
+
+
+    try {
+
+        const user =
+            JSON.parse(
+                savedUser
+            );
+
+
+        if (
+            user &&
+            user.id
+        ) {
+
+            return user;
+
+        }
+
+
+        throw new Error(
+            "Invalid user data"
+        );
+
+    }
+
+    catch (error) {
+
+        const localUser = {
+
+            id: "local-device-user",
+
+            name: "Angeline"
+
+        };
+
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(
+                localUser
+            )
+        );
+
+
+        return localUser;
+
+    }
+
+}
+
+
+/* =========================================================
+   CURRENT LOCAL USER
+========================================================= */
+
+const currentUser =
+    getCurrentUser();
+
+
+/* =========================================================
+   USER-SPECIFIC HISTORY KEY
+========================================================= */
+
+const HISTORY_KEY =
+    `groceryHistory_${currentUser.id}`;
+
+
+/* =========================================================
+   CURRENTLY SELECTED HISTORY
+========================================================= */
+
+let currentHistoryId = null;
+
+
+/* =========================================================
+   LOAD HISTORY
+========================================================= */
+
+function loadHistory() {
+
+    try {
+
+        /* =================================================
+           LOAD THIS USER'S HISTORY FIRST
+        ================================================= */
+
+        const saved =
+            localStorage.getItem(
+                HISTORY_KEY
+            );
+
+
+        /* =================================================
+           BACKWARD COMPATIBILITY
+
+           Older versions used "groceryHistory".
+           If user-specific history does not exist yet,
+           migrate the old history to the current user key.
+        ================================================= */
+
+        if (!saved) {
+
+            const oldHistory =
+                localStorage.getItem(
+                    "groceryHistory"
+                );
+
+
+            if (!oldHistory) {
+
+                return [];
+
+            }
+
+
+            const oldData =
+                JSON.parse(
+                    oldHistory
+                );
+
+
+            if (
+                !Array.isArray(oldData)
+            ) {
+
+                return [];
+
+            }
+
+
+            localStorage.setItem(
+                HISTORY_KEY,
+                JSON.stringify(
+                    oldData
+                )
+            );
+
+
+            return oldData;
+
+        }
+
+
+        const history =
+            JSON.parse(
+                saved
+            );
+
+
+        return Array.isArray(history)
+            ? history
+            : [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Unable to load shopping history:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   SAVE HISTORY
+========================================================= */
+
+function saveHistory(history) {
+
+    localStorage.setItem(
+        HISTORY_KEY,
+        JSON.stringify(
+            history
+        )
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(dateString) {
+
+    const date =
+        new Date(dateString);
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "Unknown date";
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatTime(dateString) {
+
+    const date =
+        new Date(dateString);
+
+
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    return date.toLocaleTimeString(
+        "en-US",
+        {
+            hour: "numeric",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   RENDER HISTORY
+========================================================= */
+
+function renderHistory() {
+
+    const container =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "hsEmpty"
+        );
+
+
+    let history =
+        loadHistory();
+
+
+    container.innerHTML =
+        "";
+
+
+    /* =====================================================
+       SORT NEWEST FIRST
+    ====================================================== */
+
+    history.sort(
+        (a, b) =>
+            new Date(b.date) -
+            new Date(a.date)
+    );
+
+
+    /* =====================================================
+       EMPTY
+    ====================================================== */
+
+    if (
+        history.length === 0
+    ) {
+
+        empty.style.display =
+            "flex";
+
+        return;
+
+    }
+
+
+    empty.style.display =
+        "none";
+
+
+    /* =====================================================
+       CREATE HISTORY CARDS
+    ====================================================== */
+
+    history.forEach(
+        (entry) => {
+
+            const card =
+                document.createElement(
+                    "button"
+                );
+
+
+            card.className =
+                "hs-card";
+
+
+            const itemCount =
+                Array.isArray(entry.items)
+                    ? entry.items.length
+                    : Number(entry.items) || 0;
+
+
+            const total =
+                Number(entry.total) || 0;
+
+
+            card.onclick = () =>
+                viewTrip(entry.id);
+
+
+            card.innerHTML = `
+
+                <div class="hs-icon">
+                    🛒
+                </div>
+
+
+                <div class="hs-info">
+
+                    <h3>
+                        ${formatDate(entry.date)}
+                    </h3>
+
+
+                    <p>
+
+                        ${itemCount}
+
+                        item${itemCount !== 1 ? "s" : ""}
+
+                        ${
+                            formatTime(entry.date)
+                                ? " • " +
+                                  formatTime(entry.date)
+                                : ""
+                        }
+
+                    </p>
+
+                </div>
+
+
+                <div class="hs-amount">
+
+                    <strong>
+                        ₱${total.toFixed(2)}
+                    </strong>
+
+                    <small>
+                        Completed
+                    </small>
+
+                </div>
+
+
+                <span class="hs-chevron">
+                    ›
+                </span>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VIEW TRIP DETAILS
+========================================================= */
+
+function viewTrip(id) {
+
+    const history =
+        loadHistory().sort(
+            (a, b) =>
+                new Date(b.date) -
+                new Date(a.date)
+        );
+
+
+    const entry =
+        history.find(
+            item =>
+                String(item.id) ===
+                String(id)
+        );
+
+
+    if (!entry) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       SAVE CURRENT HISTORY ID
+    ====================================================== */
+
+    currentHistoryId =
+        entry.id;
+
+
+    const details =
+        document.getElementById(
+            "tripDetails"
+        );
+
+
+    const title =
+        document.getElementById(
+            "tripDetailsTitle"
+        );
+
+
+    const date =
+        document.getElementById(
+            "tripDetailsDate"
+        );
+
+
+    const itemsContainer =
+        document.getElementById(
+            "tripItems"
+        );
+
+
+    const totalElement =
+        document.getElementById(
+            "tripDetailsTotal"
+        );
+
+
+    const items =
+        Array.isArray(entry.items)
+            ? entry.items
+            : [];
+
+
+    title.textContent =
+        "Shopping Trip";
+
+
+    date.textContent =
+        `${formatDate(entry.date)}${
+            formatTime(entry.date)
+                ? " • " +
+                  formatTime(entry.date)
+                : ""
+        }`;
+
+
+    itemsContainer.innerHTML =
+        "";
+
+
+    /* =====================================================
+       DISPLAY PURCHASED ITEMS
+    ====================================================== */
+
+    if (
+        items.length === 0
+    ) {
+
+        itemsContainer.innerHTML = `
+
+            <div
+                style="
+                    text-align:center;
+                    padding:20px 0;
+                    color:#7c9284;
+                    font-size:13px;
+                ">
+
+                No items in this shopping trip.
+
+            </div>
+
+        `;
+
+    }
+
+
+    items.forEach(
+        item => {
+
+            const quantity =
+                Number(item.quantity) || 0;
+
+
+            const price =
+                Number(item.price) || 0;
+
+
+            const itemTotal =
+                quantity * price;
+
+
+            const itemElement =
+                document.createElement(
+                    "div"
+                );
+
+
+            itemElement.className =
+                "trip-item";
+
+
+            itemElement.innerHTML = `
+
+                <div class="trip-item-icon">
+
+                    ${item.icon || "🛒"}
+
+                </div>
+
+
+                <div class="trip-item-info">
+
+                    <strong>
+
+                        ${escapeHTML(
+                            item.name ||
+                            "Unnamed item"
+                        )}
+
+                    </strong>
+
+
+                    <span>
+
+                        ${quantity}
+
+                        ${escapeHTML(
+                            item.unit ||
+                            "x"
+                        )}
+
+                        ×
+
+                        ₱${price.toFixed(2)}
+
+                    </span>
+
+                </div>
+
+
+                <div class="trip-item-price">
+
+                    ₱${itemTotal.toFixed(2)}
+
+                </div>
+
+            `;
+
+
+            itemsContainer.appendChild(
+                itemElement
+            );
+
+        }
+    );
+
+
+    totalElement.textContent =
+        `₱${(
+            Number(entry.total) || 0
+        ).toFixed(2)}`;
+
+
+    details.style.display =
+        "block";
+
+
+    /* =====================================================
+       SCROLL TO DETAILS
+    ====================================================== */
+
+    details.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+/* =========================================================
+   CLOSE / CANCEL DETAILS
+========================================================= */
+
+function closeTripDetails() {
+
+    document.getElementById(
+        "tripDetails"
+    ).style.display =
+        "none";
+
+
+    currentHistoryId =
+        null;
+
+}
+
+
+/* =========================================================
+   DELETE CURRENT HISTORY
+========================================================= */
+
+function deleteCurrentHistory() {
+
+    if (
+        currentHistoryId === null
+    ) {
+
+        return;
+
+    }
+
+
+    const history =
+        loadHistory();
+
+
+    const index =
+        history.findIndex(
+            entry =>
+                String(entry.id) ===
+                String(currentHistoryId)
+        );
+
+
+    if (
+        index === -1
+    ) {
+
+        alert(
+            "Unable to find this history record."
+        );
+
+        return;
+
+    }
+
+
+    const entry =
+        history[index];
+
+
+    const dateText =
+        `${formatDate(entry.date)}${
+            formatTime(entry.date)
+                ? " • " +
+                  formatTime(entry.date)
+                : ""
+        }`;
+
+
+    const total =
+        Number(entry.total) || 0;
+
+
+    /* =====================================================
+       CONFIRM DELETE
+    ====================================================== */
+
+    const confirmed =
+        confirm(
+
+            `Are you sure you want to delete this shopping history?\n\n` +
+
+            `${dateText}\n` +
+
+            `Total: ₱${total.toFixed(2)}`
+
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       DELETE RECORD
+    ====================================================== */
+
+    history.splice(
+        index,
+        1
+    );
+
+
+    /* =====================================================
+       SAVE UPDATED HISTORY
+    ====================================================== */
+
+    saveHistory(
+        history
+    );
+
+
+    /* =====================================================
+       RESET CURRENT SELECTION
+    ====================================================== */
+
+    currentHistoryId =
+        null;
+
+
+    document.getElementById(
+        "tripDetails"
+    ).style.display =
+        "none";
+
+
+    /* =====================================================
+       REFRESH HISTORY
+    ====================================================== */
+
+    renderHistory();
+
+
+    alert(
+        "Shopping history deleted successfully."
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        String(text ?? "");
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goBack() {
+
+    window.location.href = "home.html";
+
+}
+
+
+function goHome() {
+
+    window.location.href =
+        "home.html";
+
+}
+
+
+function openList() {
+
+    window.location.href =
+        "grocery-list.html";
+
+}
+
+
+function openSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+function openHistory() {
+
+    window.location.href =
+        "history.html";
+
+}
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+renderHistory();
+
+
+/* =========================================================
+   REFRESH WHEN RETURNING TO PAGE
+========================================================= */
+
+window.addEventListener(
+    "pageshow",
+    function() {
+
+        currentHistoryId =
+            null;
+
+
+        document.getElementById(
+            "tripDetails"
+        ).style.display =
+            "none";
+
+
+        renderHistory();
+
+        const savedTheme =
+            localStorage.getItem("groceryTheme") || "light";
+
+        document.documentElement.classList.toggle(
+            "dark-theme",
+            savedTheme === "dark" ||
+            savedTheme === "Dark" ||
+            savedTheme === "DARK"
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

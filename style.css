@@ -1,0 +1,3118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7faef;
+    min-height: 100vh;
+}
+
+.splash-screen {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 10% 15%, #e4f0d5 0%, transparent 25%),
+        radial-gradient(circle at 90% 85%, #e2efd5 0%, transparent 25%),
+        #f8faef;
+}
+
+/* =========================
+   DECORATIVE LEAVES
+========================= */
+
+.leaf {
+    position: absolute;
+    background: #d8eac9;
+    opacity: 0.65;
+    border-radius: 100% 0 100% 0;
+}
+
+.leaf-1 {
+    width: 110px;
+    height: 55px;
+    top: 7%;
+    left: -25px;
+    transform: rotate(25deg);
+}
+
+.leaf-2 {
+    width: 90px;
+    height: 45px;
+    top: 12%;
+    right: -20px;
+    transform: rotate(-35deg);
+}
+
+.leaf-3 {
+    width: 120px;
+    height: 60px;
+    bottom: 8%;
+    right: -30px;
+    transform: rotate(-20deg);
+}
+
+.leaf-4 {
+    width: 80px;
+    height: 40px;
+    bottom: 15%;
+    left: -15px;
+    transform: rotate(35deg);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-container {
+    width: 145px;
+    height: 145px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #dff0d3;
+    border-radius: 38px;
+
+    margin-bottom: 28px;
+
+    box-shadow: 0 8px 25px rgba(40, 100, 60, 0.08);
+}
+
+.cart {
+    position: relative;
+    width: 82px;
+    height: 75px;
+}
+
+/* Cart handle */
+
+.cart-handle {
+    position: absolute;
+    left: 0;
+    top: 4px;
+
+    width: 25px;
+    height: 9px;
+
+    background: #087c4b;
+    border-radius: 10px;
+
+    transform: rotate(10deg);
+}
+
+/* Cart body */
+
+.cart-body {
+    position: absolute;
+
+    left: 17px;
+    top: 13px;
+
+    width: 61px;
+    height: 42px;
+
+    border: 7px solid #087c4b;
+    border-top: none;
+
+    transform: skew(-10deg);
+
+    border-radius: 0 0 8px 8px;
+}
+
+/* Leaf inside cart */
+
+.leaf-logo {
+    position: absolute;
+
+    width: 22px;
+    height: 12px;
+
+    background: #65a84b;
+
+    top: -6px;
+    right: 5px;
+
+    border-radius: 100% 0 100% 0;
+
+    transform: rotate(-25deg);
+}
+
+/* Wheels */
+
+.wheel {
+    position: absolute;
+
+    width: 11px;
+    height: 11px;
+
+    background: #087c4b;
+
+    border-radius: 50%;
+
+    bottom: 0;
+}
+
+.wheel-left {
+    left: 22px;
+}
+
+.wheel-right {
+    right: 5px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+    font-size: 46px;
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    color: #087c4b;
+
+    margin-bottom: 7px;
+}
+
+h1 span {
+    color: #1d2529;
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.subtitle {
+    font-size: 17px;
+    color: #30383b;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+/* =========================
+   TAGLINE
+========================= */
+
+.tagline {
+    display: flex;
+    gap: 12px;
+
+    color: #247a50;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    margin-bottom: 55px;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading-bar {
+    width: 130px;
+    height: 8px;
+
+    background: #c7ddca;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 9px;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+
+    background: #087c4b;
+
+    border-radius: 20px;
+
+    animation: loading 3s linear forwards;
+}
+
+.loading-container p {
+    font-size: 13px;
+    color: #737b76;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes loading {
+
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+    }
+
+    .logo-container {
+        width: 135px;
+        height: 135px;
+    }
+
+    .tagline {
+        margin-bottom: 45px;
+    }
+
+}
+/* =========================================================
+   ONBOARDING SCREEN
+========================================================= */
+
+.onboarding-screen {
+    width: 100%;
+    min-height: 100vh;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #f8faef;
+}
+
+/* =========================================================
+   DECORATIVE LEAVES
+========================================================= */
+
+.onboard-leaf {
+    position: absolute;
+
+    background: #dceccb;
+
+    border-radius: 100% 0 100% 0;
+
+    opacity: 0.75;
+}
+
+.onboard-leaf-1 {
+    width: 150px;
+    height: 75px;
+
+    top: 25px;
+    left: -55px;
+
+    transform: rotate(25deg);
+}
+
+.onboard-leaf-2 {
+    width: 120px;
+    height: 60px;
+
+    top: 70px;
+    right: -40px;
+
+    transform: rotate(-35deg);
+}
+
+.onboard-leaf-3 {
+    width: 130px;
+    height: 65px;
+
+    bottom: 20px;
+    left: -45px;
+
+    transform: rotate(45deg);
+}
+
+/* =========================================================
+   SKIP BUTTON
+========================================================= */
+
+.skip-btn {
+    position: absolute;
+
+    top: 28px;
+    right: 30px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #4e5a54;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+.skip-btn:hover {
+    color: #087c4b;
+}
+
+/* =========================================================
+   ONBOARDING IMAGE AREA
+========================================================= */
+
+.onboarding-image {
+    width: 100%;
+    max-width: 700px;
+
+    height: 430px;
+
+    margin: 70px auto 0;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================================
+   WOMAN ILLUSTRATION
+========================================================= */
+
+.woman {
+    position: relative;
+
+    width: 280px;
+    height: 350px;
+}
+
+/* Hair */
+
+.hair {
+    position: absolute;
+
+    width: 150px;
+    height: 170px;
+
+    left: 58px;
+    top: 25px;
+
+    background: #33251f;
+
+    border-radius: 55% 55% 45% 45%;
+
+    z-index: 2;
+}
+
+/* Face */
+
+.face {
+    position: absolute;
+
+    width: 92px;
+    height: 110px;
+
+    left: 29px;
+    top: 42px;
+
+    background: #f3b58f;
+
+    border-radius: 48% 48% 45% 45%;
+}
+
+.eye {
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    background: #2d2724;
+
+    border-radius: 50%;
+
+    top: 48px;
+}
+
+.eye-left {
+    left: 27px;
+}
+
+.eye-right {
+    right: 27px;
+}
+
+.smile {
+    position: absolute;
+
+    width: 22px;
+    height: 10px;
+
+    left: 35px;
+    top: 70px;
+
+    border-bottom: 2px solid #a75f4b;
+
+    border-radius: 50%;
+}
+
+/* Body */
+
+.body {
+    position: absolute;
+
+    width: 170px;
+    height: 180px;
+
+    left: 40px;
+    top: 160px;
+
+    background: #24845a;
+
+    border-radius: 80px 80px 25px 25px;
+
+    z-index: 1;
+}
+
+/* Shirt */
+
+.shirt {
+    position: absolute;
+
+    width: 100px;
+    height: 120px;
+
+    left: 35px;
+    top: 35px;
+
+    background: #ffffff;
+
+    border-radius: 45px 45px 20px 20px;
+
+    opacity: 0.9;
+}
+
+/* =========================================================
+   BASKET
+========================================================= */
+
+.basket {
+    position: absolute;
+
+    width: 170px;
+    height: 130px;
+
+    left: 100px;
+    top: 210px;
+
+    z-index: 5;
+}
+
+/* Basket handle */
+
+.basket-handle {
+    position: absolute;
+
+    width: 115px;
+    height: 80px;
+
+    left: 25px;
+    top: -35px;
+
+    border: 7px solid #d99d62;
+
+    border-bottom: none;
+
+    border-radius: 70px 70px 0 0;
+}
+
+/* Basket */
+
+.basket-body {
+    position: absolute;
+
+    width: 170px;
+    height: 85px;
+
+    bottom: 0;
+
+    background: #d9a063;
+
+    border-radius: 8px 8px 25px 25px;
+
+    opacity: 0.95;
+}
+
+/* Basket items */
+
+.basket-item {
+    position: absolute;
+
+    z-index: 2;
+
+    border-radius: 50%;
+}
+
+/* Apple */
+
+.item-1 {
+    width: 45px;
+    height: 45px;
+
+    left: 20px;
+    top: 15px;
+
+    background: #e48a75;
+}
+
+/* Orange */
+
+.item-2 {
+    width: 48px;
+    height: 48px;
+
+    left: 65px;
+    top: 5px;
+
+    background: #efb34d;
+}
+
+/* Green vegetable */
+
+.item-3 {
+    width: 45px;
+    height: 45px;
+
+    right: 15px;
+    top: 10px;
+
+    background: #73a85a;
+}
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features {
+    position: absolute;
+
+    right: 30px;
+    top: 100px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: #46534c;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+.feature span {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f2df;
+
+    color: #087c4b;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.feature p {
+    margin: 0;
+}
+
+/* =========================================================
+   BOTTOM CONTENT
+========================================================= */
+
+.onboarding-content {
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: auto auto 35px;
+
+    padding: 0 25px;
+
+    text-align: center;
+
+    z-index: 5;
+}
+
+.onboarding-content h1 {
+    font-size: 32px;
+
+    line-height: 1.08;
+
+    letter-spacing: -1px;
+
+    color: #24312c;
+
+    margin-bottom: 15px;
+}
+
+.onboarding-content p {
+    max-width: 470px;
+
+    margin: 0 auto 25px;
+
+    color: #626b66;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+/* =========================================================
+   INDICATORS
+========================================================= */
+
+.indicators {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 25px;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+
+    background: #c9d6ce;
+
+    border-radius: 50%;
+}
+
+.indicator.active {
+    width: 9px;
+    height: 9px;
+
+    background: #087c4b;
+}
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.next-btn {
+    width: 180px;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #087c4b;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.next-btn span {
+    margin-left: 8px;
+
+    font-size: 18px;
+}
+
+.next-btn:hover {
+    background: #06683e;
+
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .onboarding-image {
+        height: 380px;
+
+        margin-top: 65px;
+    }
+
+    .woman {
+        transform: scale(0.82);
+
+        margin-left: -70px;
+    }
+
+    .features {
+        right: 12px;
+
+        top: 95px;
+    }
+
+    .feature {
+        font-size: 12px;
+    }
+
+    .feature span {
+        width: 18px;
+        height: 18px;
+    }
+
+    .onboarding-content {
+        margin-bottom: 25px;
+    }
+
+    .onboarding-content h1 {
+        font-size: 28px;
+    }
+
+    .onboarding-content p {
+        font-size: 14px;
+    }
+
+    .next-btn {
+        width: 170px;
+    }
+
+} 
+/* =========================================================
+   MULTI-PAGE ONBOARDING
+========================================================= */
+
+.onboarding-slide {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: none;
+
+    flex-direction: column;
+
+    opacity: 0;
+}
+
+.onboarding-slide.active {
+    display: flex;
+
+    opacity: 1;
+
+    animation: slideFade 0.35s ease;
+}
+
+@keyframes slideFade {
+
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.onboarding-navigation {
+
+    position: absolute;
+
+    bottom: 35px;
+
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    z-index: 20;
+
+}
+
+
+/* =========================================================
+   SIMPLE ILLUSTRATIONS
+========================================================= */
+
+.simple-illustration {
+
+    height: 430px;
+
+    margin-top: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   BUDGET ILLUSTRATION
+========================================================= */
+
+.budget-circle {
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background: #e1f0d5;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+
+    top: 75px;
+
+    left: calc(50% - 90px);
+}
+
+
+.wallet-icon {
+
+    width: 70px;
+    height: 55px;
+
+    border-radius: 12px;
+
+    background: #087c4b;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+}
+
+
+.budget-card {
+
+    position: absolute;
+
+    width: 270px;
+
+    padding: 22px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 35px rgba(30, 80, 50, 0.12);
+
+    top: 180px;
+
+    left: calc(50% - 135px);
+
+    z-index: 3;
+
+}
+
+
+.budget-title {
+
+    font-size: 13px;
+
+    color: #69736d;
+
+    margin-bottom: 5px;
+
+}
+
+
+.budget-price {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #087c4b;
+
+    margin-bottom: 15px;
+
+}
+
+
+.budget-line {
+
+    width: 100%;
+
+    height: 8px;
+
+    background: #dce8df;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-bottom: 15px;
+
+}
+
+
+.budget-line div {
+
+    width: 67%;
+
+    height: 100%;
+
+    background: #087c4b;
+
+    border-radius: 10px;
+
+}
+
+
+.budget-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 11px;
+
+    color: #777;
+
+}
+
+
+.budget-info strong {
+
+    font-size: 13px;
+
+    color: #333;
+
+}
+
+
+/* =========================================================
+   SHOPPING ILLUSTRATION
+========================================================= */
+
+.shopping-illustration {
+
+    position: relative;
+}
+
+
+.shopping-cart-big {
+
+    width: 260px;
+
+    height: 240px;
+
+    position: relative;
+
+    margin-top: 50px;
+
+}
+
+
+.cart-big-handle {
+
+    position: absolute;
+
+    width: 65px;
+
+    height: 10px;
+
+    left: 0;
+
+    top: 35px;
+
+    background: #087c4b;
+
+    border-radius: 10px;
+
+}
+
+
+.cart-big-body {
+
+    position: absolute;
+
+    left: 40px;
+
+    top: 45px;
+
+    width: 190px;
+
+    height: 120px;
+
+    border: 9px solid #087c4b;
+
+    border-top: none;
+
+    border-radius: 0 0 20px 20px;
+
+    transform: skew(-7deg);
+
+    background: #e9f2df;
+
+}
+
+
+/* Food inside cart */
+
+.food {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+}
+
+
+.food-rice {
+
+    width: 55px;
+    height: 65px;
+
+    background: #eee2c9;
+
+    left: 15px;
+
+    top: 30px;
+
+    border-radius: 12px;
+
+}
+
+
+.food-milk {
+
+    width: 38px;
+    height: 65px;
+
+    background: #d9e9ef;
+
+    left: 78px;
+
+    top: 25px;
+
+    border-radius: 8px;
+
+}
+
+
+.food-bread {
+
+    width: 60px;
+    height: 40px;
+
+    background: #d9a062;
+
+    right: 12px;
+
+    top: 50px;
+
+    border-radius: 20px;
+
+}
+
+
+.food-vegetable {
+
+    width: 45px;
+    height: 45px;
+
+    background: #78a85c;
+
+    right: 45px;
+
+    top: 15px;
+
+}
+
+
+.cart-big-wheel {
+
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    background: #087c4b;
+
+    border-radius: 50%;
+
+    bottom: 20px;
+
+}
+
+
+.wheel-one {
+
+    left: 65px;
+
+}
+
+
+.wheel-two {
+
+    right: 25px;
+
+}
+
+
+/* =========================================================
+   SAVE BADGE
+========================================================= */
+
+.save-badge {
+
+    position: absolute;
+
+    right: calc(50% - 150px);
+
+    top: 110px;
+
+    width: 55px;
+    height: 55px;
+
+    background: #087c4b;
+
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px rgba(8, 124, 75, 0.25);
+
+}
+
+
+/* =========================================================
+   CONTENT POSITION
+========================================================= */
+
+.onboarding-slide .onboarding-content {
+
+    margin-top: auto;
+
+    margin-bottom: 130px;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .onboarding-image,
+    .simple-illustration {
+
+        height: 400px;
+
+        margin-top: 65px;
+
+    }
+
+
+    .onboarding-slide .onboarding-content {
+
+        padding: 0 25px;
+
+        margin-bottom: 125px;
+
+    }
+
+
+    .onboarding-slide .onboarding-content h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .onboarding-slide .onboarding-content p {
+
+        font-size: 14px;
+
+    }
+
+
+    .features {
+
+        right: 10px;
+
+    }
+
+
+    .save-badge {
+
+        right: 18%;
+
+    }
+
+}
+/* =========================================================
+   GROCERYMATE HOME / DASHBOARD
+========================================================= */
+
+.app {
+    min-height: 100vh;
+    background: #f8faef;
+    color: #26332d;
+    padding-bottom: 90px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.home-header {
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 35px 25px 20px;
+
+    max-width: 700px;
+
+    margin: auto;
+}
+
+
+.greeting p {
+
+    margin: 0 0 4px;
+
+    font-size: 14px;
+
+    color: #68736c;
+
+}
+
+
+.greeting h1 {
+
+    margin: 0;
+
+    font-size: 27px;
+
+    letter-spacing: -0.5px;
+
+    color: #26332d;
+
+}
+
+
+.greeting span {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    color: #7a837e;
+
+}
+
+
+.profile-picture {
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #dcefd4;
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 4px 15px rgba(30, 80, 50, 0.1);
+
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.home-content {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 0 20px;
+
+}
+
+
+/* =========================================================
+   BUDGET CARD
+========================================================= */
+
+.budget-card-home {
+
+    width: 100%;
+
+    min-height: 175px;
+
+    padding: 23px;
+
+    background: #e6f2df;
+
+    border-radius: 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow:
+        0 8px 25px rgba(45, 90, 55, 0.06);
+
+}
+
+
+.budget-left {
+
+    flex: 1;
+
+}
+
+
+.budget-left > p {
+
+    margin: 0 0 5px;
+
+    font-size: 13px;
+
+    color: #657067;
+
+}
+
+
+.budget-left h2 {
+
+    margin: 0 0 17px;
+
+    font-size: 30px;
+
+    color: #087c4b;
+
+}
+
+
+/* Progress line */
+
+.budget-progress-line {
+
+    width: 100%;
+
+    max-width: 300px;
+
+    height: 8px;
+
+    background: #c8ddcb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.budget-progress-fill {
+
+    width: 67%;
+
+    height: 100%;
+
+    background: #087c4b;
+
+    border-radius: 20px;
+
+}
+
+
+.budget-details {
+
+    display: flex;
+
+    gap: 20px;
+
+    margin-top: 12px;
+
+    font-size: 10px;
+
+    color: #6c756f;
+
+}
+
+
+.budget-details strong {
+
+    color: #303b35;
+
+}
+
+
+/* =========================================================
+   CIRCLE
+========================================================= */
+
+.budget-circle-home {
+
+    width: 92px;
+    height: 92px;
+
+    border-radius: 50%;
+
+    background:
+
+        conic-gradient(
+            #087c4b 0deg 241deg,
+            #c8ddcb 241deg 360deg
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 20px;
+
+}
+
+
+.circle-inner {
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    background: #e6f2df;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.circle-inner strong {
+
+    font-size: 19px;
+
+    color: #26332d;
+
+}
+
+
+.circle-inner small {
+
+    font-size: 9px;
+
+    color: #6b756f;
+
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+}
+
+
+.action-card {
+
+    min-height: 105px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.action-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(30, 80, 50, 0.1);
+
+}
+
+
+.list-action {
+
+    background: #f7eadb;
+
+}
+
+
+.add-action {
+
+    background: #e4f1dc;
+
+}
+
+
+.history-action {
+
+    background: #e1edf4;
+
+}
+
+
+.settings-action {
+
+    background: #e9eceb;
+
+}
+
+
+.action-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    font-size: 20px;
+
+    color: #087c4b;
+
+    flex-shrink: 0;
+
+}
+
+
+.action-card h3 {
+
+    margin: 0 0 5px;
+
+    font-size: 14px;
+
+    color: #27332d;
+
+}
+
+
+.action-card p {
+
+    margin: 0;
+
+    font-size: 11px;
+
+    color: #727b76;
+
+}
+
+
+/* =========================================================
+   RECENT ITEMS
+========================================================= */
+
+.recent-section {
+
+    margin-top: 27px;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    font-size: 17px;
+
+}
+
+
+.section-heading button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #087c4b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.recent-list {
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px rgba(40, 70, 50, 0.05);
+
+}
+
+
+.recent-item {
+
+    min-height: 70px;
+
+    padding: 12px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border-bottom: 1px solid #edf0ec;
+
+}
+
+
+.recent-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.recent-icon {
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+
+}
+
+
+.rice-icon {
+
+    background: #f5ead8;
+
+}
+
+
+.egg-icon {
+
+    background: #f8eed9;
+
+}
+
+
+.milk-icon {
+
+    background: #e3f0f5;
+
+}
+
+
+.recent-info {
+
+    flex: 1;
+
+}
+
+
+.recent-info h3 {
+
+    margin: 0 0 3px;
+
+    font-size: 13px;
+
+}
+
+
+.recent-info p {
+
+    margin: 0;
+
+    font-size: 10px;
+
+    color: #858d88;
+
+}
+
+
+.recent-item > strong {
+
+    font-size: 13px;
+
+    color: #26332d;
+
+}
+
+
+/* =========================================================
+   SHOPPING TIP
+========================================================= */
+
+.shopping-tip {
+
+    margin-top: 18px;
+
+    padding: 17px;
+
+    background: #fff7df;
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+}
+
+
+.tip-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: #fff0bd;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+}
+
+
+.shopping-tip h3 {
+
+    margin: 0 0 4px;
+
+    font-size: 13px;
+
+}
+
+
+.shopping-tip p {
+
+    margin: 0;
+
+    font-size: 11px;
+
+    color: #74766e;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+========================================================= */
+
+.bottom-navigation {
+
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 75px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-top: 1px solid #e7ebe6;
+
+    display: flex;
+
+    justify-content: center;
+
+    z-index: 100;
+
+    box-shadow:
+        0 -5px 20px rgba(30, 70, 45, 0.05);
+
+}
+
+
+.bottom-nav-item {
+
+    width: 25%;
+
+    max-width: 120px;
+
+    border: none;
+
+    background: transparent;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    color: #87908b;
+
+    cursor: pointer;
+
+}
+
+
+.bottom-nav-item span {
+
+    font-size: 21px;
+
+    line-height: 1;
+
+}
+
+
+.bottom-nav-item small {
+
+    font-size: 10px;
+
+}
+
+
+.bottom-nav-item.active {
+
+    color: #087c4b;
+
+}
+
+
+.bottom-nav-item.active span {
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .home-header {
+
+        padding: 28px 20px 18px;
+
+    }
+
+
+    .greeting h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .budget-card-home {
+
+        padding: 19px;
+
+        min-height: 160px;
+
+    }
+
+
+    .budget-left h2 {
+
+        font-size: 26px;
+
+    }
+
+
+    .budget-details {
+
+        flex-direction: column;
+
+        gap: 3px;
+
+    }
+
+
+    .budget-circle-home {
+
+        width: 82px;
+        height: 82px;
+
+        margin-left: 12px;
+
+    }
+
+
+    .circle-inner {
+
+        width: 62px;
+        height: 62px;
+
+    }
+
+
+    .circle-inner strong {
+
+        font-size: 17px;
+
+    }
+
+
+    .action-card {
+
+        padding: 14px;
+
+        min-height: 95px;
+
+    }
+
+
+    .action-icon {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+
+    }
+
+
+    .action-card h3 {
+
+        font-size: 13px;
+
+    }
+
+}
+/* =========================================================
+   GROCERY LIST PAGE
+========================================================= */
+
+.list-header {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 25px 20px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.back-button {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    background: white;
+
+    border-radius: 12px;
+
+    font-size: 24px;
+
+    color: #26332d;
+
+    cursor: pointer;
+
+}
+
+
+.list-header > div {
+
+    flex: 1;
+
+}
+
+
+.list-header h1 {
+
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #26332d;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+.list-header p {
+
+    margin: 4px 0 0;
+
+    font-size: 11px;
+
+    color: #7b857f;
+
+}
+
+
+.header-add-button {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #087c4b;
+
+    color: white;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+}
+
+
+.list-content {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    padding: 5px 20px 110px;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+
+    width: 100%;
+
+    height: 48px;
+
+    background: white;
+
+    border: 1px solid #e4e9e4;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 15px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.search-box span {
+
+    font-size: 25px;
+
+    color: #87918b;
+
+    transform: rotate(-20deg);
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 13px;
+
+    color: #26332d;
+
+}
+
+
+.search-box input::placeholder {
+
+    color: #a0a8a3;
+
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+.list-tabs {
+
+    display: flex;
+
+    background: #edf2eb;
+
+    padding: 4px;
+
+    border-radius: 13px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.list-tab {
+
+    flex: 1;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #747d77;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.list-tab.active {
+
+    background: #087c4b;
+
+    color: white;
+
+    box-shadow:
+        0 3px 8px rgba(8, 124, 75, 0.15);
+
+}
+
+
+/* =========================================================
+   GROCERY ITEMS
+========================================================= */
+
+.grocery-items {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.grocery-item {
+
+    min-height: 72px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 10px 10px;
+
+    gap: 10px;
+
+    box-shadow:
+        0 3px 15px rgba(40, 70, 50, 0.04);
+
+    transition: 0.2s;
+
+}
+
+
+.grocery-item:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
+
+.item-checkbox {
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 6px;
+
+    border: 2px solid #c5cec8;
+
+    background: white;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+}
+
+
+.item-checkbox.checked {
+
+    background: #087c4b;
+
+    border-color: #087c4b;
+
+}
+
+
+/* =========================================================
+   ITEM ICON
+========================================================= */
+
+.item-icon {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 13px;
+
+    background: #edf5e8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================================================
+   ITEM INFORMATION
+========================================================= */
+
+.item-information {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.item-information h3 {
+
+    margin: 0 0 4px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #26332d;
+
+}
+
+
+.item-information p {
+
+    margin: 0;
+
+    font-size: 10px;
+
+    color: #89918c;
+
+}
+
+
+.purchased-item
+.item-information h3 {
+
+    text-decoration: line-through;
+
+    color: #919994;
+
+}
+
+
+.purchased-item
+.item-information p {
+
+    color: #a2aaa5;
+
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.item-price {
+
+    text-align: right;
+
+    white-space: nowrap;
+
+}
+
+
+.item-price strong {
+
+    font-size: 12px;
+
+    color: #26332d;
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.item-menu {
+
+    width: 25px;
+
+    height: 35px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #737d77;
+
+    font-size: 21px;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   EMPTY LIST
+========================================================= */
+
+.empty-list {
+
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    background: #e5f1df;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.empty-list h2 {
+
+    margin: 0 0 7px;
+
+    font-size: 17px;
+
+}
+
+
+.empty-list p {
+
+    margin: 0;
+
+    color: #7d8781;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   FLOATING ADD BUTTON
+========================================================= */
+
+.floating-add {
+
+    position: fixed;
+
+    bottom: 88px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    min-width: 145px;
+
+    height: 46px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #087c4b;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 20px rgba(8, 124, 75, 0.25);
+
+    z-index: 90;
+
+}
+
+
+.floating-add span {
+
+    font-size: 21px;
+
+}
+
+
+/* =========================================================
+   MOBILE LIST
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .list-header {
+
+        padding: 22px 18px 14px;
+
+    }
+
+
+    .list-header h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .list-content {
+
+        padding-left: 15px;
+        padding-right: 15px;
+
+    }
+
+
+    .grocery-item {
+
+        padding: 9px;
+
+        gap: 8px;
+
+    }
+
+
+    .item-icon {
+
+        width: 42px;
+        height: 42px;
+
+    }
+
+
+    .item-information h3 {
+
+        font-size: 12px;
+
+    }
+
+
+    .item-price strong {
+
+        font-size: 11px;
+
+    }
+
+}
+/* =========================================================
+   ADD ITEM PAGE
+========================================================= */
+
+.add-item-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 22px 24px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.add-item-header h1 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+.add-item-header p {
+    margin: 4px 0 0;
+
+    font-size: 13px;
+
+    color: #777777;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.add-item-content {
+    padding: 24px;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding-bottom: 50px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+#addItemForm {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.form-group label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333333;
+}
+
+
+.optional {
+    font-size: 12px;
+
+    font-weight: 400;
+
+    color: #999999;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 12px;
+
+    padding: 13px 14px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    background: #ffffff;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #c98262;
+
+    box-shadow:
+        0 0 0 3px rgba(201, 130, 98, 0.12);
+}
+
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 100px;
+}
+
+
+/* =========================
+   TWO COLUMNS
+========================= */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 16px;
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.price-input {
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+}
+
+
+.price-input span {
+    padding-left: 14px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #777777;
+}
+
+
+.price-input input {
+    border: none !important;
+
+    box-shadow: none !important;
+
+    border-radius: 0 !important;
+
+    flex: 1;
+}
+
+
+/* =========================
+   TOTAL PREVIEW
+========================= */
+
+.total-preview {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background: #fff7f2;
+
+    border: 1px solid #f1ddd2;
+}
+
+
+.total-preview div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.total-preview span {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #555555;
+}
+
+
+.total-preview small {
+    font-size: 12px;
+
+    color: #999999;
+}
+
+
+.total-preview strong {
+    font-size: 22px;
+
+    color: #9b6045;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.form-buttons {
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr;
+
+    gap: 12px;
+
+    margin-top: 8px;
+}
+
+
+.cancel-button,
+.save-item-button {
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.cancel-button {
+    background: #f3f3f3;
+
+    color: #555555;
+}
+
+
+.cancel-button:hover {
+    background: #e7e7e7;
+}
+
+
+.save-item-button {
+    background: #9b6045;
+
+    color: #ffffff;
+}
+
+
+.save-item-button:hover {
+    background: #844f39;
+
+    transform: translateY(-1px);
+}
+
+
+.save-item-button:active,
+.cancel-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .add-item-header {
+        padding: 18px 16px;
+    }
+
+
+    .add-item-content {
+        padding: 20px 16px 40px;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .form-buttons {
+        grid-template-columns: 1fr;
+    }
+
+
+    .total-preview {
+        padding: 15px;
+    }
+
+
+    .total-preview strong {
+        font-size: 19px;
+    }
+
+}
